@@ -1,0 +1,1023 @@
+{
+  "sourceSha256": "83187357e4d2ef4241ba86975a36d14311d4f326061b7354105ca7ee1284efcc",
+  "outputSha256": "d78041f72929aa8443eafe367331c9ae89573811d128efb42f898dc0433a663c",
+  "sourceBytes": 70962632,
+  "outputBytes": 18350360,
+  "removedLinePrimitives": 24,
+  "spatialCropping": false,
+  "simplified": false,
+  "before": {
+    "triangles": 826904,
+    "min": [
+      -1243.24267578125,
+      -59.230018615723054,
+      -2408.462158203125
+    ],
+    "max": [
+      991.7315063476562,
+      847.109802246094,
+      2284.17822265625
+    ],
+    "surfaces": [
+      {
+        "name": "Material2",
+        "triangles": 142
+      },
+      {
+        "name": "Material2",
+        "triangles": 1891
+      },
+      {
+        "name": "Material2",
+        "triangles": 1113
+      },
+      {
+        "name": "Material2",
+        "triangles": 15009
+      },
+      {
+        "name": "Material2",
+        "triangles": 230
+      },
+      {
+        "name": "Material2",
+        "triangles": 47640
+      },
+      {
+        "name": "Material2",
+        "triangles": 9887
+      },
+      {
+        "name": "Material2",
+        "triangles": 18880
+      },
+      {
+        "name": "Material2",
+        "triangles": 40
+      },
+      {
+        "name": "Material2",
+        "triangles": 106
+      },
+      {
+        "name": "Material2",
+        "triangles": 927
+      },
+      {
+        "name": "Material2",
+        "triangles": 44777
+      },
+      {
+        "name": "Material2",
+        "triangles": 24875
+      },
+      {
+        "name": "Material2",
+        "triangles": 13236
+      },
+      {
+        "name": "Material2",
+        "triangles": 255
+      },
+      {
+        "name": "Material2",
+        "triangles": 107
+      },
+      {
+        "name": "Material2",
+        "triangles": 4262
+      },
+      {
+        "name": "Material2",
+        "triangles": 88
+      },
+      {
+        "name": "Material2",
+        "triangles": 759
+      },
+      {
+        "name": "Material2",
+        "triangles": 1398
+      },
+      {
+        "name": "Material2",
+        "triangles": 1620
+      },
+      {
+        "name": "Material2",
+        "triangles": 1499
+      },
+      {
+        "name": "Material2",
+        "triangles": 122
+      },
+      {
+        "name": "Material2",
+        "triangles": 262
+      },
+      {
+        "name": "Material2",
+        "triangles": 55
+      },
+      {
+        "name": "Material2",
+        "triangles": 80
+      },
+      {
+        "name": "Material2",
+        "triangles": 18
+      },
+      {
+        "name": "Material2",
+        "triangles": 3117
+      },
+      {
+        "name": "Material2",
+        "triangles": 46325
+      },
+      {
+        "name": "Material2",
+        "triangles": 5091
+      },
+      {
+        "name": "Material2",
+        "triangles": 1082
+      },
+      {
+        "name": "Material3",
+        "triangles": 739
+      },
+      {
+        "name": "Material2",
+        "triangles": 971
+      },
+      {
+        "name": "Material2",
+        "triangles": 6332
+      },
+      {
+        "name": "Material2",
+        "triangles": 876
+      },
+      {
+        "name": "Material2",
+        "triangles": 30335
+      },
+      {
+        "name": "Material2",
+        "triangles": 15301
+      },
+      {
+        "name": "Material2",
+        "triangles": 26
+      },
+      {
+        "name": "Material2",
+        "triangles": 261
+      },
+      {
+        "name": "Material3",
+        "triangles": 50
+      },
+      {
+        "name": "Material2",
+        "triangles": 43862
+      },
+      {
+        "name": "Material2",
+        "triangles": 36115
+      },
+      {
+        "name": "Material2",
+        "triangles": 165
+      },
+      {
+        "name": "Material2",
+        "triangles": 1273
+      },
+      {
+        "name": "Material3",
+        "triangles": 414
+      },
+      {
+        "name": "Material2",
+        "triangles": 56
+      },
+      {
+        "name": "Material3",
+        "triangles": 658
+      },
+      {
+        "name": "Material2",
+        "triangles": 643
+      },
+      {
+        "name": "Material2",
+        "triangles": 730
+      },
+      {
+        "name": "Material2",
+        "triangles": 495
+      },
+      {
+        "name": "Material2",
+        "triangles": 40
+      },
+      {
+        "name": "Material2",
+        "triangles": 76
+      },
+      {
+        "name": "Material2",
+        "triangles": 101
+      },
+      {
+        "name": "Material2",
+        "triangles": 137
+      },
+      {
+        "name": "Material3",
+        "triangles": 78
+      },
+      {
+        "name": "Material2",
+        "triangles": 58
+      },
+      {
+        "name": "Material2",
+        "triangles": 905
+      },
+      {
+        "name": "Material3",
+        "triangles": 7995
+      },
+      {
+        "name": "Material3",
+        "triangles": 115
+      },
+      {
+        "name": "Material2",
+        "triangles": 500
+      },
+      {
+        "name": "Material2",
+        "triangles": 170
+      },
+      {
+        "name": "Material3",
+        "triangles": 11397
+      },
+      {
+        "name": "Material3",
+        "triangles": 128
+      },
+      {
+        "name": "Material2",
+        "triangles": 1441
+      },
+      {
+        "name": "Material2",
+        "triangles": 629
+      },
+      {
+        "name": "Material2",
+        "triangles": 172
+      },
+      {
+        "name": "Material2",
+        "triangles": 210
+      },
+      {
+        "name": "Material2",
+        "triangles": 77
+      },
+      {
+        "name": "Material2",
+        "triangles": 258
+      },
+      {
+        "name": "Material2",
+        "triangles": 462
+      },
+      {
+        "name": "Material2",
+        "triangles": 5792
+      },
+      {
+        "name": "Material2",
+        "triangles": 80
+      },
+      {
+        "name": "Material2",
+        "triangles": 768
+      },
+      {
+        "name": "Material2",
+        "triangles": 133
+      },
+      {
+        "name": "Material2",
+        "triangles": 6
+      },
+      {
+        "name": "Material2",
+        "triangles": 64
+      },
+      {
+        "name": "Material2",
+        "triangles": 6
+      },
+      {
+        "name": "Material3",
+        "triangles": 60
+      },
+      {
+        "name": "Material2",
+        "triangles": 241
+      },
+      {
+        "name": "Material2",
+        "triangles": 22
+      },
+      {
+        "name": "Material2",
+        "triangles": 175
+      },
+      {
+        "name": "Material2",
+        "triangles": 28
+      },
+      {
+        "name": "Material2",
+        "triangles": 28
+      },
+      {
+        "name": "Material2",
+        "triangles": 376
+      },
+      {
+        "name": "Material3",
+        "triangles": 2358
+      },
+      {
+        "name": "Material2",
+        "triangles": 4174
+      },
+      {
+        "name": "Material2",
+        "triangles": 4
+      },
+      {
+        "name": "Material2",
+        "triangles": 10
+      },
+      {
+        "name": "Material2",
+        "triangles": 2
+      },
+      {
+        "name": "Material2",
+        "triangles": 487
+      },
+      {
+        "name": "Material2",
+        "triangles": 530
+      },
+      {
+        "name": "Material2",
+        "triangles": 29
+      },
+      {
+        "name": "Material2",
+        "triangles": 7571
+      },
+      {
+        "name": "Material2",
+        "triangles": 16
+      },
+      {
+        "name": "Material3",
+        "triangles": 26
+      },
+      {
+        "name": "Material2",
+        "triangles": 5716
+      },
+      {
+        "name": "Material3",
+        "triangles": 2
+      },
+      {
+        "name": "Material3",
+        "triangles": 120
+      },
+      {
+        "name": "Material3",
+        "triangles": 92
+      },
+      {
+        "name": "Material2",
+        "triangles": 442
+      },
+      {
+        "name": "Material3",
+        "triangles": 371
+      },
+      {
+        "name": "Material2",
+        "triangles": 2436
+      },
+      {
+        "name": "Material2",
+        "triangles": 4
+      },
+      {
+        "name": "Material2",
+        "triangles": 7758
+      },
+      {
+        "name": "Material2",
+        "triangles": 8473
+      },
+      {
+        "name": "Material2",
+        "triangles": 8646
+      },
+      {
+        "name": "Material2",
+        "triangles": 9036
+      },
+      {
+        "name": "Material2",
+        "triangles": 12280
+      },
+      {
+        "name": "Material2",
+        "triangles": 5960
+      },
+      {
+        "name": "Material2",
+        "triangles": 9502
+      },
+      {
+        "name": "Material2",
+        "triangles": 11233
+      },
+      {
+        "name": "Material2",
+        "triangles": 45794
+      },
+      {
+        "name": "Material2",
+        "triangles": 39
+      },
+      {
+        "name": "Material2",
+        "triangles": 59051
+      },
+      {
+        "name": "Material2",
+        "triangles": 14054
+      },
+      {
+        "name": "Material3",
+        "triangles": 8910
+      },
+      {
+        "name": "Material2",
+        "triangles": 34121
+      },
+      {
+        "name": "Material2",
+        "triangles": 30967
+      },
+      {
+        "name": "Material2",
+        "triangles": 52951
+      },
+      {
+        "name": "Material2",
+        "triangles": 42672
+      },
+      {
+        "name": "Material2",
+        "triangles": 13011
+      },
+      {
+        "name": "Material2",
+        "triangles": 4332
+      },
+      {
+        "name": "Material2",
+        "triangles": 6801
+      }
+    ]
+  },
+  "after": {
+    "triangles": 826904,
+    "min": [
+      -1243.24267578125,
+      -59.230018615723054,
+      -2408.4619140625
+    ],
+    "max": [
+      991.733154296875,
+      847.1096191406252,
+      2284.17822265625
+    ],
+    "surfaces": [
+      {
+        "name": "Material2",
+        "triangles": 142
+      },
+      {
+        "name": "Material2",
+        "triangles": 1891
+      },
+      {
+        "name": "Material2",
+        "triangles": 1113
+      },
+      {
+        "name": "Material2",
+        "triangles": 15009
+      },
+      {
+        "name": "Material2",
+        "triangles": 230
+      },
+      {
+        "name": "Material2",
+        "triangles": 47640
+      },
+      {
+        "name": "Material2",
+        "triangles": 9887
+      },
+      {
+        "name": "Material2",
+        "triangles": 18880
+      },
+      {
+        "name": "Material2",
+        "triangles": 40
+      },
+      {
+        "name": "Material2",
+        "triangles": 106
+      },
+      {
+        "name": "Material2",
+        "triangles": 927
+      },
+      {
+        "name": "Material2",
+        "triangles": 44777
+      },
+      {
+        "name": "Material2",
+        "triangles": 24875
+      },
+      {
+        "name": "Material2",
+        "triangles": 13236
+      },
+      {
+        "name": "Material2",
+        "triangles": 255
+      },
+      {
+        "name": "Material2",
+        "triangles": 107
+      },
+      {
+        "name": "Material2",
+        "triangles": 4262
+      },
+      {
+        "name": "Material2",
+        "triangles": 88
+      },
+      {
+        "name": "Material2",
+        "triangles": 759
+      },
+      {
+        "name": "Material2",
+        "triangles": 1398
+      },
+      {
+        "name": "Material2",
+        "triangles": 1620
+      },
+      {
+        "name": "Material2",
+        "triangles": 1499
+      },
+      {
+        "name": "Material2",
+        "triangles": 122
+      },
+      {
+        "name": "Material2",
+        "triangles": 262
+      },
+      {
+        "name": "Material2",
+        "triangles": 55
+      },
+      {
+        "name": "Material2",
+        "triangles": 80
+      },
+      {
+        "name": "Material2",
+        "triangles": 18
+      },
+      {
+        "name": "Material2",
+        "triangles": 3117
+      },
+      {
+        "name": "Material2",
+        "triangles": 46325
+      },
+      {
+        "name": "Material2",
+        "triangles": 5091
+      },
+      {
+        "name": "Material2",
+        "triangles": 1082
+      },
+      {
+        "name": "Material3",
+        "triangles": 739
+      },
+      {
+        "name": "Material2",
+        "triangles": 971
+      },
+      {
+        "name": "Material2",
+        "triangles": 6332
+      },
+      {
+        "name": "Material2",
+        "triangles": 876
+      },
+      {
+        "name": "Material2",
+        "triangles": 30335
+      },
+      {
+        "name": "Material2",
+        "triangles": 15301
+      },
+      {
+        "name": "Material2",
+        "triangles": 26
+      },
+      {
+        "name": "Material2",
+        "triangles": 261
+      },
+      {
+        "name": "Material3",
+        "triangles": 50
+      },
+      {
+        "name": "Material2",
+        "triangles": 43862
+      },
+      {
+        "name": "Material2",
+        "triangles": 36115
+      },
+      {
+        "name": "Material2",
+        "triangles": 165
+      },
+      {
+        "name": "Material2",
+        "triangles": 1273
+      },
+      {
+        "name": "Material3",
+        "triangles": 414
+      },
+      {
+        "name": "Material2",
+        "triangles": 56
+      },
+      {
+        "name": "Material3",
+        "triangles": 658
+      },
+      {
+        "name": "Material2",
+        "triangles": 643
+      },
+      {
+        "name": "Material2",
+        "triangles": 730
+      },
+      {
+        "name": "Material2",
+        "triangles": 495
+      },
+      {
+        "name": "Material2",
+        "triangles": 40
+      },
+      {
+        "name": "Material2",
+        "triangles": 76
+      },
+      {
+        "name": "Material2",
+        "triangles": 101
+      },
+      {
+        "name": "Material2",
+        "triangles": 137
+      },
+      {
+        "name": "Material3",
+        "triangles": 78
+      },
+      {
+        "name": "Material2",
+        "triangles": 58
+      },
+      {
+        "name": "Material2",
+        "triangles": 905
+      },
+      {
+        "name": "Material3",
+        "triangles": 7995
+      },
+      {
+        "name": "Material3",
+        "triangles": 115
+      },
+      {
+        "name": "Material2",
+        "triangles": 500
+      },
+      {
+        "name": "Material2",
+        "triangles": 170
+      },
+      {
+        "name": "Material3",
+        "triangles": 11397
+      },
+      {
+        "name": "Material3",
+        "triangles": 128
+      },
+      {
+        "name": "Material2",
+        "triangles": 1441
+      },
+      {
+        "name": "Material2",
+        "triangles": 629
+      },
+      {
+        "name": "Material2",
+        "triangles": 172
+      },
+      {
+        "name": "Material2",
+        "triangles": 210
+      },
+      {
+        "name": "Material2",
+        "triangles": 77
+      },
+      {
+        "name": "Material2",
+        "triangles": 258
+      },
+      {
+        "name": "Material2",
+        "triangles": 462
+      },
+      {
+        "name": "Material2",
+        "triangles": 5792
+      },
+      {
+        "name": "Material2",
+        "triangles": 80
+      },
+      {
+        "name": "Material2",
+        "triangles": 768
+      },
+      {
+        "name": "Material2",
+        "triangles": 133
+      },
+      {
+        "name": "Material2",
+        "triangles": 6
+      },
+      {
+        "name": "Material2",
+        "triangles": 64
+      },
+      {
+        "name": "Material2",
+        "triangles": 6
+      },
+      {
+        "name": "Material3",
+        "triangles": 60
+      },
+      {
+        "name": "Material2",
+        "triangles": 241
+      },
+      {
+        "name": "Material2",
+        "triangles": 22
+      },
+      {
+        "name": "Material2",
+        "triangles": 175
+      },
+      {
+        "name": "Material2",
+        "triangles": 28
+      },
+      {
+        "name": "Material2",
+        "triangles": 28
+      },
+      {
+        "name": "Material2",
+        "triangles": 376
+      },
+      {
+        "name": "Material3",
+        "triangles": 2358
+      },
+      {
+        "name": "Material2",
+        "triangles": 4174
+      },
+      {
+        "name": "Material2",
+        "triangles": 4
+      },
+      {
+        "name": "Material2",
+        "triangles": 10
+      },
+      {
+        "name": "Material2",
+        "triangles": 2
+      },
+      {
+        "name": "Material2",
+        "triangles": 487
+      },
+      {
+        "name": "Material2",
+        "triangles": 530
+      },
+      {
+        "name": "Material2",
+        "triangles": 29
+      },
+      {
+        "name": "Material2",
+        "triangles": 7571
+      },
+      {
+        "name": "Material2",
+        "triangles": 16
+      },
+      {
+        "name": "Material3",
+        "triangles": 26
+      },
+      {
+        "name": "Material2",
+        "triangles": 5716
+      },
+      {
+        "name": "Material3",
+        "triangles": 2
+      },
+      {
+        "name": "Material3",
+        "triangles": 120
+      },
+      {
+        "name": "Material3",
+        "triangles": 92
+      },
+      {
+        "name": "Material2",
+        "triangles": 442
+      },
+      {
+        "name": "Material3",
+        "triangles": 371
+      },
+      {
+        "name": "Material2",
+        "triangles": 2436
+      },
+      {
+        "name": "Material2",
+        "triangles": 4
+      },
+      {
+        "name": "Material2",
+        "triangles": 7758
+      },
+      {
+        "name": "Material2",
+        "triangles": 8473
+      },
+      {
+        "name": "Material2",
+        "triangles": 8646
+      },
+      {
+        "name": "Material2",
+        "triangles": 9036
+      },
+      {
+        "name": "Material2",
+        "triangles": 12280
+      },
+      {
+        "name": "Material2",
+        "triangles": 5960
+      },
+      {
+        "name": "Material2",
+        "triangles": 9502
+      },
+      {
+        "name": "Material2",
+        "triangles": 11233
+      },
+      {
+        "name": "Material2",
+        "triangles": 45794
+      },
+      {
+        "name": "Material2",
+        "triangles": 39
+      },
+      {
+        "name": "Material2",
+        "triangles": 59051
+      },
+      {
+        "name": "Material2",
+        "triangles": 14054
+      },
+      {
+        "name": "Material3",
+        "triangles": 8910
+      },
+      {
+        "name": "Material2",
+        "triangles": 34121
+      },
+      {
+        "name": "Material2",
+        "triangles": 30967
+      },
+      {
+        "name": "Material2",
+        "triangles": 52951
+      },
+      {
+        "name": "Material2",
+        "triangles": 42672
+      },
+      {
+        "name": "Material2",
+        "triangles": 13011
+      },
+      {
+        "name": "Material2",
+        "triangles": 4332
+      },
+      {
+        "name": "Material2",
+        "triangles": 6801
+      }
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "source": "https://freesound.org/people/ElementRS2/sounds/343686/",
+  "author": "ElementRS2",
+  "license": "CC-BY-4.0",
+  "takes": {
+    "0": {
+      "sourceSeconds": [
+        4.65,
+        5.75
+      ],
+      "seconds": 1.1,
+      "bytes": 97064,
+      "sha256": "f0edad507d75fac984fe555b184ad25a0c54254e7da70e27b1dc1e1a2f151067"
+    },
+    "1": {
+      "sourceSeconds": [
+        12.75,
+        13.65
+      ],
+      "seconds": 0.9,
+      "bytes": 79424,
+      "sha256": "7f97b0ec5528421a886d154e3729739fce8875263da784289f9f6c0a1c67e9dc"
+    },
+    "2": {
+      "sourceSeconds": [
+        18.1,
+        19.0
+      ],
+      "seconds": 0.9,
+      "bytes": 79424,
+      "sha256": "c80b7c498cc86a48faab6bfbfdeb7424fc9d1d127def19f74ec0ff455150b8f1"
+    }
+  }
+}

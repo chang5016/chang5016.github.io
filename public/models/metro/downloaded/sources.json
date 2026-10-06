@@ -1,0 +1,1107 @@
+{
+  "version": 7,
+  "policy": "Every visible metro triangle derives from the listed downloaded model files. Only placement, source geometry adaptation, material conversion, animation, invisible collision bounds and live screen content are authored.",
+  "files": [
+    {
+      "file": "shanghai-maglev-body.glb",
+      "bytes": 853360,
+      "sha256": "8c5f028d4b3180f0a9a87c383752397a8337fa9dcfc14f80633380dcb724802e",
+      "source": {
+        "page": "https://www.cadnav.com/3d-models/model-36867.html",
+        "file": "C0818132.3DS",
+        "license": "CadNav non-commercial page and bundled modification/project-use notice",
+        "sha256": "82de92c3c55119386b94f8473848acab99e7f9f495743d6ef4fc084b4bdf156d"
+      },
+      "adaptation": "Original CadNav Shanghai maglev Mesh07, full 34.42 m body retained. Passenger width adapted to 6.2 m and headroom to 3.5 m. Six portal cuts through the original shell and clearance of residual interior construction faces in the passenger volume; source materials retained with a blue transport livery. Presentation annotations and separate exploded underframe pieces omitted.",
+      "triangles": 8744,
+      "bounds": [
+        [
+          -3.0999999046325684,
+          0,
+          -17.21136474609375
+        ],
+        [
+          3.0999999046325684,
+          5.149184703826904,
+          17.21136474609375
+        ]
+      ]
+    },
+    {
+      "file": "maglev-underframe.glb",
+      "bytes": 251412,
+      "sha256": "b01860e3b9ce3696ce8317ce9a605f569c097e12f302ecb3739f1731ef1c531b",
+      "source": {
+        "page": "https://www.cadnav.com/3d-models/model-36867.html",
+        "file": "C0818132.3DS",
+        "license": "CadNav non-commercial page and bundled modification/project-use notice",
+        "sha256": "82de92c3c55119386b94f8473848acab99e7f9f495743d6ef4fc084b4bdf156d"
+      },
+      "adaptation": "Original CadNav Group3 and Group4 underframe assemblies repositioned from their exploded layout below the corresponding carriage body. Source shape and details retained.",
+      "triangles": 2590,
+      "bounds": [
+        [
+          -3.075000047683716,
+          -1.100000023841858,
+          -17
+        ],
+        [
+          3.075000047683716,
+          -0.029999947175383568,
+          16.399999618530273
+        ]
+      ]
+    },
+    {
+      "file": "carriage-floor.glb",
+      "bytes": 2652,
+      "sha256": "8f73608446474e037a25ecb0a4588c5f81fa0c80da7f9c8539850dbd222ed1b2",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Ceiling.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "4cfeef8f08c6adbc9771f4c3ef86bd580dfb11cff0ef65d009857324b79b047b"
+      },
+      "adaptation": "Original downloaded thin interior panel resized to the motorcycle cabin floor. No new surface primitives.",
+      "triangles": 8,
+      "bounds": [
+        [
+          -3.174999952316284,
+          -0.04500000178813934,
+          -16.850000381469727
+        ],
+        [
+          3.174999952316284,
+          1.7881393032936899e-9,
+          7.75
+        ]
+      ]
+    },
+    {
+      "file": "carriage-ceiling.glb",
+      "bytes": 2584,
+      "sha256": "85bdab1dad9a255c53fd5bf58bc73275f1cad95d4b0d227457d294aadb14169d",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Ceiling.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "4cfeef8f08c6adbc9771f4c3ef86bd580dfb11cff0ef65d009857324b79b047b"
+      },
+      "adaptation": "Original downloaded interior panel used as the continuous carriage lining, retained source topology.",
+      "triangles": 8,
+      "bounds": [
+        [
+          -2.8499999046325684,
+          3.490000009536743,
+          -16.850000381469727
+        ],
+        [
+          2.8499999046325684,
+          3.5350000858306885,
+          7.75
+        ]
+      ]
+    },
+    {
+      "file": "ticket-gate.glb",
+      "bytes": 11208,
+      "sha256": "1532c7cf4dfac174a3c7787d14ad80806a6d3b80bee830cb6a82eac16181a360",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Trains/JFR1/Door.obj",
+        "license": "CC0 (Jean3219)",
+        "sha256": "536342ed5b5d675aa8f15ef8086c0fc45e5e418a51b99d8a8b50fcc6684ade18"
+      },
+      "adaptation": "Original JFR1 sliding glazed panel adapted as paired low ETC gates; source frame and glazing retained.",
+      "triangles": 80,
+      "bounds": [
+        [
+          -0.9324999451637268,
+          0,
+          -0.04249999672174454
+        ],
+        [
+          0.9324999451637268,
+          1.119999885559082,
+          0.04249999672174454
+        ]
+      ]
+    },
+    {
+      "file": "hanging-display.glb",
+      "bytes": 27456,
+      "sha256": "e70327dab5b4605c5b86a7c45ea5c387daaa8a141ddc60becbb140d024362632",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/DestinationSignFromUp.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "b432d6f601a50c5d62c371e36eacb265d7bb842388b10dff71708ef25683158e"
+      },
+      "adaptation": "Downloaded 3D display enclosure, glass display faces, rounded bezel and two original hanging rods. Rod length trimmed to the station ceiling; two display faces receive separately oriented text UVs.",
+      "triangles": 252,
+      "bounds": [
+        [
+          -0.15000000596046448,
+          -0.30000001192092896,
+          -1
+        ],
+        [
+          0.15000000596046448,
+          0.6100000143051147,
+          1
+        ]
+      ]
+    },
+    {
+      "file": "door-display.glb",
+      "bytes": 27312,
+      "sha256": "0b20f7ce4cb59fa81330339619562e9a036fd3743453f844f908ef05f6eacd1f",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/DestinationSignFromUp.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "b432d6f601a50c5d62c371e36eacb265d7bb842388b10dff71708ef25683158e"
+      },
+      "adaptation": "Same downloaded 3D electronic display enclosure mounted above each carriage doorway; hanging rods trimmed for wall mounting.",
+      "triangles": 252,
+      "bounds": [
+        [
+          -0.15000000596046448,
+          -0.30000001192092896,
+          -1
+        ],
+        [
+          0.15000000596046448,
+          0.35499998927116394,
+          1
+        ]
+      ]
+    },
+    {
+      "file": "platform.glb",
+      "bytes": 10340,
+      "sha256": "8963dd3410311b40a31e511e258946cbc5395748fc565e72fc49bc4d70726836",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Platform-1_no_railings.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "bc6881c8fb7be2bf896b81ead9442314d454cfafae9d7195551549c5c9ebced1"
+      },
+      "adaptation": "Original complete bevelled platform module, paving, safety strip and concrete sides retained.",
+      "triangles": 54,
+      "bounds": [
+        [
+          -5.25,
+          -1.2637170553207397,
+          -1.5833179950714111
+        ],
+        [
+          5.25,
+          0.536283016204834,
+          1.893565058708191
+        ]
+      ]
+    },
+    {
+      "file": "platform-railing.glb",
+      "bytes": 19148,
+      "sha256": "901c9045ca01f96c9f5828c26774dccd8b4f73001d7a5d606c917f7d4987acb9",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Platform-1.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "7db1e89d8ff8edd2bca4185c790dd7f5a8d11e1635f170dffef315595a181c54"
+      },
+      "adaptation": "Original tubular metal platform railings, separated by source material only.",
+      "triangles": 180,
+      "bounds": [
+        [
+          -5.036139011383057,
+          -0.18355600535869598,
+          -1.5463769435882568
+        ],
+        [
+          5.0520710945129395,
+          0.6986459493637085,
+          -1.4129470586776733
+        ]
+      ]
+    },
+    {
+      "file": "canopy.glb",
+      "bytes": 32760,
+      "sha256": "c2f4fc417d1f8b45a34c2d23eca48b0fdf24fbcfdf8de2f091d27850be530ea1",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Platform_double_roofing.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "8a3034691bed801ce4a14aaf4e8f777c67d2013a872d99cd9140a7ee93d84fe2"
+      },
+      "adaptation": "Complete original station canopy including structural posts, cross-bracing, roofing and LED fixtures.",
+      "triangles": 232,
+      "bounds": [
+        [
+          -5.50371789932251,
+          1.110967993736267,
+          -3.939220905303955
+        ],
+        [
+          5.50371789932251,
+          5.905168056488037,
+          3.939220905303955
+        ]
+      ]
+    },
+    {
+      "file": "guideway.glb",
+      "bytes": 9124,
+      "sha256": "664755658fbce2a0bca0c3881d0885fec71d1606254b76f64b77c923c73bdaa5",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Subway_Bridge_WithEdges.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "5d66c0991608d8e37e4dbd269ea880d4071071dfbf23cf13313a3b2473d74fdf"
+      },
+      "adaptation": "Original elevated railway deck including parapets and floor.",
+      "triangles": 60,
+      "bounds": [
+        [
+          -5,
+          -0.5,
+          -5
+        ],
+        [
+          5,
+          0.8755409717559814,
+          5
+        ]
+      ]
+    },
+    {
+      "file": "pier.glb",
+      "bytes": 8964,
+      "sha256": "b69e7947512d706e7373256fee640cbfb08a3c22da1ec6a11d82c1f63aa8fd9c",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/BridgePfost1.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "d3ee146047a306a46aef0823778fefbf179cad880cb046471675d0f1f41cc5de"
+      },
+      "adaptation": "Original reinforced-concrete T-head bridge pier; configuration adjusts head width and support height, not a newly made column.",
+      "triangles": 74,
+      "bounds": [
+        [
+          -1,
+          -20.283740997314453,
+          -3.0905609130859375
+        ],
+        [
+          1,
+          -1.4543910026550293,
+          3.0905609130859375
+        ]
+      ]
+    },
+    {
+      "file": "bench.glb",
+      "bytes": 21544,
+      "sha256": "b27375bda543e1096d158006a6b649ef410678deb8b92a8de2e990dd0b6e0a59",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Bench.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "6a5cbf00c2ba8694f2665a4b75c2dec791287c34e074065bd5b0dc9801044413"
+      },
+      "adaptation": "Complete original platform seating, timber boards and concrete feet retained.",
+      "triangles": 188,
+      "bounds": [
+        [
+          -1.518707036972046,
+          -0.005613999906927347,
+          -0.4085659980773926
+        ],
+        [
+          1.518707036972046,
+          0.5464239716529846,
+          0.4085659980773926
+        ]
+      ]
+    },
+    {
+      "file": "carriage-lighting.glb",
+      "bytes": 11344,
+      "sha256": "3560340b1c1c0a3d14b7dfb2f8a7d754efcbfc44d27a05469310b3544fb359f5",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Platform_double_roofing.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "8a3034691bed801ce4a14aaf4e8f777c67d2013a872d99cd9140a7ee93d84fe2"
+      },
+      "adaptation": "Original canopy LED fixtures and casings reused as actual 3D overhead carriage lighting modules.",
+      "triangles": 80,
+      "bounds": [
+        [
+          -2.549999952316284,
+          3.299999952316284,
+          -3.200000047683716
+        ],
+        [
+          2.549999952316284,
+          3.4600000381469727,
+          3.200000047683716
+        ]
+      ]
+    },
+    {
+      "file": "train-door.glb",
+      "bytes": 11324,
+      "sha256": "6efc6e4799e83411ac0bea3858ff798474246b77f3983db50e22ebbd7d7f4896",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Trains/JFR1/Door.obj",
+        "license": "CC0 (Jean3219)",
+        "sha256": "536342ed5b5d675aa8f15ef8086c0fc45e5e418a51b99d8a8b50fcc6684ade18"
+      },
+      "adaptation": "Complete original JFR1 framed glass sliding leaf aligned to the original source train aperture; paired opening 3.05 m, source door geometry and materials retained.",
+      "triangles": 80,
+      "bounds": [
+        [
+          -0.762499988079071,
+          0,
+          -0.0888499990105629
+        ],
+        [
+          0.762499988079071,
+          4.079999923706055,
+          0.0888499990105629
+        ]
+      ]
+    },
+    {
+      "file": "lift-door.glb",
+      "bytes": 11264,
+      "sha256": "f9cc08c7b3efe4dab9ea2653ea4b6ebf83704d1edfaa89cb716d92ee677cac3e",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Trains/JFR1/Door.obj",
+        "license": "CC0 (Jean3219)",
+        "sha256": "536342ed5b5d675aa8f15ef8086c0fc45e5e418a51b99d8a8b50fcc6684ade18"
+      },
+      "adaptation": "Complete original JFR1 framed glass door, paired clear doorway 5.4 m wide and 5.2 m high to clear actual full scooter-rider envelope.",
+      "triangles": 80,
+      "bounds": [
+        [
+          -1.3424999713897705,
+          0,
+          -0.04249999672174454
+        ],
+        [
+          1.3424999713897705,
+          5.199999809265137,
+          0.04249999672174454
+        ]
+      ]
+    },
+    {
+      "file": "lift-floor.glb",
+      "bytes": 2096,
+      "sha256": "175a90efbbe538f1a4c297ebbf4a086f52285e67afbae9328d6681e156d51bdc",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Ceiling.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "4cfeef8f08c6adbc9771f4c3ef86bd580dfb11cff0ef65d009857324b79b047b"
+      },
+      "adaptation": "Complete downloaded interior panel resized for the 7.2 m motorcycle cabin floor, original faces and UV retained.",
+      "triangles": 8,
+      "bounds": [
+        [
+          -3.5999999046325684,
+          -0.04500000178813934,
+          -3.5999999046325684
+        ],
+        [
+          3.5999999046325684,
+          1.7881393032936899e-9,
+          3.5999999046325684
+        ]
+      ]
+    },
+    {
+      "file": "boarding-threshold.glb",
+      "bytes": 2696,
+      "sha256": "dd9ab2392353dfd382e995de1656718387bfe88fc9aa1ea8d1545a26507f0d2d",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Ceiling.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "4cfeef8f08c6adbc9771f4c3ef86bd580dfb11cff0ef65d009857324b79b047b"
+      },
+      "adaptation": "Downloaded continuous panel aligned to the original JFR1 sill and platform, retractable 3.05 m level bridge plate with no floor gap.",
+      "triangles": 8,
+      "bounds": [
+        [
+          -1.524999976158142,
+          -0.02500000037252903,
+          -0.20000000298023224
+        ],
+        [
+          1.524999976158142,
+          3.7252903539730653e-10,
+          0.20000000298023224
+        ]
+      ]
+    },
+    {
+      "file": "station-building.glb",
+      "bytes": 61444,
+      "sha256": "f127983c73d8ca4bab34def7a6a0c4c0e6755993de0fc8909c62c4a2b6ca301c",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/TrainStationBuilding2.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "13b7ad43481fe8dc1a413717c4654a1600f7f3e8d162520b858e9acc625db542"
+      },
+      "adaptation": "Complete original TrainStationBuilding2, original roof, window bays, textures and structure retained at uniform scale 1.4. Surveyed street portal and separate A lift/B bypass portals, clear full motorcycle interior. No substitute facade or primitive shell.",
+      "triangles": 522,
+      "bounds": [
+        [
+          -18.90481185913086,
+          -0.8999999761581421,
+          -14.130057334899902
+        ],
+        [
+          18.90481185913086,
+          6.7396345138549805,
+          14.130057334899902
+        ]
+      ]
+    },
+    {
+      "file": "lift-cabin.glb",
+      "bytes": 103096,
+      "sha256": "ce4500d2ae3fcd0cd16a5f44f8b1cdcc9278070279ccc75ed1264d806f5a0e28",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Lift-Subway.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "66a57cb046d3292a279bffebfa540b5f9b6a6240dee6edd84dc6ace6bd6ad353"
+      },
+      "adaptation": "Original Lift-Subway glass and frame adapted to 7.2 m cabin and 5.85 m unobstructed internal height. All source transverse slabs removed from the entire scooter travel volume; roof and external beams preserved; 5.4 m paired doorways.",
+      "triangles": 1014,
+      "bounds": [
+        [
+          -3.6502795219421387,
+          -0.17000000178813934,
+          -3.700648546218872
+        ],
+        [
+          3.6502795219421387,
+          6.460000038146973,
+          3.700648546218872
+        ]
+      ]
+    },
+    {
+      "file": "lift-shaft-0-0.glb",
+      "bytes": 108188,
+      "sha256": "48922c283c04ec0cb65e664f9db88e4b70f7854477a628de1262417fad63c11b",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Lift-Subway.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "66a57cb046d3292a279bffebfa540b5f9b6a6240dee6edd84dc6ace6bd6ad353"
+      },
+      "adaptation": "Original downloaded Lift-Subway shaft refitted to the relocated street parcel. Only the travel span changes length; all original portal, footing, glass and steel geometry, original UVs and motorcycle clearance remain. Lower and upper portals match the surveyed street and 21.6 m platform.",
+      "triangles": 1044,
+      "bounds": [
+        [
+          -4.262336254119873,
+          -0.3264896273612976,
+          -4.304333209991455
+        ],
+        [
+          4.262336254119873,
+          28.81138038635254,
+          4.304333209991455
+        ]
+      ],
+      "stationDesignLower": -0.5675547570307964
+    },
+    {
+      "file": "lift-shaft-0-1.glb",
+      "bytes": 108188,
+      "sha256": "c1be2af2a54390db155951edf44fed8c62f52b6d2ac20d155b1f073da3f4f404",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Lift-Subway.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "66a57cb046d3292a279bffebfa540b5f9b6a6240dee6edd84dc6ace6bd6ad353"
+      },
+      "adaptation": "Original downloaded Lift-Subway shaft refitted to the relocated street parcel. Only the travel span changes length; all original portal, footing, glass and steel geometry, original UVs and motorcycle clearance remain. Lower and upper portals match the surveyed street and 21.6 m platform.",
+      "triangles": 1044,
+      "bounds": [
+        [
+          -4.262336254119873,
+          -0.3264896273612976,
+          -4.304333209991455
+        ],
+        [
+          4.262336254119873,
+          28.81138038635254,
+          4.304333209991455
+        ]
+      ],
+      "stationDesignLower": -0.5675547570307964
+    },
+    {
+      "file": "lift-shaft-1-0.glb",
+      "bytes": 107828,
+      "sha256": "6e388d19559d00d7fdcd8db83e5ee00b8557e6a2ef2725c5126c845890915f0f",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Lift-Subway.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "66a57cb046d3292a279bffebfa540b5f9b6a6240dee6edd84dc6ace6bd6ad353"
+      },
+      "adaptation": "Original complete Lift-Subway adapted to surveyed terrain, enlarged 7.2 m footprint with 5.2 m high portals. Entire carrier travel volume cleared of source internal horizontal beams and slabs while preserving exterior steel/glass and roof.",
+      "triangles": 1044,
+      "bounds": [
+        [
+          -4.262336254119873,
+          -0.29425904154777527,
+          -4.304333209991455
+        ],
+        [
+          4.262336254119873,
+          25.97174835205078,
+          4.304333209991455
+        ]
+      ],
+      "stationDesignLower": 2.2677501862524965
+    },
+    {
+      "file": "lift-shaft-1-1.glb",
+      "bytes": 107828,
+      "sha256": "461465b8d01781211ea8255d8d9990f932814301ed01d1a68ffb0d8a62e79714",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Lift-Subway.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "66a57cb046d3292a279bffebfa540b5f9b6a6240dee6edd84dc6ace6bd6ad353"
+      },
+      "adaptation": "Original complete Lift-Subway adapted to surveyed terrain, enlarged 7.2 m footprint with 5.2 m high portals. Entire carrier travel volume cleared of source internal horizontal beams and slabs while preserving exterior steel/glass and roof.",
+      "triangles": 1044,
+      "bounds": [
+        [
+          -4.262336254119873,
+          -0.29425904154777527,
+          -4.304333209991455
+        ],
+        [
+          4.262336254119873,
+          25.97174835205078,
+          4.304333209991455
+        ]
+      ],
+      "stationDesignLower": 2.2677501862524965
+    },
+    {
+      "file": "lift-shaft-2-0.glb",
+      "bytes": 108212,
+      "sha256": "c8d72104e701d5fb6d9684b949bc8e9a69d18367fd1f934cbea7bdc15db5a9c7",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Lift-Subway.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "66a57cb046d3292a279bffebfa540b5f9b6a6240dee6edd84dc6ace6bd6ad353"
+      },
+      "adaptation": "Original complete Lift-Subway adapted to surveyed terrain, enlarged 7.2 m footprint with 5.2 m high portals. Entire carrier travel volume cleared of source internal horizontal beams and slabs while preserving exterior steel/glass and roof.",
+      "triangles": 1048,
+      "bounds": [
+        [
+          -4.262336254119873,
+          -0.21528249979019165,
+          -4.304333209991455
+        ],
+        [
+          4.262336254119873,
+          19.00115966796875,
+          4.304333209991455
+        ]
+      ],
+      "stationDesignLower": 9.22773877059816
+    },
+    {
+      "file": "lift-shaft-2-1.glb",
+      "bytes": 107828,
+      "sha256": "8875d03e3ced25f6153922d3983574a9f7046a031270e5f7db9786318bab2aa4",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Lift-Subway.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "66a57cb046d3292a279bffebfa540b5f9b6a6240dee6edd84dc6ace6bd6ad353"
+      },
+      "adaptation": "Original complete Lift-Subway adapted to surveyed terrain, enlarged 7.2 m footprint with 5.2 m high portals. Entire carrier travel volume cleared of source internal horizontal beams and slabs while preserving exterior steel/glass and roof.",
+      "triangles": 1044,
+      "bounds": [
+        [
+          -4.262336254119873,
+          -0.21528249979019165,
+          -4.304333209991455
+        ],
+        [
+          4.262336254119873,
+          19.00115966796875,
+          4.304333209991455
+        ]
+      ],
+      "stationDesignLower": 9.22773877059816
+    },
+    {
+      "file": "atrium-window.glb",
+      "bytes": 5900,
+      "sha256": "44039ab1fb22a55c609f2be7cfd62b02470dda2a5a36fa8fdfdee27dde3a790e",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/TrainStationBuilding4.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "285c464e2efac7ba87e01212105c6aec9fd4fb3ff23877d445464b690f8ca315"
+      },
+      "adaptation": "One complete framed glazed window from the externally authored TrainStationBuilding4. Whole source components retained at uniform scale 2.7581379; repeated as modular curtain-wall bays, with deliberate road and railway portals. No generated facade planes.",
+      "triangles": 26,
+      "bounds": [
+        [
+          -0.10722815245389938,
+          0,
+          -1.5999999046325684
+        ],
+        [
+          0.10722815245389938,
+          4.817564964294434,
+          1.5999999046325684
+        ]
+      ]
+    },
+    {
+      "file": "atrium-roof-bay.glb",
+      "bytes": 33872,
+      "sha256": "68b6aea11e24cc24c4a9bc7926395cba981e5f329f60bf2311d2494c06e430ee",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Platform_double_roofing.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "8a3034691bed801ce4a14aaf4e8f777c67d2013a872d99cd9140a7ee93d84fe2"
+      },
+      "adaptation": "Complete original Platform_double_roofing with its tree-column, branched steel arms, concrete foot, finished inner roof and recessed LED fixtures. Adapted as a 44 m spanning, 33 m tall, 9 m axial civic atrium bay; original thin columns retain their width while the authored branches widen at the head.",
+      "triangles": 232,
+      "bounds": [
+        [
+          -22.01487159729004,
+          3.736267295550988e-9,
+          -4.5
+        ],
+        [
+          22.01487159729004,
+          33.04466247558594,
+          4.5
+        ]
+      ]
+    },
+    {
+      "file": "atrium-roof-clear-bay.glb",
+      "bytes": 18448,
+      "sha256": "c2e2d0dfa3ab7255513ad342be11f005e8a6f32d3c329fdf7cd7d1792ca6a235",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Platform_double_roofing.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "8a3034691bed801ce4a14aaf4e8f777c67d2013a872d99cd9140a7ee93d84fe2"
+      },
+      "adaptation": "Same downloaded roof bay, with its central column and low branches removed as whole source faces over the train and platform passage. Original roof, light fixtures and top chords remain, supported by continuous imported longitudinal girders and remote perimeter piers.",
+      "triangles": 112,
+      "bounds": [
+        [
+          -22.01487159729004,
+          31.792001724243164,
+          -4.5
+        ],
+        [
+          22.01487159729004,
+          33.04466247558594,
+          4.5
+        ]
+      ]
+    },
+    {
+      "file": "buffer-stop.glb",
+      "bytes": 70140,
+      "sha256": "80683c61f886ae789d83edf2cde79add279e91cc25cf6cf91519b5ac6b0dea80",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/bumper.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "5190a020f8d103594fe4b325003d8b03ecfc32ea691da2b9eea246a89dc5ee06"
+      },
+      "adaptation": "Complete downloaded railway buffer stop: rubber collision pads, braced steel frame and red-white stop target. Uniform scale 1.8 to the widened JFR1 gauge. Placed beyond the terminal stopping berth with a protected run-off deck.",
+      "triangles": 656,
+      "bounds": [
+        [
+          -2.28821063041687,
+          0,
+          -1.7404730319976807
+        ],
+        [
+          2.28821063041687,
+          3.509312391281128,
+          1.7404730319976807
+        ]
+      ]
+    },
+    {
+      "file": "platform-door.glb",
+      "bytes": 19756,
+      "sha256": "4f409425ca13c593e653cbd58436b0e098272217ccbc812c5b304853e5b1a7fa",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Trains/JFR1/Door.obj",
+        "license": "CC0 (Jean3219)",
+        "sha256": "536342ed5b5d675aa8f15ef8086c0fc45e5e418a51b99d8a8b50fcc6684ade18"
+      },
+      "adaptation": "Full-height 3.35 m sliding platform screen-door leaf, adapted from the complete downloaded JFR1 framed door with native glazing, bevels, rebates and recessed metal. Correct 1.525 m paired-leaf width; glass and casing slide together without a fixed ghost panel.",
+      "triangles": 80,
+      "bounds": [
+        [
+          -0.762499988079071,
+          0,
+          -0.042500000447034836
+        ],
+        [
+          0.762499988079071,
+          3.3499999046325684,
+          0.042500000447034836
+        ]
+      ]
+    },
+    {
+      "file": "rail.glb",
+      "bytes": 24208,
+      "sha256": "e3489de7d606536be0a74666fd6a90ae08bc39bea8579e939cc685a1a5e1faf2",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/RailTypes/Rail_Beton_1.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "0729cc55724686e531068bed3611a0770a122cc56175116f6614f4f15ec6a6a2"
+      },
+      "adaptation": "Downloaded continuous profiled steel rail and original sleeper geometry, refitted to 1435 mm gauge. Original sleeper receives the source concrete PBR finish; oversized overlapping gravel skirts removed for the continuous concrete slab metro track. Native railhead datum and 1 m module length retained.",
+      "triangles": 46,
+      "bounds": [
+        [
+          -1.1837069988250732,
+          -0.2524779736995697,
+          -0.4999999701976776
+        ],
+        [
+          1.1837069988250732,
+          -2.3476779548170512e-11,
+          0.5
+        ]
+      ]
+    },
+    {
+      "file": "civic-roof.glb",
+      "bytes": 16656,
+      "sha256": "d342b2b17890a1a585bfc19019f88aa7ddeb94640d4cb0a981950f6406dd86c4",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/TrainStationBuilding3.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "c9fc8593c6f27341f8f48f7241de5c4cd60c25f1c893c01dba567f2113f79e29"
+      },
+      "adaptation": "Complete originally authored TrainStationBuilding3 pitched roof, its raised architectural roof volumes and timber interior lining. Wall and porch groups omitted whole. Native roof triangles, normals and UV preserved; fitted as one coherent station roof rather than scattered decorations.",
+      "triangles": 148,
+      "bounds": [
+        [
+          -5.936501979827881,
+          0,
+          -16.618547439575195
+        ],
+        [
+          5.936501979827881,
+          9.901932716369629,
+          16.618547439575195
+        ]
+      ]
+    },
+    {
+      "file": "gangway-source.glb",
+      "bytes": 1357116,
+      "sha256": "6df8526617af12cd3146910b6f3218bef41d5b7e9c39ca694ab40b55542615e3",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Trains/JFR1/Wagon_1_WithDriverStand.obj",
+        "license": "CC0 (Jean3219)",
+        "sha256": "f817aa7c84a40e8f05015ea8fa33a50a20cfecc4c7b3666a3ed0868ff39e3031"
+      },
+      "adaptation": "Unmodified v89 source-derived rear vestibule casing retained for reproducible adaptation.",
+      "triangles": 138,
+      "bounds": [
+        [
+          -3.302004337310791,
+          -0.03500000014901161,
+          -2.0500056743621826
+        ],
+        [
+          3.302002191543579,
+          4.300000190734863,
+          2.0500028133392334
+        ]
+      ]
+    },
+    {
+      "file": "jfr1-motorcycle-car.glb",
+      "bytes": 4201412,
+      "sha256": "201dbd4f9c03792a7f60b6dce93707a9e273c2539b03b8e3988c3b93510f7ceb",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Trains/JFR1/Wagon_1_WithDriverStand.obj",
+        "license": "CC0 (Jean3219)",
+        "sha256": "f817aa7c84a40e8f05015ea8fa33a50a20cfecc4c7b3666a3ed0868ff39e3031"
+      },
+      "adaptation": "Complete original PBR car retained. Continuous 3.44 m by 3.72 m rear vestibule clearance includes the original internal brace; native floor and underframe preserved. Original narrow overhead grab poles entering the 3 m motorcycle clearance envelope removed; downloaded roof, cab and all remaining interior faces retained.",
+      "triangles": 13915,
+      "bounds": [
+        [
+          -3.302004337310791,
+          -2.6134562492370605,
+          -17.859548568725586
+        ],
+        [
+          3.302004337310791,
+          5.7380595207214355,
+          17.859548568725586
+        ]
+      ]
+    },
+    {
+      "file": "platform-pocket.glb",
+      "bytes": 27700,
+      "sha256": "54745016246d1be25dc08f1c54de52092c680a281642e5fd2e3eaee3070a4be9",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Trains/JFR1/Door.obj",
+        "license": "CC0 (Jean3219)",
+        "sha256": "536342ed5b5d675aa8f15ef8086c0fc45e5e418a51b99d8a8b50fcc6684ade18"
+      },
+      "adaptation": "Opaque recessed enclosure adapted from the downloaded framed door, paired around sliding platform leaves. Native beveled geometry retained.",
+      "triangles": 80,
+      "bounds": [
+        [
+          -0.8600000143051147,
+          0,
+          -0.05250000208616257
+        ],
+        [
+          0.8600000143051147,
+          3.3499999046325684,
+          0.05250000208616257
+        ]
+      ]
+    },
+    {
+      "file": "gangway-shell.glb",
+      "bytes": 2180180,
+      "sha256": "2a849db9f80b805d32bdb111fdd93b4ca63c39d65458623c9ce172ed583a9fd9",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Trains/JFR1/Wagon_1_WithDriverStand.obj",
+        "license": "CC0 (Jean3219)",
+        "sha256": "f817aa7c84a40e8f05015ea8fa33a50a20cfecc4c7b3666a3ed0868ff39e3031"
+      },
+      "adaptation": "Downloaded rear vestibule source triangles subdivided into rounded flexible folds, preserving 3.44 m clear width and 3.72 m height. Continuous 4.10 m inter-car enclosure.",
+      "triangles": 8565,
+      "bounds": [
+        [
+          -2.19460129737854,
+          -0.03500000014901161,
+          -2.049999952316284
+        ],
+        [
+          2.1946005821228027,
+          3.9404001235961914,
+          2.049999952316284
+        ]
+      ]
+    },
+    {
+      "file": "gangway-collar.glb",
+      "bytes": 1370768,
+      "sha256": "d8ba6614943282f788ff6c97d207c734ddd62d710bc37ad281c8dae9ece0bfb7",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Trains/JFR1/Wagon_1_WithDriverStand.obj",
+        "license": "CC0 (Jean3219)",
+        "sha256": "f817aa7c84a40e8f05015ea8fa33a50a20cfecc4c7b3666a3ed0868ff39e3031"
+      },
+      "adaptation": "Thin fitted aluminium end collars derived entirely from downloaded JFR1 rear vestibule geometry.",
+      "triangles": 138,
+      "bounds": [
+        [
+          -2.1155011653900146,
+          -0.03500000014901161,
+          -0.06000016629695892
+        ],
+        [
+          2.1155004501342773,
+          3.8940000534057617,
+          0.06000008061528206
+        ]
+      ]
+    },
+    {
+      "file": "atrium-main-roof.glb",
+      "bytes": 28088,
+      "sha256": "ca43b26fe2b6bcdf8b7c2d2f1222d29f858ce6b382f3f2094d69ea5375039d52",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/TrainStationBuilding3.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "c9fc8593c6f27341f8f48f7241de5c4cd60c25f1c893c01dba567f2113f79e29"
+      },
+      "adaptation": "Complete original lower pitched roof and timber lining fitted to a 47 by 111 m hall, with a real 16.02 by 26.82 m central daylight opening. Original source triangles are clipped only around this opening; roof and wood finishes use metric UVs.",
+      "triangles": 108,
+      "bounds": [
+        [
+          -23.499921798706055,
+          0,
+          -55.500160217285156
+        ],
+        [
+          23.499921798706055,
+          2.07749605178833,
+          55.500160217285156
+        ]
+      ]
+    },
+    {
+      "file": "atrium-lantern-roof.glb",
+      "bytes": 23044,
+      "sha256": "e01f559b2f47eae378585fa316e325bbba1c61bdd218dfe031c4604d588fc7ec",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/TrainStationBuilding3.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "c9fc8593c6f27341f8f48f7241de5c4cd60c25f1c893c01dba567f2113f79e29"
+      },
+      "adaptation": "Complete original raised roof and timber lining, independently fitted to an 18.8 by 30.8 m glazed roof lantern. Its original separate base now has a fully supported curtain wall and structural transfer frame.",
+      "triangles": 56,
+      "bounds": [
+        [
+          -9.400003433227539,
+          0.000036293029552325606,
+          -15.400124549865723
+        ],
+        [
+          9.400003433227539,
+          3.445432662963867,
+          15.400124549865723
+        ]
+      ]
+    },
+    {
+      "file": "station-paving.glb",
+      "bytes": 3712,
+      "sha256": "aebef7c053f0a60797f0e1d84aefcb5dc4aa49ee82fd2f531e6af8dbf8d54297",
+      "source": {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Ceiling.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "4cfeef8f08c6adbc9771f4c3ef86bd580dfb11cff0ef65d009857324b79b047b"
+      },
+      "adaptation": "Closed original downloaded Ceiling panel retained as a 591.75 by 558 mm terrazzo paving module, with 2 mm joints, 8 mm physical thickness and downloaded photographic Poly Haven CC0 terrazzo albedo, OpenGL normals and roughness. No new primitive geometry.",
+      "triangles": 8,
+      "bounds": [
+        [
+          -0.2958749830722809,
+          0.003999999724328518,
+          -0.27900001406669617
+        ],
+        [
+          0.2958749830722809,
+          0.012000000104308128,
+          0.27900001406669617
+        ]
+      ]
+    },
+    {
+      "file": "animal-driver.glb",
+      "bytes": 631732,
+      "sha256": "e50b44512a2fc0ad1b53d59fa1d8b21e7c0033807024b0f9e698d05accb830c4",
+      "source": {
+        "page": "https://juggypuggy.itch.io/low-poly-animals",
+        "file": "bear.blend",
+        "license": "Juggy Animal Characters licence, commercial/project use with attribution",
+        "sha256": "226dfb47c7880d31c42814d9d09956380d863d3b690a6bf0d3b17d997c0beaf6"
+      },
+      "adaptation": "Complete downloaded Juggy bear character and skin skeleton, exported from the source Blender file, fitted to the native JFR1 cab seat and controls. Source anatomy and materials are retained; no placeholder or custom animal geometry.",
+      "originalVertices": 8734,
+      "triangles": 17400
+    }
+  ],
+  "activeTrain": "jfr1-motorcycle-car",
+  "rideEnvelope": {
+    "height": 2.99005183,
+    "length": 3.45,
+    "width": 1.2372642
+  },
+  "stationArchitecture": "supported civic atrium with enclosed daylight lantern and physical metric stone platforms",
+  "gangway": {
+    "clearWidth": 3.44,
+    "clearHeight": 3.72,
+    "length": 4.1
+  },
+  "platformDoorPocket": {
+    "clearGap": 0.32,
+    "leafWidth": 1.525,
+    "pocketWidth": 1.72
+  }
+}

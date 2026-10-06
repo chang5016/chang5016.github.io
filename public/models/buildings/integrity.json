@@ -1,0 +1,21 @@
+{
+  "source": "https://opengameart.org/content/pbr-textured-building",
+  "original": "https://sketchfab.com/models/94fe67ee5aeb435d8ecfdb5bb29b9847",
+  "author": "volkanongun",
+  "license": "CC-BY-4.0",
+  "sha256": "760b0828cfc6c8126183fa21810025301d9e7ff5dc6c4ab6fde244106b7d7ac0",
+  "bytes": 5688660,
+  "triangles": 9654,
+  "sourceDraws": 7,
+  "drawsPerBatch": 1,
+  "width": 27.560421889533398,
+  "height": 28.8,
+  "depth": 12.424054412591747,
+  "atlas": [
+    4096,
+    2048
+  ],
+  "sourceTextureTexels": 50331648,
+  "packedTextureTexels": 16777216,
+  "processing": "Uniform scale and ground pivot; complete uncut geometry; one combined material and PBR atlas. Main wall retains 2K tile, small fittings packed according to physical size; no runtime quality changes."
+}

@@ -1,0 +1,2340 @@
+{
+  "version": 97,
+  "source_commit": "5e908656fdd3c537d0ee41d21db91dccd7f8095b",
+  "old_site_binding_removed": true,
+  "omitted_cache": [
+    "tsconfig.tsbuildinfo"
+  ],
+  "files": [
+    {
+      "path": ".gitignore",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 498,
+      "sha256": "35d940f5e608b2a4ef2a41ecf7263d2d4e3e18aa8aab9a98a57fa57e5607dfa5"
+    },
+    {
+      "path": ".npmrc",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 76,
+      "sha256": "494e64a8818b6158e89321250500ad5ad018e33ad5cfea06a1cacd2cf4da75fa"
+    },
+    {
+      "path": ".openai/hosting.json",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 31,
+      "sha256": "d532abb65cf9ae20634b464d954cb4a08a0de9f3cd3cdf7f9c3ec8948826d947"
+    },
+    {
+      "path": "README.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6679,
+      "sha256": "62c187d4c888393c1af9d155bce1171374500ed1ae10d0360a0a8df544d96573"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1806,
+      "sha256": "f457a75ee8d2ed04a8f9b87af38bd5a6db975f9a2b4407e1356ef21e45ee66ea"
+    },
+    {
+      "path": "app/CommercialTaxiGame.tsx",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 72142,
+      "sha256": "ef224af544ede1dc3604a5edd4716743f7d460c3f227080b461d696cbe3c92ec"
+    },
+    {
+      "path": "app/RealTaxiGame.tsx",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 52579,
+      "sha256": "0117f4a0c3231bbca81b6ef6a0151c249132670e643c3635d4ff3a3f1c5331bb"
+    },
+    {
+      "path": "app/TaxiGame.tsx",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 52121,
+      "sha256": "b1afd4f1ac45dc523039f4da78ce4fbb31aaebc78db9b3247cd38f4c157d5051"
+    },
+    {
+      "path": "app/bridge-clearance.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5986,
+      "sha256": "9d52f329a564583e9c8c87d2c9b8396bddb9c317122701074ace89620aa93c7d"
+    },
+    {
+      "path": "app/character-animation.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2642,
+      "sha256": "3b5da3368abbe36bd99a3462af2e435d277d0c5d51b6d960ac755644327af4c8"
+    },
+    {
+      "path": "app/chatgpt-auth.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2404,
+      "sha256": "17a965f8948b21510cdf8ecbd70c5fdf58100e10970463f6a8fd2cc4795f8044"
+    },
+    {
+      "path": "app/city-multidraw.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3920,
+      "sha256": "5b8d937610c34f98890971dbcf2e28ab05bb5f8b52c8912d947946e5dc4768ae"
+    },
+    {
+      "path": "app/city-render-chunks.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2390,
+      "sha256": "1302fea3b3d85e616f7fede6977ddd0e382dd0c3be5bfaad1ddfd42472203aff"
+    },
+    {
+      "path": "app/concrete-pier-material.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1503,
+      "sha256": "208431763af4ef311406a6517b828a2c377586f2655ba5ef0d9bf91d617a30d8"
+    },
+    {
+      "path": "app/continuous-shadows.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 7320,
+      "sha256": "2f6d6fe6dcafd7e7cbd1945059038bcddb14c068dfe3f219f141550c541abbe8"
+    },
+    {
+      "path": "app/driver-career.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 515,
+      "sha256": "f74984b51d9af1875bf6a5ed2ae68c332ae4be769cb083e830e3ded367e88b6a"
+    },
+    {
+      "path": "app/driving-effects.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 23906,
+      "sha256": "04a0483c46af5eb9f1b8bd6d06584683d3d44493089cbeaba89e9363cfe57ec7"
+    },
+    {
+      "path": "app/estate-access.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2874,
+      "sha256": "3c05a66ff8e97577ff5d0a8276acea6fbe8d3ed91cbc815118a269629f355bc6"
+    },
+    {
+      "path": "app/estate-finishes.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2114,
+      "sha256": "0315cf407ce25d7d4985c1c009df997f9b782578043356715c239ff15b0b1b88"
+    },
+    {
+      "path": "app/exact-static-meshes.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6637,
+      "sha256": "a43797d012deefe8f08e79af4c8bf0652ddf2106f7d88f2181f7db0cacc75b5b"
+    },
+    {
+      "path": "app/facade-layout.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1453,
+      "sha256": "8bba32197ba99d38aeeb744efa3f25c1007123ce23535809b0b2a4c12d60f693"
+    },
+    {
+      "path": "app/facade-relief.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3937,
+      "sha256": "c86d92b39ffd32bc34a02db25ed516636aa5845e23b1aa565dc52bd3c27e1660"
+    },
+    {
+      "path": "app/game-core.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 12667,
+      "sha256": "e9e2063307122109e503cb265245ef4ad9201ac0f3f989413f0ba468adf2028b"
+    },
+    {
+      "path": "app/globals.css",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 42645,
+      "sha256": "71fd6b241117a1fe970c0230f710b688dd463dee888d1c822cebf9316ac447db"
+    },
+    {
+      "path": "app/gpu-materials.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6070,
+      "sha256": "f11bd6b52a33197681d7024358f307aa6b74123d966762ac1a0faeee74111f01"
+    },
+    {
+      "path": "app/gpu-shadow-cache.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5251,
+      "sha256": "c1eb91991092463332fa585110aa7d9cdb7e6fa87dcd3d9f1467aa54690b1ec9"
+    },
+    {
+      "path": "app/gridforge-city-grid.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2423,
+      "sha256": "0173d4449d7f898f36406146bb4fe87fcdab87b4e3de060b6533c2c898f8c1b3"
+    },
+    {
+      "path": "app/hillside-estate.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2983,
+      "sha256": "67d27a2a5e491b44c489402c23e59a21cc8feb94b789cd0d78a044edd277f11c"
+    },
+    {
+      "path": "app/hydrant-spray.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4336,
+      "sha256": "aad205e55acd6e8beacb181bcf9ad29b34c273405701a036340b6a04fe97219a"
+    },
+    {
+      "path": "app/instance-chunks.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1723,
+      "sha256": "03a0fc427f1cfa2429086b4be729bdce0b5e75cd54fabf89969728546379c717"
+    },
+    {
+      "path": "app/layout.tsx",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1320,
+      "sha256": "95c9539d223ece569c769934be30f7791c15cb2e52b042dd39e6eb026e01eea7"
+    },
+    {
+      "path": "app/luxury-estate-site.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2951,
+      "sha256": "85c251d98bc17f50f0bf255a63f527e58ad66b60c817ddab1c1b4047aaa73545"
+    },
+    {
+      "path": "app/luxury-estate.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4033,
+      "sha256": "f7587df80e8664989f427a01ac520f19f4b05064d6cff40385f968522e580de7"
+    },
+    {
+      "path": "app/metro-assets.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 26174,
+      "sha256": "9c58a5c36ab33de0c003a640df2a4a04a7be5ae68d507851bff47bd78145a17d"
+    },
+    {
+      "path": "app/metro-audio.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5195,
+      "sha256": "3de0546cb8edfa4fa5a42e615646b8161e4e8f7c3fedfd34de6395ea20c3da00"
+    },
+    {
+      "path": "app/metro-commuter.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 10120,
+      "sha256": "2ab98f42a92a2ef9b659c6c62c0340f3cdd1403c2475bb39a1ca037057605b10"
+    },
+    {
+      "path": "app/metro-display-layout.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 458,
+      "sha256": "e9522cebad1aecf7a79df794a64b025f3f2cdc96a774cf9edc65f2dac98859cb"
+    },
+    {
+      "path": "app/metro-model.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3848,
+      "sha256": "ce093f37caada6d75ffa6476561832e3d3af9f9dc9c869483a804ffef4f59d39"
+    },
+    {
+      "path": "app/metro-scene.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 46307,
+      "sha256": "c3f6c2020e81b88c2e82a9c8dc0bc9bd1bc0e14431ccd05b0fd1dfd6ee249fe9"
+    },
+    {
+      "path": "app/metro-system.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 37220,
+      "sha256": "c621962b167c53be4162d086071c123942435064ff2ffcb96e1344c6bc80e913"
+    },
+    {
+      "path": "app/motorcycle-rider.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2952,
+      "sha256": "e41cad0fdee31e40dff87402c67f5a3eb45615f55fb117b33aac883aa3363a45"
+    },
+    {
+      "path": "app/mountain-route.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1662,
+      "sha256": "b071cd26fab92f5bb5c72310198e37da2523a19d02871b38288cc07bd200eec6"
+    },
+    {
+      "path": "app/mountain-tunnel.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6658,
+      "sha256": "83f623052e360af035aec02dc3533183c4c896d0cb6e1a040dcad065a12874b6"
+    },
+    {
+      "path": "app/neighborhood-life.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 9804,
+      "sha256": "604b6484c52abca1c0231bfdda64eed36fb273fd7c31d074556784396f4d4a21"
+    },
+    {
+      "path": "app/outdoor-environment.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2205,
+      "sha256": "6aef3aabbc0edfca400aeea51f919a4baf44ba94bc3ad07d59e7100c66377c47"
+    },
+    {
+      "path": "app/packed-city-batches.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 7247,
+      "sha256": "853d0b7def250d040a249c591c7457c364f390d5f83da24da3b2606018dd5c8b"
+    },
+    {
+      "path": "app/page.tsx",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 124,
+      "sha256": "23d3c1062d6e327a3c72300d92a50dfb4cbc1e21be428534b123c7f64f04f064"
+    },
+    {
+      "path": "app/performance-control.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 786,
+      "sha256": "85bb5ecba8cd927c710025f277c8aaadd4f31a91788a2c3fbf07e8e24f8d7633"
+    },
+    {
+      "path": "app/real-world-map.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 343913,
+      "sha256": "d97563e96dc23a3e0b090aa083338aa30792bb3386d94501f228c5069646faeb"
+    },
+    {
+      "path": "app/riding-pose.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6810,
+      "sha256": "56627fd27ba4d0bde13a22ca2e1edbb68b4bf79679e79c7aab902e3ea7069c7c"
+    },
+    {
+      "path": "app/rigid-scooter-wheels.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4197,
+      "sha256": "18bda022a646341ac371bc82775d7236f37de000a698daae4ddc0709cf09059e"
+    },
+    {
+      "path": "app/river-landmark.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2402,
+      "sha256": "9c00afeed0291874e62a19e7231679ca5623de47627a30983fe0abdcd3cf738b"
+    },
+    {
+      "path": "app/road-transition.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 457,
+      "sha256": "17b5a95fee448cb0667ed5eaf7f66d01de5af2fa69f8eb61841e9889fd2c50b1"
+    },
+    {
+      "path": "app/scooter-engine-sound.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2022,
+      "sha256": "5d38dee7135f4ad9bd3336c1ecc9b1a2a0a6c33e3a65b080a0f54cc2b9ebcd2c"
+    },
+    {
+      "path": "app/scooter-ignition.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1498,
+      "sha256": "c8a4bf165650fbd95868c5f7d88304d80bb7ad5a833e43b36fdb40e6bf7a4388"
+    },
+    {
+      "path": "app/scooter-signals.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 454,
+      "sha256": "f818e1b8a1bc306c4ec8647aa76f8613c3afc27e510ef8fafb58d27a2d42c9c9"
+    },
+    {
+      "path": "app/scooter-suspension.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4616,
+      "sha256": "af03da0b571fffd1792d64de8c15368fbe42e557cc265b67de6e4fc793edbe6d"
+    },
+    {
+      "path": "app/scooter-wheel-layout.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 671,
+      "sha256": "0b90e4ab6ce2cba06fa9681104cfcb109bf99dafb1eb11ca49a730f5507ee67b"
+    },
+    {
+      "path": "app/scooter-wheel-mask.json",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 16400,
+      "sha256": "d383778d24801b6dcb3cbec53aaa02f1d3ea87d9dc9de4663e7a20787478b4cd"
+    },
+    {
+      "path": "app/shopping-street.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4863,
+      "sha256": "1670eabc6dce0f87c14e01fb2bb5b921cefd1bbd5043f78107b593c69bc58b4f"
+    },
+    {
+      "path": "app/simulation-clock.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 846,
+      "sha256": "011d30616605d8f842af78e3fa26342031d061e123a353cd05a14645af1d7ddf"
+    },
+    {
+      "path": "app/static-scene.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1181,
+      "sha256": "7bb2bfefa1b598893fb49d32f71eb651ed2b807a168321befe7978d8a4c99fbb"
+    },
+    {
+      "path": "app/static-scenery-batches.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6013,
+      "sha256": "c986bececf6a53c4a78c928c288feb9259d426b47aae89824d838bfe241803b7"
+    },
+    {
+      "path": "app/stock-buildings.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5038,
+      "sha256": "0685109f8fb0ff946f2a1e565b6535aeae3b43d42ca45fa18d11d25afc738352"
+    },
+    {
+      "path": "app/street-prop-physics.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 12463,
+      "sha256": "ce6b0056ec25f3bc03e0936a35b376917b7550b159086428187e09c364aa61da"
+    },
+    {
+      "path": "app/street-props.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 7867,
+      "sha256": "a4d94ae8022436be42b578d667dd6510ba4ce01de6c0193f838b44bae713a952"
+    },
+    {
+      "path": "app/suspension-dynamics.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 698,
+      "sha256": "1dfee0f26340f9f31f5613a041e83292ad6503101869bd993e2118cbda94a135"
+    },
+    {
+      "path": "app/taiwan-guide-sign.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2641,
+      "sha256": "175d263512143fc2aa4313ab3d039e4b8fc23fb5d2f0b5a6d350d48fc151e4d0"
+    },
+    {
+      "path": "app/terrain-build-cache.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 758,
+      "sha256": "e3275296ad8641b74898d34e5476907fc3fafea5f894e2180237241d3f635ed2"
+    },
+    {
+      "path": "app/traffic-dynamics.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3981,
+      "sha256": "28ae0f4caef5df1effa112f336f3339b95f2211e0373aa2669f06829191546f4"
+    },
+    {
+      "path": "app/traffic-height-cache.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 953,
+      "sha256": "26a1bb068d4aeb7f57207fac8580f4d2ff56ff8e007df15b424f762a536a4ffc"
+    },
+    {
+      "path": "app/traffic-path.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 12803,
+      "sha256": "bed47b74acfd7e4c94a0dfd23eb810d1f3032f14822fcdcb5650988bc73769fa"
+    },
+    {
+      "path": "app/traffic-presentation.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1847,
+      "sha256": "9924412d4afc2a2826f711225fd01f58266dc9e673a7691e952ba368cee9d7c0"
+    },
+    {
+      "path": "app/traffic-render-batches.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 7962,
+      "sha256": "96863f6cb19aac8d94c914b809bbd9ec0b12fba7b59a7eb0ad6ac9d170eba47c"
+    },
+    {
+      "path": "app/traffic-rig.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3770,
+      "sha256": "bb18f1edb9910e5fddea2de0039163e2644fd63c2401c22c57dbccc9598101a1"
+    },
+    {
+      "path": "app/traffic-route.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1158,
+      "sha256": "8960f92ccd71281578bff6e64b0801c63680be4ae8bb0fe08e67e6f398e1abc1"
+    },
+    {
+      "path": "app/urban-blocks.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3137,
+      "sha256": "1004d1910f10b2d06b7cc05bd02fca27123aa4d19264a133afd5a44456b73d6e"
+    },
+    {
+      "path": "app/vegetation-batches.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1960,
+      "sha256": "f4696c2ead472984f60d84c14eeda30d8e682924b7f910e9de82351108802576"
+    },
+    {
+      "path": "app/vehicle-scale.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 264,
+      "sha256": "d50fdca61cf5bdb3167c82c90efdee0dc5cbbc92aa0ad778b75b1569c8d3bb07"
+    },
+    {
+      "path": "app/vehicle-vertical-physics.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2282,
+      "sha256": "bc8803c3e76b58a35434e5492c08b6d743805e479f454695130b257c944007b9"
+    },
+    {
+      "path": "app/world-terrain.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5635,
+      "sha256": "aa2bbabaaf040c2d27d43af64635e134bfeec053dc8d6067876deed6ce0c7992"
+    },
+    {
+      "path": "build/sites-vite-plugin.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1416,
+      "sha256": "303b8271db5aae01687dcc831a000c3623b854cce313315d941558b7a93f4df9"
+    },
+    {
+      "path": "db/index.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 423,
+      "sha256": "dc7610b00b918e0ffff1360a63626f16655ced3064b2eaf96095a4101fb14bcd"
+    },
+    {
+      "path": "db/schema.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 169,
+      "sha256": "13ddacbf0be50e054d450a6c642b7fdc1aa943fd6b99084711e07e58b600390d"
+    },
+    {
+      "path": "docs/attachment-alignment-fixes.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1055,
+      "sha256": "679e14eed9822914aca4b31ae0b13eebd15bb6f58fcb7417362c6812e738b886"
+    },
+    {
+      "path": "docs/city-realism-revision.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1698,
+      "sha256": "61ff2d59e9b6a8fadf0d266b8f619cf938fd6a3d841e588949a18926d0ef9060"
+    },
+    {
+      "path": "docs/city-scene-and-rendering.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2849,
+      "sha256": "372583b7d0636c4cdbfd88d040c114cedaa96c6b95263d3078b5e6cd27ec1a92"
+    },
+    {
+      "path": "docs/facade-and-suspension.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1151,
+      "sha256": "10e40a111bd67d4973c8dace9ecdcc0f0a30bd1dba8d3e3bfc1385f5e8ee4234"
+    },
+    {
+      "path": "docs/game-optimization-qa.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1416,
+      "sha256": "569b4262d60386a7d8f703f3e5eab49540ebc25a9d0e795fd1121e57017f9548"
+    },
+    {
+      "path": "docs/intact-shopping-street-qa.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2497,
+      "sha256": "b7cbcf2d18150ddc3387a845bb6bc40c4848f46ce8423a86cf1d8e91b26beeb8"
+    },
+    {
+      "path": "docs/metro-and-neighborhood-v91.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3187,
+      "sha256": "b22b2d1da3102f9853318f22732c138b2eeedbb33320474a8aa492b592405eaa"
+    },
+    {
+      "path": "docs/metro-architecture-v92.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2735,
+      "sha256": "705272aa00db4eb2fcbb51f66db37c61218cbfef5220ff6b598322febb7881e8"
+    },
+    {
+      "path": "docs/metro-download-verification.json",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4618,
+      "sha256": "1ad77a54b6757645802db5336e4058d69662553ac4eda54f3b685c30389f0561"
+    },
+    {
+      "path": "docs/metro-platform-finishes-v93.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2278,
+      "sha256": "a9b6b44eb209fd4f02b9697aabbdb2236d2582eedc0e29eeb6055f8fe128bdf9"
+    },
+    {
+      "path": "docs/metro-system.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6366,
+      "sha256": "a433bc8216016564521b42a6cf19deb12da166c81cf61f3c38e60d5a2b5110b6"
+    },
+    {
+      "path": "docs/metro85-render-verification.json",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1539,
+      "sha256": "d1e742838121c31dc599c0977d801136def4db7c8b85306a28d239014c253715"
+    },
+    {
+      "path": "docs/metro86-render-verification.json",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6745,
+      "sha256": "43bf9a9f05fc4cbed93c5c6a0d761cd3aaa1b43b95c6d8c5fb26fc6b53badbe8"
+    },
+    {
+      "path": "docs/metro91-render-verification.json",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 498,
+      "sha256": "d6f2b2f436c5a0c7898c07183a4020a0e5383c17baebde779ca0ba4477bed205"
+    },
+    {
+      "path": "docs/performance-v82.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4180,
+      "sha256": "c610d1e0b0d988ff443ee93ed96d88d2447f81e7004a63bd507309772e542161"
+    },
+    {
+      "path": "docs/performance-v83.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4120,
+      "sha256": "3aff8fe03dbafd769d508cd5e6c0c952dd25c628a8434e20778774273748898b"
+    },
+    {
+      "path": "docs/rendering-performance-revision.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3413,
+      "sha256": "f77f24c62946c2a3bf789d2c1d497014352eb5fc17ad173d6cba9f8c6d15ccf4"
+    },
+    {
+      "path": "docs/rigid-wheels-and-road-transitions.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1259,
+      "sha256": "38e13067e769556df920b118fa918e76f46e3c71147899e8f0680fad79bbfffb"
+    },
+    {
+      "path": "docs/runtime-physics-revision.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4262,
+      "sha256": "987c9ad308527a6452bcb5078b41712c2b688fb26d462bf7d969beae161095cb"
+    },
+    {
+      "path": "docs/shopping-street-surface-qa.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2676,
+      "sha256": "d204591fbf4782c2831c27dc19be233f1b551f76a28dff5ad0b52d75ce4edace"
+    },
+    {
+      "path": "drizzle.config.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 148,
+      "sha256": "af081f7384aaeb0082cf422e29f139d137ca2f6a57c69b2c37b9fb1f8479867b"
+    },
+    {
+      "path": "drizzle/meta/_journal.json",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 61,
+      "sha256": "90cb374e093894d0efce6f1830d873a42aadd8ba49d2f024495e5cb2e1c8c303"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 569,
+      "sha256": "b40878541899be5d4ee770732fed76b032d189f9bdfaf1bed3e759d059906ac9"
+    },
+    {
+      "path": "examples/d1/app/api/notes/route.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1700,
+      "sha256": "a3d4a74fd53b7bf53e2df41f169d9d9d44a8b22aeb6d92f4e754956079af8909"
+    },
+    {
+      "path": "examples/d1/db/schema.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 370,
+      "sha256": "d89eabd95716ce404f5f7ca2a254220435be8ddce7c899d7ef461ff22ec80454"
+    },
+    {
+      "path": "next.config.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 133,
+      "sha256": "614bce25b089c3f19b1e17a6346c74b858034040154c6621e7d35303004767cc"
+    },
+    {
+      "path": "package-lock.json",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 392117,
+      "sha256": "a2d34e2bab44310cc3ada42177b47243f68b8fdafab16337d8d3b90f6ab3aa8c"
+    },
+    {
+      "path": "package.json",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1762,
+      "sha256": "39538ad364318658bd100ce1a8bd197cc50313bf5c0d09af1c87760d5146c125"
+    },
+    {
+      "path": "postcss.config.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 94,
+      "sha256": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde"
+    },
+    {
+      "path": "public/audio/ASSET-SOURCES.md",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 1362,
+      "sha256": "425cd5dbe292f940301112ed5687ba2439d0277ee2f961fc2e79861ac65d240c"
+    },
+    {
+      "path": "public/audio/scooter-attack-0.wav",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 97064,
+      "sha256": "f0edad507d75fac984fe555b184ad25a0c54254e7da70e27b1dc1e1a2f151067"
+    },
+    {
+      "path": "public/audio/scooter-attack-1.wav",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 79424,
+      "sha256": "7f97b0ec5528421a886d154e3729739fce8875263da784289f9f6c0a1c67e9dc"
+    },
+    {
+      "path": "public/audio/scooter-attack-2.wav",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 79424,
+      "sha256": "c80b7c498cc86a48faab6bfbfdeb7424fc9d1d127def19f74ec0ff455150b8f1"
+    },
+    {
+      "path": "public/audio/scooter-attacks.json",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 762,
+      "sha256": "4f96986322014c6728aa360e81e14150b7530950b41d166525546d4614e5cbc1"
+    },
+    {
+      "path": "public/audio/scooter-cruise.wav",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 1724354,
+      "sha256": "6e5426ac58bced5a8178f71d335a3a6682e704de339891547812697cec17781d"
+    },
+    {
+      "path": "public/audio/scooter-drive.wav",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 158804,
+      "sha256": "bc05f25dd372aadac7eb76f6a050dde00e77752c640571b07a9c19200a8fedf2"
+    },
+    {
+      "path": "public/audio/scooter-high.wav",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 2551670,
+      "sha256": "0ac290e811fcd39982b823767e4073f542e84a27bb6faf283976c87ca5ece645"
+    },
+    {
+      "path": "public/audio/scooter-idle.wav",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 1510910,
+      "sha256": "bf86a33aaba695aeeac024f0e509b15ec1b0ff3410df8748e55f60398f0cdbb1"
+    },
+    {
+      "path": "public/audio/scooter-pull.wav",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 2054222,
+      "sha256": "0175aad7723ee21e2d2edcdfce9ee82349df57ccdd47737f9ef5908ccf87398e"
+    },
+    {
+      "path": "public/audio/scooter-recordings.json",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 4016,
+      "sha256": "e61b74624a96fa06510fb94ee440d7e70059714f11e30c81ec1b5aee7f13c460"
+    },
+    {
+      "path": "public/character-reference.png",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 2913317,
+      "sha256": "57c4ee1fcfc7f346ff201734541d06509112d15af3c505d38c38671131a761b8"
+    },
+    {
+      "path": "public/credits.html",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 5488,
+      "sha256": "fa939a464b87bee004ca8baf0a34988d9ddb48a729a88b1c19ec2fe8ac8269a1"
+    },
+    {
+      "path": "public/draco/draco_decoder.js",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 512465,
+      "sha256": "8625489da79a805f4f2a7d511c3e52d8b4085608a9d2a4d5f4f9de5db0aea04f"
+    },
+    {
+      "path": "public/draco/draco_decoder.wasm",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 192420,
+      "sha256": "a680d927bed9cb864ddbd63521868891af2bfbe755092761b4837487618df8ac"
+    },
+    {
+      "path": "public/draco/draco_wasm_wrapper.js",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 58456,
+      "sha256": "8bb2952d2ba7d67e1414f8df819410cb0434a666be53f671fff75f68843d76f6"
+    },
+    {
+      "path": "public/favicon.svg",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 712,
+      "sha256": "e6d2e59b7b5bbb0342e0fb496dfc262decbfe4426bbb7b047aec8d467d1dc6f7"
+    },
+    {
+      "path": "public/file.svg",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 392,
+      "sha256": "1e0ae4d1a1ddfa36752988647b731e4abf150c414d069ec83c96fb0aaeff0307"
+    },
+    {
+      "path": "public/fonts/metro-display-OFL.txt",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 4388,
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+    },
+    {
+      "path": "public/fonts/metro-display-source.json",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 434,
+      "sha256": "b9468883ec4af841e275b7fa3ca91f64b8985efdbb2933785071a2b0e481d531"
+    },
+    {
+      "path": "public/fonts/metro-display.woff",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 313236,
+      "sha256": "7de55ac41cd3e83a57529c138eae0a240d19c821eefde3839a9203036c12bb72"
+    },
+    {
+      "path": "public/generated/capy-front.webp",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 200188,
+      "sha256": "1c668b8443aaa6a4ebfc343f06d6f236a362caec1a36882c13cb456f2a631e0c"
+    },
+    {
+      "path": "public/generated/capy-rear.webp",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 153208,
+      "sha256": "f8b7a10e457168a1de7c9555242a4375e9babd8cbcbc2e3cd7ff09da5a7ea83b"
+    },
+    {
+      "path": "public/generated/capy-side.webp",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 104382,
+      "sha256": "aa6c6b9d22d3fdd5a38ed6b446eeb86c639a49512cc8fe4dcd248e87f112a841"
+    },
+    {
+      "path": "public/globe.svg",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 1036,
+      "sha256": "d051a8c47936990a9085693d307bb7cea1bc1b6d7ed956bcbaacf674f4ec96b9"
+    },
+    {
+      "path": "public/models/animal-riders/ASSET-SOURCES.md",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 1096,
+      "sha256": "ed3b5c4ecd5c7fdc4dd36b6382da6c7298dd651dbccd0df430fc33334280badf"
+    },
+    {
+      "path": "public/models/animal-riders/LICENSE.txt",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 2023,
+      "sha256": "a321fe74651c3db249fed1436f9a2e9d7f37b7eeb1d821cb653c3fcf716d7837"
+    },
+    {
+      "path": "public/models/animal-riders/bear.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 631732,
+      "sha256": "e50b44512a2fc0ad1b53d59fa1d8b21e7c0033807024b0f9e698d05accb830c4"
+    },
+    {
+      "path": "public/models/animal-riders/bunny.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 761524,
+      "sha256": "d0a916c8049c2d133eca403109d2726c152bceade45c2c179f82554b375fe8d2"
+    },
+    {
+      "path": "public/models/animal-riders/pig.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 555984,
+      "sha256": "8cbc5369531daae468b2a738a0909d844f08465cfda68b3ec05954edb1d05b1c"
+    },
+    {
+      "path": "public/models/animal-riders/sources.json",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 2297,
+      "sha256": "722e4b7ffd38c311d4aa40598b61cdc30fa0f0cc8bb9e3cc7919de8e2c2976eb"
+    },
+    {
+      "path": "public/models/buildings/ASSET-SOURCES.md",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 1845,
+      "sha256": "aa340acf3776c4a2adcb25476e3b2d2488f4f25a7f54b65af485969091d1a838"
+    },
+    {
+      "path": "public/models/buildings/integrity.json",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 772,
+      "sha256": "b60b15bd7ba4324cd2dbbb56c7461d3ed494ad85492e2beb950f80361e873238"
+    },
+    {
+      "path": "public/models/buildings/premium-towers.glb",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 5823088,
+      "sha256": "79e475f563ace2171750d020231ffc40b358ea3f4ee04c9c1e1324de78f1ac32"
+    },
+    {
+      "path": "public/models/buildings/premium-towers.integrity.json",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 1860,
+      "sha256": "375d498e1068b2e3bc5a9331a33c76b0174a28456d7971066912462b934978c5"
+    },
+    {
+      "path": "public/models/buildings/urban-office.glb",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 5688660,
+      "sha256": "760b0828cfc6c8126183fa21810025301d9e7ff5dc6c4ab6fde244106b7d7ac0"
+    },
+    {
+      "path": "public/models/capybara-driving.audit.json",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 151,
+      "sha256": "13bdb7a28c0cf0c59d3b78d30bcce0df036eb8ce548281a415aff67b414ed95a"
+    },
+    {
+      "path": "public/models/capybara-driving.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 13054300,
+      "sha256": "733be7e37bb2b6836f25a1556556d215198e584e1bd23b5b6f51563f6316b931"
+    },
+    {
+      "path": "public/models/capybara-image-generated.glb",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 2879616,
+      "sha256": "a56178c19ced0c3e1fb7f9b42c8981d03893e2358365ebb20db3b5965dc194ed"
+    },
+    {
+      "path": "public/models/capybara-premium-original.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 16965544,
+      "sha256": "a2769c9c299c04c9699fd578bec536f076d9be309dc26a3232e15019aaefee7e"
+    },
+    {
+      "path": "public/models/capybara-scooter-reference.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 3679532,
+      "sha256": "04eb9383e583daa1096c6efd4e8b0b6bf17998fb65b68a2ceef0bbcefa87f325"
+    },
+    {
+      "path": "public/models/environment/ASSET-SOURCES.md",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 1370,
+      "sha256": "9e599aca46d642199d0906cf5c44b8422d0c5ba24e53138c1f933a5520de5306"
+    },
+    {
+      "path": "public/models/environment/park-facilities-optimized.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 2168644,
+      "sha256": "e9873a71e5ae0161b51941e4f01cf764ed388749b1282a4f550e643a1e165704"
+    },
+    {
+      "path": "public/models/environment/taiwan-street-intact.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 18350360,
+      "sha256": "d78041f72929aa8443eafe367331c9ae89573811d128efb42f898dc0433a663c"
+    },
+    {
+      "path": "public/models/environment/taiwan-street-intact.integrity.json",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 18358,
+      "sha256": "341c76736f36e199c38611d95d5c1d83aa1c05704c7c0faa1c03eeb6a3f23adc"
+    },
+    {
+      "path": "public/models/estate/ASSET-SOURCES.md",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 1016,
+      "sha256": "1efebf2cd48922852d6a68443d4c7580a704a276efee034bf6582d69f715368d"
+    },
+    {
+      "path": "public/models/estate/zigurat-residence.glb",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 731764,
+      "sha256": "68841c8d55345db1ac6813115f5c05e2f23260098692049d682f3ca607484d94"
+    },
+    {
+      "path": "public/models/metro/ASSET-SOURCES.md",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 8709,
+      "sha256": "d0820a6fa73512a9430a2be8542f921dfcef9f0d0899c43aee591483687ed6ae"
+    },
+    {
+      "path": "public/models/metro/downloaded/CadNav-NOTICE.txt",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 1330,
+      "sha256": "a135b246de826f24ae70c1e69e55fcd637c18f48894f47deb7e561af99124c8f"
+    },
+    {
+      "path": "public/models/metro/downloaded/Juggy-Animals-LICENSE.txt",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 2023,
+      "sha256": "a321fe74651c3db249fed1436f9a2e9d7f37b7eeb1d821cb653c3fcf716d7837"
+    },
+    {
+      "path": "public/models/metro/downloaded/Libre-JFR1-LICENSE.txt",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 126,
+      "sha256": "c927904f62a7e02bd4e27392a67f5e4fc1f6c10ca643522c6ba93409fff5a97f"
+    },
+    {
+      "path": "public/models/metro/downloaded/Libre-Resources-LICENSE.txt",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 223,
+      "sha256": "8fb13192c9994bf3ed3b05aa90f2ee6b633fdae2b141f720f4edcab63fc6f215"
+    },
+    {
+      "path": "public/models/metro/downloaded/aluminium-source.json",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 1173,
+      "sha256": "b8cb364562c53418f553cc54d1838eaabd540763cd6b2483ebe7b6932a538f07"
+    },
+    {
+      "path": "public/models/metro/downloaded/animal-driver.glb",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 631732,
+      "sha256": "e50b44512a2fc0ad1b53d59fa1d8b21e7c0033807024b0f9e698d05accb830c4"
+    },
+    {
+      "path": "public/models/metro/downloaded/atrium-lantern-roof.glb",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 23044,
+      "sha256": "e01f559b2f47eae378585fa316e325bbba1c61bdd218dfe031c4604d588fc7ec"
+    },
+    {
+      "path": "public/models/metro/downloaded/atrium-main-roof.glb",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 28088,
+      "sha256": "ca43b26fe2b6bcdf8b7c2d2f1222d29f858ce6b382f3f2094d69ea5375039d52"
+    },
+    {
+      "path": "public/models/metro/downloaded/atrium-roof-bay.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 33872,
+      "sha256": "68b6aea11e24cc24c4a9bc7926395cba981e5f329f60bf2311d2494c06e430ee"
+    },
+    {
+      "path": "public/models/metro/downloaded/atrium-roof-clear-bay.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 18448,
+      "sha256": "c2e2d0dfa3ab7255513ad342be11f005e8a6f32d3c329fdf7cd7d1792ca6a235"
+    },
+    {
+      "path": "public/models/metro/downloaded/atrium-window.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 5900,
+      "sha256": "44039ab1fb22a55c609f2be7cfd62b02470dda2a5a36fa8fdfdee27dde3a790e"
+    },
+    {
+      "path": "public/models/metro/downloaded/bench.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 21544,
+      "sha256": "b27375bda543e1096d158006a6b649ef410678deb8b92a8de2e990dd0b6e0a59"
+    },
+    {
+      "path": "public/models/metro/downloaded/boarding-threshold.glb",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 2696,
+      "sha256": "dd9ab2392353dfd382e995de1656718387bfe88fc9aa1ea8d1545a26507f0d2d"
+    },
+    {
+      "path": "public/models/metro/downloaded/buffer-stop.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 70140,
+      "sha256": "80683c61f886ae789d83edf2cde79add279e91cc25cf6cf91519b5ac6b0dea80"
+    },
+    {
+      "path": "public/models/metro/downloaded/canopy.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 32760,
+      "sha256": "c2f4fc417d1f8b45a34c2d23eca48b0fdf24fbcfdf8de2f091d27850be530ea1"
+    },
+    {
+      "path": "public/models/metro/downloaded/carriage-ceiling.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 2584,
+      "sha256": "85bdab1dad9a255c53fd5bf58bc73275f1cad95d4b0d227457d294aadb14169d"
+    },
+    {
+      "path": "public/models/metro/downloaded/carriage-floor.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 2652,
+      "sha256": "8f73608446474e037a25ecb0a4588c5f81fa0c80da7f9c8539850dbd222ed1b2"
+    },
+    {
+      "path": "public/models/metro/downloaded/carriage-lighting.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 11344,
+      "sha256": "3560340b1c1c0a3d14b7dfb2f8a7d754efcbfc44d27a05469310b3544fb359f5"
+    },
+    {
+      "path": "public/models/metro/downloaded/civic-roof.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 16656,
+      "sha256": "d342b2b17890a1a585bfc19019f88aa7ddeb94640d4cb0a981950f6406dd86c4"
+    },
+    {
+      "path": "public/models/metro/downloaded/door-display.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 27312,
+      "sha256": "0b20f7ce4cb59fa81330339619562e9a036fd3743453f844f908ef05f6eacd1f"
+    },
+    {
+      "path": "public/models/metro/downloaded/gangway-collar.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 1370768,
+      "sha256": "d8ba6614943282f788ff6c97d207c734ddd62d710bc37ad281c8dae9ece0bfb7"
+    },
+    {
+      "path": "public/models/metro/downloaded/gangway-shell.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 2180180,
+      "sha256": "2a849db9f80b805d32bdb111fdd93b4ca63c39d65458623c9ce172ed583a9fd9"
+    },
+    {
+      "path": "public/models/metro/downloaded/gangway-source.glb",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 1357116,
+      "sha256": "6df8526617af12cd3146910b6f3218bef41d5b7e9c39ca694ab40b55542615e3"
+    },
+    {
+      "path": "public/models/metro/downloaded/guideway.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 9124,
+      "sha256": "664755658fbce2a0bca0c3881d0885fec71d1606254b76f64b77c923c73bdaa5"
+    },
+    {
+      "path": "public/models/metro/downloaded/hanging-display.glb",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 27456,
+      "sha256": "e70327dab5b4605c5b86a7c45ea5c387daaa8a141ddc60becbb140d024362632"
+    },
+    {
+      "path": "public/models/metro/downloaded/jfr1-motorcycle-car.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 4201412,
+      "sha256": "201dbd4f9c03792a7f60b6dce93707a9e273c2539b03b8e3988c3b93510f7ceb"
+    },
+    {
+      "path": "public/models/metro/downloaded/lift-cabin.glb",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 103096,
+      "sha256": "ce4500d2ae3fcd0cd16a5f44f8b1cdcc9278070279ccc75ed1264d806f5a0e28"
+    },
+    {
+      "path": "public/models/metro/downloaded/lift-door.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 11264,
+      "sha256": "f9cc08c7b3efe4dab9ea2653ea4b6ebf83704d1edfaa89cb716d92ee677cac3e"
+    },
+    {
+      "path": "public/models/metro/downloaded/lift-floor.glb",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 2096,
+      "sha256": "175a90efbbe538f1a4c297ebbf4a086f52285e67afbae9328d6681e156d51bdc"
+    },
+    {
+      "path": "public/models/metro/downloaded/lift-shaft-0-0.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 108188,
+      "sha256": "48922c283c04ec0cb65e664f9db88e4b70f7854477a628de1262417fad63c11b"
+    },
+    {
+      "path": "public/models/metro/downloaded/lift-shaft-0-1.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 108188,
+      "sha256": "c1be2af2a54390db155951edf44fed8c62f52b6d2ac20d155b1f073da3f4f404"
+    },
+    {
+      "path": "public/models/metro/downloaded/lift-shaft-1-0.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 107828,
+      "sha256": "6e388d19559d00d7fdcd8db83e5ee00b8557e6a2ef2725c5126c845890915f0f"
+    },
+    {
+      "path": "public/models/metro/downloaded/lift-shaft-1-1.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 107828,
+      "sha256": "461465b8d01781211ea8255d8d9990f932814301ed01d1a68ffb0d8a62e79714"
+    },
+    {
+      "path": "public/models/metro/downloaded/lift-shaft-2-0.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 108212,
+      "sha256": "c8d72104e701d5fb6d9684b949bc8e9a69d18367fd1f934cbea7bdc15db5a9c7"
+    },
+    {
+      "path": "public/models/metro/downloaded/lift-shaft-2-1.glb",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 107828,
+      "sha256": "8875d03e3ced25f6153922d3983574a9f7046a031270e5f7db9786318bab2aa4"
+    },
+    {
+      "path": "public/models/metro/downloaded/maglev-underframe.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 251412,
+      "sha256": "b01860e3b9ce3696ce8317ce9a605f569c097e12f302ecb3739f1731ef1c531b"
+    },
+    {
+      "path": "public/models/metro/downloaded/pier.glb",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 8964,
+      "sha256": "b69e7947512d706e7373256fee640cbfb08a3c22da1ec6a11d82c1f63aa8fd9c"
+    },
+    {
+      "path": "public/models/metro/downloaded/platform-door.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 19756,
+      "sha256": "4f409425ca13c593e653cbd58436b0e098272217ccbc812c5b304853e5b1a7fa"
+    },
+    {
+      "path": "public/models/metro/downloaded/platform-finish-sources.json",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 3525,
+      "sha256": "7345ddceee8f672c45950f72d72ec5e1ea08f243e6f515a1cb8ae221db0a24cc"
+    },
+    {
+      "path": "public/models/metro/downloaded/platform-pocket.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 27700,
+      "sha256": "54745016246d1be25dc08f1c54de52092c680a281642e5fd2e3eaee3070a4be9"
+    },
+    {
+      "path": "public/models/metro/downloaded/platform-railing.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 19148,
+      "sha256": "901c9045ca01f96c9f5828c26774dccd8b4f73001d7a5d606c917f7d4987acb9"
+    },
+    {
+      "path": "public/models/metro/downloaded/platform.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 10340,
+      "sha256": "8963dd3410311b40a31e511e258946cbc5395748fc565e72fc49bc4d70726836"
+    },
+    {
+      "path": "public/models/metro/downloaded/rail.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 24208,
+      "sha256": "e3489de7d606536be0a74666fd6a90ae08bc39bea8579e939cc685a1a5e1faf2"
+    },
+    {
+      "path": "public/models/metro/downloaded/shanghai-maglev-body.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 853360,
+      "sha256": "8c5f028d4b3180f0a9a87c383752397a8337fa9dcfc14f80633380dcb724802e"
+    },
+    {
+      "path": "public/models/metro/downloaded/sources.json",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 41421,
+      "sha256": "48982d093ee2964e1d0298e53abbd9b2066b16044df47564fc8e559c5826d4c9"
+    },
+    {
+      "path": "public/models/metro/downloaded/station-building.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 61444,
+      "sha256": "f127983c73d8ca4bab34def7a6a0c4c0e6755993de0fc8909c62c4a2b6ca301c"
+    },
+    {
+      "path": "public/models/metro/downloaded/station-paving.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 3712,
+      "sha256": "aebef7c053f0a60797f0e1d84aefcb5dc4aa49ee82fd2f531e6af8dbf8d54297"
+    },
+    {
+      "path": "public/models/metro/downloaded/terrazzo-source.json",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 1001,
+      "sha256": "8a49fbff6ae6ca368803dc6a5989a989793079bd83b6dc0bed61102be5f0ba1a"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/CorrugatedSteel.webp",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 1132788,
+      "sha256": "ddb608b72984250a6acfb07e529cbfd66f13d775ce9bf84fc0a449e863742048"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/Gravel.webp",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 1323844,
+      "sha256": "2bd587aa80f73053191571f014c2017986dd63b29757aa24f3fb6c45ed70fd6b"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/JFR1-ORM.webp",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 5027228,
+      "sha256": "b5f5d3508eb4ac363f552f858311f281d1b0b279795ecf2806f55ca99051bc3c"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/LightBlue_Plastic.webp",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 3325974,
+      "sha256": "f76a04435c9090e1625356e19b547c9d700adddd09306a7dca8154cccf2ad9e2"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/Plastic.webp",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 3369782,
+      "sha256": "c2aeffdcddd577ba7374c6e894ce1e91e9f8cbb94b80fed83465f4c605741266"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/Wagon_WithDriverStand_albedo.webp",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 9116450,
+      "sha256": "0666546888189bcd1d4ccdbf3134c58a6d0297101d4ddc1ddf8f70523ceca9be"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/Wall.webp",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 177074,
+      "sha256": "55dbb0e0e54f3cc437220bd3773e435b6004ac4713cab76fb59841a6d8e8c9dc"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/White.webp",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 88,
+      "sha256": "a2a80a818c60c7973ccc68770600d2062c6ff98f494bcfc804c112949b728024"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/White_Plastic.webp",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 3370480,
+      "sha256": "5bbf55341ec4c37c30968f01f833af982eac4baf131edacaf85e3262280421da"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/WoodenPlanks.webp",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 236698,
+      "sha256": "9fb49f4176f36919e696791f2d6a57b015cb26ae883b78db7d9a1dd94f8edfea"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/aluminium-color.jpg",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 3843751,
+      "sha256": "f444c07a08de291049d0dda880d6fca9faae4b172f293f604c87e5e96ad30370"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/aluminium-normalgl.jpg",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 1572994,
+      "sha256": "b84a0bfe4639b7e3fac36d04adf1844e0e2654f987a36ece5c966ad77921cd27"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/aluminium-roughness.jpg",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 2105192,
+      "sha256": "8a0570593c028cf0eca32a0107d7bc936817f0de7076f1b8b8f48ea7745aee27"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/concrete-diff.jpg",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 2573465,
+      "sha256": "abcdc1ad41eb5cd58ba158f954cb00bae57c2eba13f90a1145f04edfc85cc617"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/concrete-nor_gl.jpg",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 2229634,
+      "sha256": "7523d077dc6d99defa5189dba3b735fce4d6ecad192009cd46eea8ed98bbbea4"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/concrete-rough.jpg",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 3065890,
+      "sha256": "7cde841b0b3e658bcf49ef9a5f1d8d0eb17a260f797eebf3d11c8befcab091e0"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/oak-diff.jpg",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 2736142,
+      "sha256": "ec3d2deb1fe21150ede5f987b48c691b3c7dbffe4183850a9b8717e904917a46"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/oak-nor_gl.jpg",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 2125233,
+      "sha256": "340a51d81e5ec2ead28a1c864637375becb00a1e11861e47a72dde4c03950968"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/oak-rough.jpg",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 3396426,
+      "sha256": "18b2a97f44b18e1a794652dbb2ec4bbdfc35869e2f028e4bbb85441258da1018"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/painted-metal-diff.jpg",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 1518621,
+      "sha256": "82855f6297ad07ea7ea4d1c501e6b56ed4c9c758653ca126bda9fd0ebba63c59"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/painted-metal-nor_gl.jpg",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 948237,
+      "sha256": "4cd3069a918cf891295b369b26f47c0a0631c634d0fd1006b6b7412a8f2b3550"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/painted-metal-rough.jpg",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 1588770,
+      "sha256": "dd1726d8217fe4f6c3947cb20700d51774a0773e9abaeb4120769c8f6fce1d69"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/platform.webp",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 235666,
+      "sha256": "9128d55e41d1273c9c5c52a536871787f658c2cc1152b197eb3b3215ee674403"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/terrazzo-diff.jpg",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 4554044,
+      "sha256": "26cc390c19e468de03fc9699198398590a7adc1ddd4972e6d6fb65d76403bb66"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/terrazzo-nor_gl.jpg",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 509402,
+      "sha256": "48f79a943f626c90cfeac4528b765d9f7df862883890a9d05ddf00a2209e0fa4"
+    },
+    {
+      "path": "public/models/metro/downloaded/textures/terrazzo-rough.jpg",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 1841962,
+      "sha256": "23ee634b3550f8e0130406925671a35cc3ebae6be83ee1e543640a19283f64b5"
+    },
+    {
+      "path": "public/models/metro/downloaded/ticket-gate.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 11208,
+      "sha256": "1532c7cf4dfac174a3c7787d14ad80806a6d3b80bee830cb6a82eac16181a360"
+    },
+    {
+      "path": "public/models/metro/downloaded/train-door.glb",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 11324,
+      "sha256": "6efc6e4799e83411ac0bea3858ff798474246b77f3983db50e22ebbd7d7f4896"
+    },
+    {
+      "path": "public/models/motorcycle-rider/ASSET-SOURCES.md",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 1264,
+      "sha256": "0c5dc4a20fdaa49e52638e7bb74fb7da61092f8f158c6f247caa2db163152ddb"
+    },
+    {
+      "path": "public/models/motorcycle-rider/bear-riding.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 372156,
+      "sha256": "e6dc05cdf41e92e13d27047ef1a481a6dbc866a221e4b190c9fb520ff3625777"
+    },
+    {
+      "path": "public/models/motorcycle-rider/source/BaseColor.png",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 31190,
+      "sha256": "a2882296d284989c621d801d4b8023d07f817b9e779ffed2b90d07a69f0afc77"
+    },
+    {
+      "path": "public/models/motorcycle-rider/source/cubedBear.fbx",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 105420,
+      "sha256": "a8e258a5a20b0b715627674c17e38da8ed1f093a7fa04f87befdc631cc5eb528"
+    },
+    {
+      "path": "public/models/motorcycle-rider/sources.json",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 1393,
+      "sha256": "269b51ce58df5cf82ac10639ffee5fbca43df96de62be1daf7ebdce2f5993b88"
+    },
+    {
+      "path": "public/models/neighborhood/ASSET-SOURCES.md",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 2212,
+      "sha256": "e859373df8274e7f6d92c265b53f1261dd43f1dd3a9b998a3020dda69dec1571"
+    },
+    {
+      "path": "public/models/neighborhood/coffee-metric.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 167300,
+      "sha256": "b47811decbdd864860468f7f9691bd55137aaf368d24d66dbf1b82dcd14d4dbf"
+    },
+    {
+      "path": "public/models/neighborhood/coffee-source.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 116940,
+      "sha256": "e2c66ee2aee7542da05aed8cb5ac0955741e95e646ace4d81fa536b59df0d722"
+    },
+    {
+      "path": "public/models/neighborhood/fox.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 162852,
+      "sha256": "d97044e701822bac5a62696459b27d7b375aada5de8574ed4362edbba94771f7"
+    },
+    {
+      "path": "public/models/neighborhood/mart-metric.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 170828,
+      "sha256": "64bd2baf834751fa0ff07061fd679c48160d7746097bd119a947e6ad1cf7e2a5"
+    },
+    {
+      "path": "public/models/neighborhood/mart-source.glb",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 138744,
+      "sha256": "a8e17f6fa2ba37f90acd43ee20dfad12e99d275c1c9d2f02ce1bd4ba92b1b370"
+    },
+    {
+      "path": "public/models/neighborhood/shop01-metric.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 1226164,
+      "sha256": "ba054931a280a004a8d39950ace5d6984581151462d3d8c4683d26397cda3cd2"
+    },
+    {
+      "path": "public/models/neighborhood/shop01.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 621384,
+      "sha256": "1607b9653aaa867fa6a8d7d98e481aebfba1b3cacd7887fa3977fbff031b3a9d"
+    },
+    {
+      "path": "public/models/neighborhood/shop02-metric.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 420928,
+      "sha256": "d904a56b2a3400c101eb4ceab863ffec1710b66ac4476fc1a7753b525af7d278"
+    },
+    {
+      "path": "public/models/neighborhood/shop02.glb",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 236540,
+      "sha256": "078e1bdaa3fc915d37e8af9df8cc47791d6445f5cd9ad2514aa0487bbb186627"
+    },
+    {
+      "path": "public/models/neighborhood/sources.json",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 1972,
+      "sha256": "27b7aa0340ff46479bbdfc0a6a6c3152c126da520b78f2ad4f31deaa03a9a265"
+    },
+    {
+      "path": "public/models/street-props/ASSET-SOURCES.md",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 680,
+      "sha256": "33d648f3b77defea67ae457238d32e5dc8a72be9c9d53109006b0ebf4f9181db"
+    },
+    {
+      "path": "public/models/street-props/bench.glb",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 4227988,
+      "sha256": "a90018a2eede81913e631519c909e4713fd4d24fb5cf4708c837ae3547f215cf"
+    },
+    {
+      "path": "public/models/street-props/hydrant.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 4298156,
+      "sha256": "4b15d4d4b89f2138f1a898984dcfc90a648305e876ae60d438c1dd69ba51308f"
+    },
+    {
+      "path": "public/models/street-props/integrity.json",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 3057,
+      "sha256": "3ad18feb858d96652c892deec2db99ec9cd885e9beca1e332e3122af3577ca62"
+    },
+    {
+      "path": "public/models/street-props/plant.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 6322952,
+      "sha256": "2b033e8f65e234dba759dbcd03131764d40a2895a5041975d565bb9ed4734350"
+    },
+    {
+      "path": "public/models/street-props/pot.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 3132104,
+      "sha256": "e8ebcbdc28a7b2f2255a9c58efc9286adbc9bfc7218ce8ee6638b4b270491847"
+    },
+    {
+      "path": "public/models/supplied-road-pack-optimized.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 1777336,
+      "sha256": "28f1e12991703cc239fbc8c2779607546477469c97465e0ef7cd2456451dae64"
+    },
+    {
+      "path": "public/models/traffic-real/ASSET-SOURCES.md",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 3053,
+      "sha256": "c5017a121b28dbb43a3754136cb317a9c793f6a2fea0226c049bbc6fe8c66aa2"
+    },
+    {
+      "path": "public/models/traffic-real/GPL-3.0.txt",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "public/models/traffic-real/bmw.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 7056244,
+      "sha256": "207a2f6c8e146dfb3e7673c9e8ab08608e1f0b5e5a9e8d22b6d9b70b71ec7fbc"
+    },
+    {
+      "path": "public/models/traffic-real/decode-traffic.mjs",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 756,
+      "sha256": "113b047e6eafc3184f1727cb790e7d751bfc28b8fcd4f2e12bdd760279c1703c"
+    },
+    {
+      "path": "public/models/traffic-real/ferrari-spider.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 7914556,
+      "sha256": "b3955de78e8c51ba16a9ce86b6d8dd47d199f8a2b112945385482fcaeeb6c913"
+    },
+    {
+      "path": "public/models/traffic-real/ferrari.glb",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 6202708,
+      "sha256": "cae55e95c862134da98a1dd762a5e35bfab3f46fea3ca86f4162f6b8483b57d7"
+    },
+    {
+      "path": "public/models/traffic-real/motorcycle-source.glb",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 3862728,
+      "sha256": "d8fdeb7757829ebdfdd3f7ab8417dbadac44611323a45c9ffa6bae41df7c928b"
+    },
+    {
+      "path": "public/models/traffic-real/motorcycle.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 2697328,
+      "sha256": "b14460c785d176ccd1d7199c0b914c612b241b3e0caf5f208432bc5889c3bbf8"
+    },
+    {
+      "path": "public/models/traffic-real/prepare-real-traffic.py",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 13386,
+      "sha256": "5cc49d1d800f3491034d2664b0141ee9a0e4df166ec917fbcdc51fd3721678ca"
+    },
+    {
+      "path": "public/models/traffic-real/tesla.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 936564,
+      "sha256": "12884a8abd66b44c79c903ec2c7038de83e2199087b669cb142358cc71a50e0d"
+    },
+    {
+      "path": "public/models/traffic/ASSET-SOURCES.md",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 720,
+      "sha256": "5da2eb14955b51c24e797cf2493f72a64aa82e5df02be874a8471fbaeef9c81c"
+    },
+    {
+      "path": "public/models/traffic/Textures/colormap.png",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 10219,
+      "sha256": "02bb3fb87365927d16e265d27caae405aeef5819b6bde5a989ff5e435318de4d"
+    },
+    {
+      "path": "public/models/traffic/car.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 164752,
+      "sha256": "bf00f2f0386a25aa310abc0424d22586e46a59ee6c737e6b375c97c9f01bd462"
+    },
+    {
+      "path": "public/models/traffic/llama.glb",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 164708,
+      "sha256": "2c4e4eb34348409edfe6ee87ad0260b9e6b6dec96902a979e3a9d9c181224bf2"
+    },
+    {
+      "path": "public/models/traffic/motorcycle.glb",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 97172,
+      "sha256": "c97911b8dbc2d5dd9d1961b46eb4d1f132b67a6c5a84f45593fea44e0595dd92"
+    },
+    {
+      "path": "public/models/traffic/pig.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 159724,
+      "sha256": "4bb5fc230a35db446fa2ea043f77dfc077f0b21d6e59d0235b15f01d01b05525"
+    },
+    {
+      "path": "public/models/traffic/pug.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 147380,
+      "sha256": "c71f7aa272d5947b5cd39b8fe5df44696391b0b19a74937ece40f91cd1f28cf5"
+    },
+    {
+      "path": "public/models/traffic/sheep.glb",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 156948,
+      "sha256": "91aedec323b54d42b802b065b2f5005daea527b0a379a9f3fe90f3258f3c2382"
+    },
+    {
+      "path": "public/models/traffic/sports.glb",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 175100,
+      "sha256": "bbb1c718d2aaf5f4344e9fb2cd66d8332a998a515b09ddd4dfa14698d787124e"
+    },
+    {
+      "path": "public/models/traffic/suv.glb",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 181608,
+      "sha256": "1a9ce2bba813dca5005abab09715b01b8b5f4a9c48d7260463afdfeb876aa8b6"
+    },
+    {
+      "path": "public/models/traffic/taxi.glb",
+      "part": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 181084,
+      "sha256": "14b2f982f8a501565702ecb56f917c82e9abae914fa3f76d2f622a8670598af1"
+    },
+    {
+      "path": "public/og.png",
+      "part": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 1995248,
+      "sha256": "4e1ecc50489a4a0085d4ef8c5ff0a194198a5bf50e6152b10dee8222031d9f9e"
+    },
+    {
+      "path": "public/textures/estate/travertine-color.jpg",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 990173,
+      "sha256": "9a6e68f1e903e56c3872243fb21feaa2b375f4128f7c6dae81c6cc4bf2fe885d"
+    },
+    {
+      "path": "public/textures/estate/travertine-normal.jpg",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 330631,
+      "sha256": "94774f79ff1d43c71f70aac9f22b053d28da497dce4e063cca2fccd2d7fb9ece"
+    },
+    {
+      "path": "public/textures/estate/travertine-roughness.jpg",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 374280,
+      "sha256": "9adbe7d0b120b150fb22c8077c9952c3e988db5b624967fc0d8b29249ebf867b"
+    },
+    {
+      "path": "public/textures/estate/wood-color.jpg",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 489587,
+      "sha256": "1273876d6f92fb1a1d29c1bb28f548a9256154187531e84f993b56e347f1d17b"
+    },
+    {
+      "path": "public/textures/estate/wood-normal.jpg",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 705118,
+      "sha256": "6c85ff0a410a2993cc09d25859d7d735bc05e9f15dc51393d2e58aa2ce8a0916"
+    },
+    {
+      "path": "public/textures/estate/wood-roughness.jpg",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 233217,
+      "sha256": "c1b1a7e3266a082d66f1c786a28a05674227158684d655e42ab2420e47ae746e"
+    },
+    {
+      "path": "public/textures/neighborhood/coffee-sign.png",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 20254,
+      "sha256": "573d95357d20aeb0c83abe31d2dcaa52e5cd42a02a31c33efc3fe87d7e4a9306"
+    },
+    {
+      "path": "public/textures/neighborhood/mart-sign.png",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 18977,
+      "sha256": "307b016103b385b72a91dbe68b066cd772e734950500deb4583661eb1ebb1437"
+    },
+    {
+      "path": "public/textures/taichung-facade-classic.webp",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 486348,
+      "sha256": "09fdb9d487b9c6f239652ed0381ae2ac5ac2df07161c61def67d7b4c69755acf"
+    },
+    {
+      "path": "public/textures/taichung-facade-modern.webp",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 351852,
+      "sha256": "ac872d12f45bf928570ac9891110e8a5014a25db962453e66ee0a0868cdcec8d"
+    },
+    {
+      "path": "public/textures/taiwan-authentic-vertical-signs-atlas.webp",
+      "part": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 96892,
+      "sha256": "4679365a755968925ad7d2fb50a8a73a52355581cde94d055cc69931673560d3"
+    },
+    {
+      "path": "public/textures/taiwan-facade-aged.webp",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 64836,
+      "sha256": "648d854cd8ba4cab7948664d4e4531a6b6ca062d91d35edb0b4c40d1dfe44086"
+    },
+    {
+      "path": "public/textures/taiwan-facade-market.webp",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 38028,
+      "sha256": "a77d262aeacd832b801a29902ad5f4c44b068f68f04b3533ae98db57afe7a25f"
+    },
+    {
+      "path": "public/textures/taiwan-facade-office.webp",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 18754,
+      "sha256": "731af3aa94a7ff76cf9e6071dd5b7b8f0b161dc3961d5227eb4b7f6307e97417"
+    },
+    {
+      "path": "public/textures/taiwan-facade-residential.webp",
+      "part": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 35464,
+      "sha256": "db6d8252bc030cc54cb1a2ba07eecce294a70c3cdaab39a01bc68ae6d0544487"
+    },
+    {
+      "path": "public/textures/taiwan-hillside-villa-facade-atlas.webp",
+      "part": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 84742,
+      "sha256": "0e6a3cf9052d085e365e8c3843dd11feb53fb5d1ecd934f49e04e85cb8792ccd"
+    },
+    {
+      "path": "public/textures/taiwan-storefront-signboards-atlas.webp",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 90440,
+      "sha256": "0d6e3030bd908f4168825f5a05471858e3c198443076f1673ff5c0ca79ccefcc"
+    },
+    {
+      "path": "public/textures/taiwan-vertical-signboards-atlas.webp",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 65066,
+      "sha256": "39464ce849f16c5d6e66940491814578d6c38278f246f598d8e0aedf003a6156"
+    },
+    {
+      "path": "public/window.svg",
+      "part": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 386,
+      "sha256": "decf1cf7bb22b5c99c4857cfcd5718ce5465c4454166317589c83fc73df74b66"
+    },
+    {
+      "path": "scripts/audit-source-models.py",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 759,
+      "sha256": "6e273547e9e07dae26f7e5226c398483e2d07109b55263b0fe9950cc5c63477b"
+    },
+    {
+      "path": "scripts/build-capy-scooter.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 15634,
+      "sha256": "924f796685fdca9fbc558d5c0dbbf9d3033c8c62b6d98c3e1a74ecdb6ebd574c"
+    },
+    {
+      "path": "scripts/build-generated-character.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 7219,
+      "sha256": "6b399c115bb2b28d4dba18cf85d2482b67591dc8f998151204bfc2ccc2a6bd12"
+    },
+    {
+      "path": "scripts/build-premium-towers.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 9134,
+      "sha256": "ad9c3554f328d89f2af554c632a37711866009a2f4d229037732c83da548b217"
+    },
+    {
+      "path": "scripts/build-verified.sh",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 661,
+      "sha256": "2ae5329ac860076070c9217a43106a15cb5ecf907a0f7baeb9ef903f76b53c68"
+    },
+    {
+      "path": "scripts/decode-traffic.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 756,
+      "sha256": "113b047e6eafc3184f1727cb790e7d751bfc28b8fcd4f2e12bdd760279c1703c"
+    },
+    {
+      "path": "scripts/export-estate-qa.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1985,
+      "sha256": "8383f056c0c974b49c3fb947442c97dddbda1f384fc0eba1b83ea5e4435239f3"
+    },
+    {
+      "path": "scripts/extract-road-pack.py",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 12111,
+      "sha256": "4dabe3cd4d92b21d3fe16bb8c488c15f5914e5e300afee9681558379b1b5d3d7"
+    },
+    {
+      "path": "scripts/extract-supplied-character.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 11472,
+      "sha256": "149fb4b07727b672b4dea6b95382f31905d59955db42da40427e2edd1f04494b"
+    },
+    {
+      "path": "scripts/import-animal-riders.py",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3580,
+      "sha256": "98760876b5b335893e9e59d5634cdb6e76b1dd630120ad51c2ac26b47c9a0460"
+    },
+    {
+      "path": "scripts/install-ci.sh",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6326,
+      "sha256": "f63e840679ca885f206d17b7f8285199bb6bcd47ebc360008d04d16b8e54f63c"
+    },
+    {
+      "path": "scripts/metro-import/README.md",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3173,
+      "sha256": "1804aade87fc46b5dd390652bde74a3da9d9789a98490cfae9d374ce33df0783"
+    },
+    {
+      "path": "scripts/metro-import/convert.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 7780,
+      "sha256": "b69c7fabe1bdd651342e0ef9e1aacbb20dfe96a7a642c3c6eeb7430892e417c0"
+    },
+    {
+      "path": "scripts/metro-import/finish-architecture-v92.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4517,
+      "sha256": "6ef8e2178b6281acf4db94dec2727474916ac30ca04d9f1a3a0af0a0ee53e7c6"
+    },
+    {
+      "path": "scripts/metro-import/finish-cabin-v94.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1709,
+      "sha256": "c73fc7f267f9c621cd9fc9ef6bbb345c182efb72eba3ce83ede2e1356ab4eee3"
+    },
+    {
+      "path": "scripts/metro-import/finish-stations.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3448,
+      "sha256": "be3c8845eb88da3ac944ccac1e42b7aadb55ba165801c383e0fd65a7a416b9c6"
+    },
+    {
+      "path": "scripts/metro-import/model-tools.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 14503,
+      "sha256": "eef37c4efaf12fe6634df1444d22b0098e1f4f6a7e0bfadca21256eace3c14f4"
+    },
+    {
+      "path": "scripts/metro-import/prepare-civic-roof.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3368,
+      "sha256": "d13ebef158b8159dddf3cbc9c2e2c6c9ab5ee4e92242c454ef232538caa27749"
+    },
+    {
+      "path": "scripts/metro-import/prepare-textures.py",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2564,
+      "sha256": "ee6bb54f05662986725124eddae27833808d1f2a2723ed2ce77c070c181385f8"
+    },
+    {
+      "path": "scripts/metro-import/refine-connections-v90.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5500,
+      "sha256": "d5db724b4a935b73037c762f049fbccbadb5cab02895efd23e8c4d436117f572"
+    },
+    {
+      "path": "scripts/metro-import/refine-service-v89.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 7608,
+      "sha256": "10eebd4c61dabe2a95e0c266987eec277b52a313eab649023be9cffbb4e5feb7"
+    },
+    {
+      "path": "scripts/metro-import/refit-station-shafts.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3046,
+      "sha256": "240be4e86f9d201232101b5c8684fd65a7c04e25209e821774fd7f3e62f95f53"
+    },
+    {
+      "path": "scripts/metro-import/repair-transport.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5647,
+      "sha256": "173dfcc93b0e3c22497edb1702316721d57858063ea50397bd2bb5b7fc3ffba0"
+    },
+    {
+      "path": "scripts/metro-import/source-volume.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2295,
+      "sha256": "f7bf21454b6e007256a0a3bffee65697226b724289501c9ed9bf95a4101117fe"
+    },
+    {
+      "path": "scripts/pose-motorcycle-rider.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 9131,
+      "sha256": "76851c13df3610f05ed72626755b7f2a97aed8254f036513cd87a58ca1284a1b"
+    },
+    {
+      "path": "scripts/prepare-closed-shops.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 7649,
+      "sha256": "dbcf672a4fcd7b10ffcd46350937d4322f7801dafa40ad11f42907b1395a548e"
+    },
+    {
+      "path": "scripts/prepare-driving-model.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1423,
+      "sha256": "f3bf97e2f56689727fd0937db6775fbe130f80e76a15032a715cc70a8f0075dc"
+    },
+    {
+      "path": "scripts/prepare-ferrari-spider.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2121,
+      "sha256": "aa29b2284a00b43b34a920927601d6925785fa4476f50144698f2813e95a0d3c"
+    },
+    {
+      "path": "scripts/prepare-intact-street.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3884,
+      "sha256": "0dd557efb08fb05959041312c3bec0d7b1cf0047daa27a0c318b64fe82bb1a41"
+    },
+    {
+      "path": "scripts/prepare-luxury-estate.py",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1987,
+      "sha256": "b311859f37874c6e7bcccaac993a45abac038b746c4937e95b8dcb64b8f5be0b"
+    },
+    {
+      "path": "scripts/prepare-motorcycle-rider.py",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3081,
+      "sha256": "843dba9b24b05e1438644324e5f5bec62594595b9652082679c99b2c547360b1"
+    },
+    {
+      "path": "scripts/prepare-neighborhood.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3888,
+      "sha256": "5a2616abe9ddce5cad711733fb9e90aa54f76c228321475da000366aa1d511be"
+    },
+    {
+      "path": "scripts/prepare-real-traffic.py",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 13386,
+      "sha256": "5cc49d1d800f3491034d2664b0141ee9a0e4df166ec917fbcdc51fd3721678ca"
+    },
+    {
+      "path": "scripts/prepare-scooter-audio.py",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6993,
+      "sha256": "9c3177ca00dca971c2dbea80557a3c512e09b947c729b61f4b984eaa961c16c7"
+    },
+    {
+      "path": "scripts/prepare-scooter-wheel-mask.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2290,
+      "sha256": "436a472318dc2b67fa54f9eaab07084f7085146522024673dbf0d75dad6ad678"
+    },
+    {
+      "path": "scripts/prepare-shop-signs.py",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1210,
+      "sha256": "90f54c182f923b41a93ff84b9dffc200afd99ad8ebd5d9d696aa6ca6b612fad9"
+    },
+    {
+      "path": "scripts/prepare-stock-building.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5598,
+      "sha256": "0a513218c0c4efd851cc9081d8effaed2db684d5725852698b1addc17a6eaf07"
+    },
+    {
+      "path": "scripts/prepare-street-props.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5284,
+      "sha256": "2a0e57e5bdc54e9cb035a99f25526c1a7f5671a00cc3cdc71ffb6413c646c517"
+    },
+    {
+      "path": "scripts/prepare-throttle-attacks.py",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1626,
+      "sha256": "bd5074f99a453811a12f10d82c4cd5161d5d35624fa0cbc25565d7020b146de0"
+    },
+    {
+      "path": "scripts/render-model-qa.py",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2951,
+      "sha256": "683abf755ee4abc18d41674e0803090a33e1115fa591f9a44ecec7bb7a61af28"
+    },
+    {
+      "path": "scripts/sites-env.sh",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1530,
+      "sha256": "df86ebfc27d2f00860036658e933ac0ddd7b5f6879aa5d51218f0863c7e1fb60"
+    },
+    {
+      "path": "tests/city-scene.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 8400,
+      "sha256": "c9454d886189f1ab69d593315c4db6367f2801116669c754a6cf331330092b16"
+    },
+    {
+      "path": "tests/commuter-service.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5672,
+      "sha256": "540a6cdbf8c47ef7342a2b1c9115a054a842df142570de78a751c7e56d3bce0a"
+    },
+    {
+      "path": "tests/continuous-shadows.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6107,
+      "sha256": "505507287b3f25ca92cbd80c4179461525436eadbf6c81b9072c22d89a125447"
+    },
+    {
+      "path": "tests/downloaded-animal-riders.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4311,
+      "sha256": "12acef7262aebf91a9d2b144964e58e962cd54ff868854cbc38a9036d2269265"
+    },
+    {
+      "path": "tests/downloaded-metro-loader.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1687,
+      "sha256": "ab4d9a583e5183b1f668f882d43e59cbc26e99b05d0889ac4b49def0b811727a"
+    },
+    {
+      "path": "tests/exact-static-meshes.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5577,
+      "sha256": "0534d93751b54b86f7f2b441f1306863b21dd5b7b2e50cdbd7e7773d76aae2ac"
+    },
+    {
+      "path": "tests/exhaust-rendering.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3602,
+      "sha256": "2fcf46339f8b322bbde31fc2bab0eda8e668e640df3f84c7fb92656e408b3c51"
+    },
+    {
+      "path": "tests/gameplay.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 70237,
+      "sha256": "da3fc480b2c188f6f51bd9a7f000f3160a9be034c0303a4c5baafda1e23753ae"
+    },
+    {
+      "path": "tests/headless-document.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 998,
+      "sha256": "67efabed35b95bc0ef2f4247fcbac377d56df6a485bae7f3065ce6d1b18908f3"
+    },
+    {
+      "path": "tests/highway-finishes.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5208,
+      "sha256": "173295a12b5df691527403a4a88daa4596e81645f4f41e90f4e94d929d951a05"
+    },
+    {
+      "path": "tests/ignition-physics.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 7025,
+      "sha256": "6f13828763a45c5a69fbd7e5ca51ff67ff083c4de9ad576d5de32fd20a30eff7"
+    },
+    {
+      "path": "tests/metro-architecture.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5274,
+      "sha256": "5eae471c0ab292977ae50e5b4707e5a45beb0bd2f0b6b92ed3e05cdce9e87173"
+    },
+    {
+      "path": "tests/metro-city.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 14527,
+      "sha256": "6cd0e78a8ba422d4c96291edd29d2fa59006f976f5c5f0d0e8ad672997e4b1db"
+    },
+    {
+      "path": "tests/metro-clearance-volume.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5455,
+      "sha256": "b9be3de3775fead680eb16eeffcc14917a223bc14a69027c556d1cd986e54ff9"
+    },
+    {
+      "path": "tests/metro-connected-service.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4665,
+      "sha256": "6db0fa7b210bb48b54efd258d8f91c7819227780ef486a7a6ab2cee46bdb5580"
+    },
+    {
+      "path": "tests/metro-model.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6749,
+      "sha256": "ba975089b8c25589bd45e4eb39f07a6f8fe2e363141f59540abdeb0241a5b2de"
+    },
+    {
+      "path": "tests/metro-platform-finishes.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 4988,
+      "sha256": "9315af176b8e3e12d5cde9bfc5bd08d001b16d5848ce3bd306b9a2023f9e7367"
+    },
+    {
+      "path": "tests/metro-service.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2607,
+      "sha256": "0811b178fdad22959a2e1c55125bbab261e0c92f2fa9c5cef2ea13d16d5f4be7"
+    },
+    {
+      "path": "tests/metro-system.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 16214,
+      "sha256": "11fce18fa2b8f2bd97d42d87b5fe9efb27115c237d6258757309e495bada00f4"
+    },
+    {
+      "path": "tests/model-fixture.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 2989,
+      "sha256": "92235077bd820e2a8c6f51e6b6e1fdba21df7fbac98fab72abbc521101d2cf50"
+    },
+    {
+      "path": "tests/motorcycle-rider.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 10601,
+      "sha256": "c90902e90ebdf43ffb8f8f6619ddd528fd5e0781ef5c8806b4b911edcbf6e0e8"
+    },
+    {
+      "path": "tests/neighborhood-life.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5714,
+      "sha256": "e2b3d1a5f75c893e8e431215c55ae7e599fdcbff91f8cb2967968f719a1122b7"
+    },
+    {
+      "path": "tests/optimization.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3005,
+      "sha256": "0ad5f337ca7759b64af79b58b482ce84c28b0caef92bce5b4e8a7cb927810b62"
+    },
+    {
+      "path": "tests/packed-city.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3733,
+      "sha256": "a29430bf0298082a6c31013e849d3243defecaf0d276ac530188cef3f36940db"
+    },
+    {
+      "path": "tests/premium-models.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 7780,
+      "sha256": "a74b807b6141ada5cb29ce0801a83e95349fc5fc66f98a07f4022a7220b8a8d5"
+    },
+    {
+      "path": "tests/real-assets.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 26084,
+      "sha256": "3d2b4741b22873df9d56c1868dd274b3d2715593340ab0b65c106f98693a49e2"
+    },
+    {
+      "path": "tests/realistic-traffic.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 6779,
+      "sha256": "1e549405816c6c47572bf7da2d57617df26b484d170b77349be2d9524acdefab"
+    },
+    {
+      "path": "tests/rendered-html.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1357,
+      "sha256": "d8d9330124b07c99bd3ce07c92e49a12ea76c1de7056bf9c03eb74b195e7d559"
+    },
+    {
+      "path": "tests/riding-pose.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1592,
+      "sha256": "b772078ad8a706b363b4547562e0dc8b4b4d3d4613c3cf45265eba8c26831407"
+    },
+    {
+      "path": "tests/scooter-systems.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1352,
+      "sha256": "239f6877c5c749bab97e4f4ec3966672eed995dfe38cb582d1afcd81ed918a46"
+    },
+    {
+      "path": "tests/simulation-performance.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 8129,
+      "sha256": "cd6f312c6ec6bb940ffd333220847c7a68d0e438b0d440ccfedf0e450f9aa416"
+    },
+    {
+      "path": "tests/stock-buildings.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3379,
+      "sha256": "d37e3ebe5d5e32eb214b7507fd869d5245fb2d3f7b373e03d875ae6bcf025bd4"
+    },
+    {
+      "path": "tests/street-props-audio.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 12436,
+      "sha256": "060c69ab054ac072f7b59eaaa34e162b8c9d45412e18d583f4d113f1a51edbef"
+    },
+    {
+      "path": "tests/suspension-dynamics.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 685,
+      "sha256": "443707ddac0c60bbd07a2c89a8d3f1a3861bb1cdba3ede65d09039adc23e84ac"
+    },
+    {
+      "path": "tests/traffic-flow.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 3849,
+      "sha256": "72da49b24fb5b4f8deb6fc826121a2b2f99643def8eed1ca218e6463ff6ca42f"
+    },
+    {
+      "path": "tests/traffic-rendering.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5360,
+      "sha256": "7b2a81392ed98cf27a969c15c0b8c0b58a536aff1f5ab04545e61108e029bd31"
+    },
+    {
+      "path": "tests/traffic-smoothness.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 7662,
+      "sha256": "1d903e1054c3239f13439a2a9280b25fed2d3addf9406297bdefd0fd2ec9c06a"
+    },
+    {
+      "path": "tests/webgpu-rendering.test.mjs",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 5069,
+      "sha256": "3d1e96cb5b1624f4ef9f509d25be0102b865f013c73ec02679a87d14e76e7186"
+    },
+    {
+      "path": "tsconfig.json",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 666,
+      "sha256": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3"
+    },
+    {
+      "path": "vite.config.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1807,
+      "sha256": "43e5f02f727ca043f08ebf34789f330580a7a0cb90f426c92f4a454d066988fc"
+    },
+    {
+      "path": "worker/index.ts",
+      "part": "01-Capy-Cab-v97-code.zip",
+      "bytes": 1731,
+      "sha256": "2ed36d7fa996e946d9d7695c5925e7760246f6bf8fa35c06f1bc515c087dc450"
+    }
+  ],
+  "asset_parts": [
+    {
+      "file": "02-Capy-Cab-v97-assets-1.zip",
+      "bytes": 27250541,
+      "sha256": "a9c0af74198bcee66cfa0f4d224ff10b49479ced16294321ea2a4e5086769e57"
+    },
+    {
+      "file": "03-Capy-Cab-v97-assets-2.zip",
+      "bytes": 27238096,
+      "sha256": "5ee5f728be1f0eb68af7a8a09b4041afc37bef6b61a46140776c267ad3aae46d"
+    },
+    {
+      "file": "04-Capy-Cab-v97-assets-3.zip",
+      "bytes": 27262215,
+      "sha256": "f64a07fa5160b185d1f8a4e534e99d19733b207a44b3784bf6135296d2e7a353"
+    },
+    {
+      "file": "05-Capy-Cab-v97-assets-4.zip",
+      "bytes": 27246021,
+      "sha256": "a4d9300e5b65e7686b1fc7054a0638eab4f64533bf95d067d74bb970706a7f9c"
+    },
+    {
+      "file": "06-Capy-Cab-v97-assets-5.zip",
+      "bytes": 27221819,
+      "sha256": "8e27ed2b9996be41fdea0248e4e61807a1f4f3785b0a004929a56f76ac88b0b3"
+    },
+    {
+      "file": "07-Capy-Cab-v97-assets-6.zip",
+      "bytes": 27252760,
+      "sha256": "2306c532a84e3d1f0a84b2b062455f0668350ec33927f907d40069ae80149caa"
+    }
+  ]
+}

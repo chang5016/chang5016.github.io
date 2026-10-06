@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-03",
+  "renderer": "Three WebGPURenderer / native Dawn Vulkan SwiftShader",
+  "frames": [
+    "lift-inside.png",
+    "lift-mid-travel.png",
+    "station-overview.png",
+    "train-exterior.png",
+    "train-interior.png",
+    "exhaust.png"
+  ],
+  "errors": [],
+  "scope": "Actual downloaded GLBs, full source textures and original hero rendered internally. Station, lift, carriage interior and exhaust tested in the metro scene; complete train exterior additionally isolated for a clear source-body view. Full city travel paths checked separately. Not a cloud-browser test or a physical GPU FPS benchmark.",
+  "automatedVerification": {
+    "totalChecks": 164,
+    "result": "passed",
+    "coverage": [
+      "six complete street/platform lift return journeys",
+      "full original scooter/rider clearance throughout each lift travel",
+      "native carriage door and floor geometry",
+      "boarding, movement and next-station exit",
+      "station structures clear all existing road levels",
+      "continuous one-metre steel seams at native wheel datum",
+      "original bidirectional street continuation and complete highway lane-paint batch",
+      "exhaust stays live after static freezing",
+      "download source hashes and licence notices",
+      "production build and rendered page metadata"
+    ],
+    "note": "The HTML check was run after the production build; the full source suite initially preceded that build. Changed release loader/road code was then rechecked with actual city and source GLBs."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Cubed Bear",
+  "author": "CubedBear",
+  "page": "https://sketchfab.com/3d-models/cubed-bear-26647ba33a564a7da57a6b166152f4bc",
+  "authorDownload": "https://cubedbear.itch.io/low-poly-interior",
+  "license": "CC-BY-4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "sourceFile": "source/cubedBear.fbx",
+  "sourceSha256": "a8e258a5a20b0b715627674c17e38da8ed1f093a7fa04f87befdc631cc5eb528",
+  "sourceVertices": 176,
+  "sourceTriangles": 296,
+  "file": "bear-riding.glb",
+  "sha256": "e6dc05cdf41e92e13d27047ef1a481a6dbc866a221e4b190c9fb520ff3625777",
+  "bytes": 372156,
+  "vertices": 4514,
+  "triangles": 7468,
+  "bones": 18,
+  "adaptation": "Downloaded biped skeleton; separate source islands rounded without shrinking facial components, original palette relinked; native arms and legs rotated into an offline motorcycle pose. No bone stretching or axis-dependent character scaling. Bike and rider share one uniform display scale.",
+  "pose": {
+    "lean": 0.55,
+    "seatZ": 0.08,
+    "contactErrors": [
+      0.0001428929426635084,
+      0.0018346282569031158,
+      1.3624876795421982e-11,
+      0.0015135215637684498
+    ],
+    "maxContactError": 0.0018346282569031158,
+    "largestBoneScale": 1.0000032186508179,
+    "seatToCrown": 1.5199999999999991,
+    "size": [
+      1.2716314678143052,
+      2.3020357810033674,
+      1.3020676053251765
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "models": {
+    "grand-residence": {
+      "label": "石材陽台住宅",
+      "width": 28,
+      "height": 35.86500000119209,
+      "depth": 18.01000000357628,
+      "floorHeight": 3.2,
+      "floors": 10,
+      "triangles": 16308,
+      "parts": 860,
+      "drawsPerBatch": 1,
+      "bounds": {
+        "min": [
+          -14,
+          -3.5762786898541066e-9,
+          -9.00500000178814
+        ],
+        "max": [
+          14,
+          35.86499999761581,
+          9.00500000178814
+        ]
+      }
+    },
+    "civic-tower": {
+      "label": "香檳金玻璃辦公樓",
+      "width": 28,
+      "height": 46.40000000506639,
+      "depth": 18,
+      "floorHeight": 3.3,
+      "floors": 13,
+      "triangles": 16840,
+      "parts": 929,
+      "drawsPerBatch": 1,
+      "bounds": {
+        "min": [
+          -14,
+          -3.5762786898541066e-9,
+          -9
+        ],
+        "max": [
+          14,
+          46.40000000149011,
+          9
+        ]
+      }
+    },
+    "harbor-tower": {
+      "label": "深藍玻璃商務塔樓",
+      "width": 24,
+      "height": 56.300000005066394,
+      "depth": 16,
+      "floorHeight": 3.3,
+      "floors": 16,
+      "triangles": 19304,
+      "parts": 1151,
+      "drawsPerBatch": 1,
+      "bounds": {
+        "min": [
+          -12,
+          -3.5762786898541066e-9,
+          -8
+        ],
+        "max": [
+          12,
+          56.30000000149012,
+          8
+        ]
+      }
+    }
+  },
+  "atlas": [
+    2048,
+    1024
+  ],
+  "processing": "Complete authored exterior models, metric 3.2–3.3 m storeys, actual windows, reveals, balcony rails, ground-level doors and screened roof equipment. Existing stone finish retained; shared full PBR atlas. No non-uniform scaling or runtime quality changes.",
+  "bytes": 5823088,
+  "sha256": "79e475f563ace2171750d020231ffc40b358ea3f4ee04c9c1e1324de78f1ac32"
+}

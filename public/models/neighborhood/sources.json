@@ -1,0 +1,71 @@
+{
+  "version": 2,
+  "files": [
+    {
+      "file": "mart-metric.glb",
+      "sourceFile": "mart-source.glb",
+      "page": "https://kenney.nl/assets/city-kit-commercial",
+      "author": "Kenney",
+      "license": "CC0-1.0",
+      "sha256": "64bd2baf834751fa0ff07061fd679c48160d7746097bd119a947e6ad1cf7e2a5",
+      "sourceSha256": "a8e17f6fa2ba37f90acd43ee20dfad12e99d275c1c9d2f02ce1bd4ba92b1b370",
+      "sourceTriangleCount": 1509,
+      "addedTriangles": 12,
+      "uniformScale": 8.536585130058967,
+      "bounds": [
+        [
+          -7,
+          0,
+          -4.411975860595703
+        ],
+        [
+          7,
+          7.623170375823975,
+          4.301975727081299
+        ]
+      ],
+      "completeExterior": true,
+      "opaqueWindows": true
+    },
+    {
+      "file": "coffee-metric.glb",
+      "sourceFile": "coffee-source.glb",
+      "page": "https://kenney.nl/assets/city-kit-commercial",
+      "author": "Kenney",
+      "license": "CC0-1.0",
+      "sha256": "b47811decbdd864860468f7f9691bd55137aaf368d24d66dbf1b82dcd14d4dbf",
+      "sourceSha256": "e2c66ee2aee7542da05aed8cb5ac0955741e95e646ace4d81fa536b59df0d722",
+      "sourceTriangleCount": 1276,
+      "addedTriangles": 180,
+      "uniformScale": 10.721648509475386,
+      "bounds": [
+        [
+          -5.199999809265137,
+          0,
+          -5.18667459487915
+        ],
+        [
+          5.199999809265137,
+          13.863091468811035,
+          5.039174556732178
+        ]
+      ],
+      "completeExterior": true,
+      "opaqueWindows": true
+    },
+    {
+      "file": "fox.glb",
+      "page": "https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/Fox",
+      "geometryAuthor": "PixelMannen",
+      "geometryLicense": "CC0",
+      "animationAuthor": "tomkranis",
+      "animationLicense": "CC-BY-4.0",
+      "sha256": "d97044e701822bac5a62696459b27d7b375aada5de8574ed4362edbba94771f7",
+      "clips": [
+        "Survey",
+        "Walk",
+        "Run"
+      ]
+    }
+  ]
+}

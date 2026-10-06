@@ -1,0 +1,57 @@
+import {T,fs,loadMaglev,loadObj,bounds,transform,clone,fit,carve,select,slice,writeGLB,repository,revision,inputRoot,root,outputDir} from './model-tools.mjs';
+import {fallbackTerrainElevation} from '../../app/world-terrain.ts';
+const destination=outputDir;
+const rows=[];
+async function save(name,group,adaptation){rows.push(await writeGLB(group,destination+name+'.glb',adaptation));}
+const maglev=await loadMaglev(),b=bounds(maglev),centre=b.getCenter(new T.Vector3());
+transform(maglev,new T.Matrix4().makeTranslation(-centre.x,-b.min.y,-centre.z));
+transform(maglev,new T.Matrix4().makeScale(6.2/(b.max.x-b.min.x),3.5/(6.193286895751953-b.min.y),1));
+const portals=[];for(const side of [-1,1])for(const z of [-12,-5,2])portals.push([[side>0?2.25:-4,-.12,z-1.6],[side>0?4:-2.25,3.27,z+1.6]]);
+carve(maglev,portals);
+carve(maglev,[[[-2.8,-.06,-16.85],[2.8,3.48,7.75]]]);
+await save('shanghai-maglev-body',maglev,'Original CadNav Shanghai maglev Mesh07, full 34.42 m body retained. Passenger width adapted to 6.2 m and headroom to 3.5 m. Six portal cuts through the original shell and clearance of residual interior construction faces in the passenger volume; source materials retained with a blue transport livery. Presentation annotations and separate exploded underframe pieces omitted.');
+const underframe=await loadMaglev('Group3');fit(underframe,6.15,1.07,15,-1.10);transform(underframe,new T.Matrix4().makeTranslation(0,0,-9.5));
+const noseFrame=fit(await loadMaglev('Group4'),6.15,1.07,18.3,-1.10);transform(noseFrame,new T.Matrix4().makeTranslation(0,0,7.25));for(const mesh of [...noseFrame.children])underframe.add(mesh);
+await save('maglev-underframe',underframe,'Original CadNav Group3 and Group4 underframe assemblies repositioned from their exploded layout below the corresponding carriage body. Source shape and details retained.');
+const panel=await loadObj('Resources/Objects/Ceiling');panel.children.forEach(m=>{m.material.name='GreyMetal';});fit(panel,6.35,.045,24.6,-.045);transform(panel,new T.Matrix4().makeTranslation(0,0,-4.55));
+await save('carriage-floor',panel,'Original downloaded thin interior panel resized to the motorcycle cabin floor. No new surface primitives.');
+const bridgeplate=fit(clone(panel),3.2,.025,.34,-.025);
+await save('boarding-threshold',bridgeplate,'Same downloaded interior panel sized as a retractable level boarding threshold.');
+const carCeiling=fit(clone(panel),5.7,.045,24.6,3.49);transform(carCeiling,new T.Matrix4().makeTranslation(0,0,-4.55));
+carCeiling.children.forEach(m=>{m.material.name='WhitePlastic';});
+await save('carriage-ceiling',carCeiling,'Original downloaded interior panel used as the continuous carriage lining, retained source topology.');
+const door=await loadObj('Trains/JFR1/Door');
+await save('train-door',fit(clone(door),1.585,3.25,.085),'Original Libre TrainSim JFR1 framed glazed sliding door, resized for a 3.2 m paired motorcycle doorway.');
+await save('platform-door',fit(clone(door),1.585,1.7,.085),'Original JFR1 framed door adapted as a sliding platform safety leaf.');
+await save('lift-door',fit(clone(door),2.385,3.75,.085),'Original JFR1 framed sliding door resized for a 4.8 m paired motorcycle lift doorway.');
+await save('ticket-gate',fit(clone(door),1.865,1.12,.085),'Original JFR1 sliding glazed panel adapted as paired low ETC gates; source frame and glazing retained.');
+const sign=await loadObj('Resources/Objects/DestinationSignFromUp');
+for(const m of sign.children)if(m.material.name==='Display'){const p=m.geometry.attributes.position,n=m.geometry.attributes.normal,uv=m.geometry.attributes.uv;for(let i=0;i<p.count;i++)uv.setXY(i,(n.getX(i)>0?-p.getZ(i):p.getZ(i))/1.889982+.5,(p.getY(i)+.244991)/.489982);}
+await save('hanging-display',slice(clone(sign),-10,.61),'Downloaded 3D display enclosure, glass display faces, rounded bezel and two original hanging rods. Rod length trimmed to the station ceiling; two display faces receive separately oriented text UVs.');
+await save('door-display',slice(clone(sign),-10,.355),'Same downloaded 3D electronic display enclosure mounted above each carriage doorway; hanging rods trimmed for wall mounting.');
+await save('platform',await loadObj('Resources/Objects/Platform-1_no_railings'),'Original complete bevelled platform module, paving, safety strip and concrete sides retained.');
+const fence=select(await loadObj('Resources/Objects/Platform-1'),m=>m.material.name==='Metal');transform(fence,new T.Matrix4().makeTranslation(0,-.536283,0));
+await save('platform-railing',fence,'Original tubular metal platform railings, separated by source material only.');
+await save('canopy',await loadObj('Resources/Objects/Platform_double_roofing'),'Complete original station canopy including structural posts, cross-bracing, roofing and LED fixtures.');
+await save('guideway',await loadObj('Resources/Objects/Subway_Bridge_WithEdges'),'Original elevated railway deck including parapets and floor.');
+await save('pier',await loadObj('Resources/Objects/BridgePfost1'),'Original reinforced-concrete T-head bridge pier; configuration adjusts head width and support height, not a newly made column.');
+await save('rail',await loadObj('Resources/RailTypes/Rail_Beton_1'),'Original complete rail/sleeper/ballast segment. Metre-scale gauge adjusted for widened vehicle.');
+await save('bench',await loadObj('Resources/Objects/Bench'),'Complete original platform seating, timber boards and concrete feet retained.');
+const led=select(await loadObj('Resources/Objects/Platform_double_roofing'),m=>['LED','Plastic'].includes(m.material.name));
+fit(led,5.1,.16,6.4,3.30);await save('carriage-lighting',led,'Original canopy LED fixtures and casings reused as actual 3D overhead carriage lighting modules.');
+const shaftSource=await loadObj('Resources/Objects/Lift-Subway');
+const cabin=select(shaftSource,m=>m.material.name!=='Beton');
+slice(cabin,-.1,3.8);transform(cabin,new T.Matrix4().makeScale(3.2/1.220204,1,3.2/1.347133));
+carve(cabin,[[[-2.4,-1,-5],[2.4,3.81,-1.5]],[[-2.4,-1,1.5],[2.4,3.81,5]]]);
+await save('lift-cabin',cabin,'Lower 3.8 m section of the original glazed lift structure adapted as the moving cabin. Original beams and glass retained, front/rear 4.8 m doorway openings cut for motorcycle travel.');
+await save('lift-floor',fit(clone(panel),6.4,.045,6.4,-.045),'Original downloaded floor panel resized as the moving lift floor.');
+for(const [station,x] of [-750,120,960].entries())for(const track of [0,1]){
+ const lower=fallbackTerrainElevation({x,z:-794})+.06,rise=21.6-lower,shaft=clone(shaftSource);
+ transform(shaft,new T.Matrix4().makeScale(3.2/1.220204,(rise+4.4)/20.549255,3.2/1.347133));
+ const cuts=[[[ -2.4,-.1,1.5],[2.4,3.8,5]]];const face=track===0?-1:1;
+ cuts.push([[-2.4,rise-.1,face>0?1.5:-5],[2.4,rise+3.8,face>0?5:-1.5]]);carve(shaft,cuts);
+ await save('lift-shaft-'+station+'-'+track,shaft,'Original complete Lift-Subway model fitted to the surveyed station rise; lower and upper landing apertures cut in the source structure. Full source glazing and steel structure retained, not new cubes.');
+}
+await fs.writeFile(destination+'sources.json',JSON.stringify({version:1,policy:'Every visible metro triangle derives from the listed downloaded model files. Only placement, source geometry adaptation, material conversion, animation, invisible collision bounds and live screen content are authored.',files:rows},null,2)+'\n');
+await fs.copyFile(root+'Resources/Materials/LICENSE',destination+'Libre-Resources-LICENSE.txt');await fs.copyFile(root+'Trains/JFR1/LICENSE',destination+'Libre-JFR1-LICENSE.txt');await fs.copyFile(inputRoot+'/maglev-unpacked/cadnav.com_model/readme.txt',destination+'CadNav-NOTICE.txt');
+console.log(JSON.stringify(rows.map(r=>({file:r.file,bytes:r.bytes,triangles:r.triangles})),null,2));

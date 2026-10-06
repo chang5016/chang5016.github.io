@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "license": "CC0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "assets": [
+    {
+      "id": "concrete_wall_009",
+      "page": "https://polyhaven.com/a/concrete_wall_009",
+      "author": "Charlotte Baglioni",
+      "metersPerRepeat": 1.805,
+      "license": "CC0",
+      "files": [
+        {
+          "file": "textures/concrete-diff.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/concrete_wall_009/concrete_wall_009_diff_2k.jpg",
+          "bytes": 2573465,
+          "sha256": "abcdc1ad41eb5cd58ba158f954cb00bae57c2eba13f90a1145f04edfc85cc617"
+        },
+        {
+          "file": "textures/concrete-nor_gl.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/concrete_wall_009/concrete_wall_009_nor_gl_2k.jpg",
+          "bytes": 2229634,
+          "sha256": "7523d077dc6d99defa5189dba3b735fce4d6ecad192009cd46eea8ed98bbbea4"
+        },
+        {
+          "file": "textures/concrete-rough.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/concrete_wall_009/concrete_wall_009_rough_2k.jpg",
+          "bytes": 3065890,
+          "sha256": "7cde841b0b3e658bcf49ef9a5f1d8d0eb17a260f797eebf3d11c8befcab091e0"
+        }
+      ]
+    },
+    {
+      "id": "oak_wood_planks",
+      "page": "https://polyhaven.com/a/oak_wood_planks",
+      "author": "Dimitrios Savva",
+      "metersPerRepeat": 1.2,
+      "license": "CC0",
+      "files": [
+        {
+          "file": "textures/oak-diff.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/oak_wood_planks/oak_wood_planks_diff_2k.jpg",
+          "bytes": 2736142,
+          "sha256": "ec3d2deb1fe21150ede5f987b48c691b3c7dbffe4183850a9b8717e904917a46"
+        },
+        {
+          "file": "textures/oak-nor_gl.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/oak_wood_planks/oak_wood_planks_nor_gl_2k.jpg",
+          "bytes": 2125233,
+          "sha256": "340a51d81e5ec2ead28a1c864637375becb00a1e11861e47a72dde4c03950968"
+        },
+        {
+          "file": "textures/oak-rough.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/oak_wood_planks/oak_wood_planks_rough_2k.jpg",
+          "bytes": 3396426,
+          "sha256": "18b2a97f44b18e1a794652dbb2ec4bbdfc35869e2f028e4bbb85441258da1018"
+        }
+      ]
+    },
+    {
+      "id": "blue_metal_plate",
+      "page": "https://polyhaven.com/a/blue_metal_plate",
+      "author": "Rob Tuytel",
+      "metersPerRepeat": 2.5,
+      "license": "CC0",
+      "files": [
+        {
+          "file": "textures/painted-metal-diff.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_metal_plate/blue_metal_plate_diff_2k.jpg",
+          "bytes": 1518621,
+          "sha256": "82855f6297ad07ea7ea4d1c501e6b56ed4c9c758653ca126bda9fd0ebba63c59"
+        },
+        {
+          "file": "textures/painted-metal-nor_gl.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_metal_plate/blue_metal_plate_nor_gl_2k.jpg",
+          "bytes": 948237,
+          "sha256": "4cd3069a918cf891295b369b26f47c0a0631c634d0fd1006b6b7412a8f2b3550"
+        },
+        {
+          "file": "textures/painted-metal-rough.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_metal_plate/blue_metal_plate_rough_2k.jpg",
+          "bytes": 1588770,
+          "sha256": "dd1726d8217fe4f6c3947cb20700d51774a0773e9abaeb4120769c8f6fce1d69"
+        }
+      ]
+    }
+  ]
+}

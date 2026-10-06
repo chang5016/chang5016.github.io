@@ -1,0 +1,143 @@
+{
+  "date": "2026-10-03",
+  "renderer": "Three WebGPURenderer / native Dawn Vulkan SwiftShader",
+  "frames": [
+    "atrium-entry.png",
+    "atrium-interior.png",
+    "atrium-overview.png",
+    "lift-inside.png",
+    "rail-terminal.png",
+    "train-door-lcd.png",
+    "train-interior.png",
+    "train-window.png",
+    "wheel-left.png",
+    "wheel-right-exhaust.png"
+  ],
+  "errors": [],
+  "audit": {
+    "meshes": 1943,
+    "triangles": 644466,
+    "sources": [
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Trains/JFR1/Door.obj",
+        "license": "CC0 (Jean3219)",
+        "sha256": "536342ed5b5d675aa8f15ef8086c0fc45e5e418a51b99d8a8b50fcc6684ade18"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Lift-Subway.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "66a57cb046d3292a279bffebfa540b5f9b6a6240dee6edd84dc6ace6bd6ad353"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Ceiling.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "4cfeef8f08c6adbc9771f4c3ef86bd580dfb11cff0ef65d009857324b79b047b"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Subway_Bridge_WithEdges.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "5d66c0991608d8e37e4dbd269ea880d4071071dfbf23cf13313a3b2473d74fdf"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/RailTypes/Rail_Beton_1.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "0729cc55724686e531068bed3611a0770a122cc56175116f6614f4f15ec6a6a2"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/bumper.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "5190a020f8d103594fe4b325003d8b03ecfc32ea691da2b9eea246a89dc5ee06"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Platform-1.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "7db1e89d8ff8edd2bca4185c790dd7f5a8d11e1635f170dffef315595a181c54"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/DestinationSignFromUp.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "b432d6f601a50c5d62c371e36eacb265d7bb842388b10dff71708ef25683158e"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/BridgePfost1.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "d3ee146047a306a46aef0823778fefbf179cad880cb046471675d0f1f41cc5de"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Platform-1_no_railings.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "bc6881c8fb7be2bf896b81ead9442314d454cfafae9d7195551549c5c9ebced1"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Platform_double_roofing.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "8a3034691bed801ce4a14aaf4e8f777c67d2013a872d99cd9140a7ee93d84fe2"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/Bench.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "6a5cbf00c2ba8694f2665a4b75c2dec791287c34e074065bd5b0dc9801044413"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Resources/Objects/TrainStationBuilding4.obj",
+        "license": "CC0 (Jean28518)",
+        "sha256": "285c464e2efac7ba87e01212105c6aec9fd4fb3ff23877d445464b690f8ca315"
+      },
+      {
+        "repository": "https://github.com/Libre-TrainSim/Libre-TrainSim",
+        "revision": "1e22e0eefe3d7e7dea8f21b695cc55e659ef4ccb",
+        "path": "Trains/JFR1/Wagon_1_WithDriverStand.obj",
+        "license": "CC0 (Jean3219)",
+        "sha256": "f817aa7c84a40e8f05015ea8fa33a50a20cfecc4c7b3666a3ed0868ff39e3031"
+      }
+    ],
+    "generatedVisiblePrimitives": 0
+  },
+  "scope": "Downloaded GLBs, original full source texture pixels and unchanged original hero rendered with native WebGPU internally. Station architecture, actual car interior/screens, wheel steering, exhaust and rail terminals inspected. Real-city travel paths tested separately. The render rig isolates metro geometry with a neutral background and is not a cloud-browser acceptance test or physical GPU FPS benchmark.",
+  "automatedVerification": {
+    "status": "passed",
+    "focusedChecks": 48,
+    "renderedHtmlChecks": 1,
+    "priorCityGeometryChecks": 65,
+    "coverage": [
+      "actual original hero left and right steering in all headings",
+      "tailpipe follows interpolated vehicle lean, pitch and position",
+      "all six real-city lift round trips",
+      "whole hero headroom and actual door LCD visibility",
+      "station halls contain both entire lift shafts with clear roads and railway portals",
+      "native train boarding, door interlocks, following timetable and reversal",
+      "10 km/h platform speed with normal street-level concourse controls",
+      "terminal buffers beyond native train berths and aligned to rail datum",
+      "source file hashes, original licence notices and source-derived visible geometry",
+      "existing city buildings, supplied shopping block pavement and original bridge",
+      "production build and rendered route metadata"
+    ]
+  },
+  "typecheck": "No errors in changed files; pre-existing missing Cloudflare workers ambient types remain in db/index.ts and worker/index.ts. Production build succeeded."
+}

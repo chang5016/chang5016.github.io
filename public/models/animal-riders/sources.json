@@ -1,0 +1,43 @@
+{
+  "files": [
+    {
+      "file": "bear.glb",
+      "bytes": 631732,
+      "sha256": "e50b44512a2fc0ad1b53d59fa1d8b21e7c0033807024b0f9e698d05accb830c4",
+      "source": {
+        "page": "https://juggypuggy.itch.io/low-poly-animals",
+        "file": "bear.blend",
+        "license": "Juggy Animal Characters licence, commercial/project use with attribution",
+        "sha256": "226dfb47c7880d31c42814d9d09956380d863d3b690a6bf0d3b17d997c0beaf6"
+      },
+      "adaptation": "Original full downloaded rounded character and skin weights preserved. Blender rest pose export, source bone names standardised, four nondeforming IK contact markers at original limb ends added. No replacement body geometry or old Quaternius animal was used.",
+      "originalVertices": 8734
+    },
+    {
+      "file": "bunny.glb",
+      "bytes": 761524,
+      "sha256": "d0a916c8049c2d133eca403109d2726c152bceade45c2c179f82554b375fe8d2",
+      "source": {
+        "page": "https://juggypuggy.itch.io/low-poly-animals",
+        "file": "bunny.blend",
+        "license": "Juggy Animal Characters licence, commercial/project use with attribution",
+        "sha256": "f1a00d4888b635cfe8623dec2973997051d43f5722ae26669c718ad067575ec1"
+      },
+      "adaptation": "Original full downloaded rounded character and skin weights preserved. Blender rest pose export, source bone names standardised, four nondeforming IK contact markers at original limb ends added. No replacement body geometry or old Quaternius animal was used.",
+      "originalVertices": 9692
+    },
+    {
+      "file": "pig.glb",
+      "bytes": 555984,
+      "sha256": "8cbc5369531daae468b2a738a0909d844f08465cfda68b3ec05954edb1d05b1c",
+      "source": {
+        "page": "https://juggypuggy.itch.io/low-poly-animals",
+        "file": "pig.blend",
+        "license": "Juggy Animal Characters licence, commercial/project use with attribution",
+        "sha256": "944c95883235f940a106ad330b90064f881c0390a447039ce21635d88b6d2b80"
+      },
+      "adaptation": "Original full downloaded rounded character and skin weights preserved. Blender rest pose export, source bone names standardised, four nondeforming IK contact markers at original limb ends added. No replacement body geometry or old Quaternius animal was used.",
+      "originalVertices": 7764
+    }
+  ]
+}
