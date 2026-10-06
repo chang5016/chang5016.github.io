@@ -4,6 +4,7 @@
 //
 // - GLB geometry: EXT_meshopt_compression in lossless mode (no reorder, no quantize),
 //   so vertex order and values stay bit-identical for rigs, wheel masks and poses.
+//   Only the listed photo-scanned street props are simplified (see SIMPLIFY).
 //   Draco files are left as they are.
 // - GLB textures: capped at 2048 px and re-encoded to WebP when that is smaller.
 // - Loose textures: capped at 2048 px and re-encoded in their own format when smaller.
@@ -11,11 +12,20 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
-import { MeshoptEncoder } from "meshoptimizer";
+import { MeshoptEncoder, MeshoptSimplifier } from "meshoptimizer";
+import { simplify, weld } from "@gltf-transform/functions";
 import { NodeIO } from "@gltf-transform/core";
 import { ALL_EXTENSIONS, EXTMeshoptCompression, EXTTextureWebP } from "@gltf-transform/extensions";
 
 const MAX_TEXTURE = 2048;
+// Photo-scanned street props carry far more triangles than they cover on screen.
+// Error is relative to each model's size (0.002 of an 80 cm hydrant is under 2 mm).
+// Rigged and vertex-indexed models (the capybara, riders) are never simplified.
+const SIMPLIFY = {
+  "models/street-props/hydrant.glb": 0.002,
+  "models/street-props/plant.glb": 0.002,
+  "models/street-props/pot.glb": 0.002,
+};
 const root = path.resolve(process.argv[2] ?? "dist-pages");
 
 async function walk(dir) {
@@ -44,6 +54,7 @@ async function encodeImage(input, format, { normal = false } = {}) {
 const isNormal = (name = "") => /nor(mal)?(_?gl)?|_n\b|rough|orm|metal/i.test(name);
 
 await MeshoptEncoder.ready;
+await MeshoptSimplifier.ready;
 const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({ "meshopt.encoder": MeshoptEncoder });
 
 let before = 0;
@@ -60,6 +71,8 @@ for (const file of files.filter((f) => f.endsWith(".glb"))) {
   if ((json.images ?? []).some((image) => image.uri)) continue;
 
   const doc = await io.readBinary(new Uint8Array(original));
+  const simplifyError = SIMPLIFY[path.relative(root, file).split(path.sep).join("/")];
+  if (simplifyError) await doc.transform(weld(), simplify({ simplifier: MeshoptSimplifier, ratio: 0, error: simplifyError, lockBorder: true }));
   let webp = false;
   for (const texture of doc.getRoot().listTextures()) {
     const data = texture.getImage();

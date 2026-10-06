@@ -3,6 +3,7 @@ import { MetroSystem } from './metro-system';
 import {NeighborhoodLife,SHOP_RESERVATIONS,SHOP_SITES,shopBounds,shopParcelElevation,planSidewalkAnimals} from './neighborhood-life';
 import { intersectsBuilding } from "./game-core";
 import { createMountainTunnel, tunnelFloorAt, tunnelApproachTerrain, onTunnelRoad } from "./mountain-tunnel";
+import { DRAW_DISTANCE, cameraWorldPosition, fogLimit, withinDistance } from "./draw-distance";
 import { planStreetProps, streetPropFootprint, combineStreetPropMeshes, createStreetPropInstances, type StreetPropKind, type StreetPropPlacement } from "./street-props";
 import { freezeStaticScene, invalidateShadowScene } from "./static-scene";
 import { TrafficHeightCache } from "./traffic-height-cache";
@@ -1233,6 +1234,8 @@ export class RealWorldMap {
   private urbanPaving: UrbanPaving[] = [];
   private urbanGardens: UrbanRect[] = [];
   private staticRenderBatches = new StaticSceneryBatches();
+  private streetPropCells: THREE.Group | null = null;
+  private readonly streetPropSphere = new THREE.Sphere();
   private readonly streetPropTemplates = new Map<StreetPropKind, THREE.Object3D>();
   private streetPropColliders: Array<BuildingBounds & {base:number;height:number}> = [];
   private streetPropPhysics?: StreetPropPhysics;
@@ -1710,6 +1713,7 @@ export class RealWorldMap {
     }
     const instances=createStreetPropInstances(this.streetPropTemplates,placements,cityElevationAt);
     this.group.add(instances);
+    this.streetPropCells=instances;
     const physics=new StreetPropPhysics(instances,this.streetPropTemplates,cityElevationAt,(point,height)=>this.nearbyStaticObstacles(point,7,height));
     this.streetPropPhysics=physics;
     for(const [kind,name] of [['bench','Street-side wooden public benches'],['hydrant','Physical Taiwanese fire hydrants']] as const){
@@ -2104,7 +2108,8 @@ export class RealWorldMap {
     posts.castShadow = true;
     group.add(posts);
 
-    const markers = new THREE.InstancedMesh(new RoundedBoxGeometry(1, 1, 1, 2, 0.03), reflector, reflectorEntries.length);
+    // A 24 × 12 × 4.5 cm reflector: rounded edges would be sub-centimetre, so a plain box keeps the look at 12 triangles.
+    const markers = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), reflector, reflectorEntries.length);
     markers.name = "Mountain-road amber edge reflectors";
     reflectorEntries.forEach((entry, index) => {
       position.set(entry.x, cityElevationAt(entry) + 0.83, entry.z);
@@ -2425,8 +2430,15 @@ export class RealWorldMap {
   }
 
   updateTrafficRendering(camera:THREE.Camera,shadowCamera:THREE.Camera) {
-    this.staticRenderBatches?.update(camera,shadowCamera);
+    this.staticRenderBatches?.update(camera,shadowCamera,fogLimit(this.scene));
     this.trafficRenderBatches?.update(camera,shadowCamera);
+    if(this.streetPropCells){
+      const eye=cameraWorldPosition(camera);
+      for(const cell of this.streetPropCells.children as THREE.InstancedMesh[]){
+        if(!cell.boundingSphere)continue;
+        cell.visible=withinDistance(this.streetPropSphere.copy(cell.boundingSphere).applyMatrix4(cell.matrixWorld),eye,DRAW_DISTANCE.props);
+      }
+    }
   }
 
   interpolateRoadTraffic(alpha:number,seconds:number) {

@@ -6,6 +6,7 @@ import { MeshBasicNodeMaterial } from "three/webgpu";
 import { attribute } from "three/tsl";
 import type { VehicleState } from "./game-core";
 import { ENGINE_LAYERS, stepEngineSound } from "./scooter-engine-sound";
+import { audioSettings } from "./game-sfx";
 
 export function stepTurboCharge(charge: number, requested: boolean, speed: number, seconds: number) {
   const dt = Math.max(0, Math.min(seconds, 0.08));
@@ -50,6 +51,7 @@ export class ScooterAudio {
         const context = new Context();
         this.context = context;
         this.lastUpdate = context.currentTime;
+        audioSettings.register(context);
         this.compressor = context.createDynamicsCompressor();
         this.compressor.threshold.value = -17;
         this.compressor.knee.value = 16;
@@ -58,13 +60,13 @@ export class ScooterAudio {
         this.compressor.release.value = .2;
         this.compressor.connect(context.destination);
         this.output = context.createGain();
-        this.output.gain.value = .65;
+        this.output.gain.value = 1;
         this.panner = context.createPanner();
         this.panner.panningModel = "HRTF";
         this.panner.distanceModel = 'inverse';
         this.panner.refDistance = 3.5;
         this.panner.maxDistance = 38;
-        this.panner.rolloffFactor = .34;
+        this.panner.rolloffFactor = .2;
         this.output.connect(this.panner);
         this.panner.connect(this.compressor);
         this.engineFilter = context.createBiquadFilter();
@@ -92,7 +94,7 @@ export class ScooterAudio {
         const trafficFilter = context.createBiquadFilter(); trafficFilter.type = 'lowpass'; trafficFilter.frequency.value = 1000;
         this.trafficGain.connect(trafficFilter); trafficFilter.connect(this.trafficPanner); this.trafficPanner.connect(this.compressor);
       }
-      if (this.context.state === 'suspended') void this.context.resume().catch(() => {});
+      audioSettings.resume(this.context);
       if (!this.loading && !this.voices.length) {
         const context = this.context;
         const abort = new AbortController(); this.abort = abort;
@@ -156,7 +158,11 @@ export class ScooterAudio {
   }
 
   setIgnition(running: boolean) {
+    const wasRunning=this.running;
     this.running=running;
+    if (this.context && this.voices.length && wasRunning !== running) {
+      if (!running) this.windDown();
+    }
     if (!running && this.context) {
       const now=this.context.currentTime;
       for(const voice of this.voices) { voice.gain.gain.cancelScheduledValues(now); voice.gain.gain.setTargetAtTime(0,now,.035); }
@@ -213,15 +219,58 @@ export class ScooterAudio {
     oscillator.onended = () => { oscillator.disconnect(); filter.disconnect(); gain.disconnect(); };
   }
 
+  /** Electric starter whirr, then the first combustion catch from a throttle take. */
+  starterMotor() {
+    const context=this.context;
+    if(!context||!this.compressor||context.state!=='running')return;
+    const now=context.currentTime;
+    const motor=context.createOscillator(),filter=context.createBiquadFilter(),gain=context.createGain();
+    motor.type='sawtooth';motor.frequency.setValueAtTime(52,now);motor.frequency.linearRampToValueAtTime(96,now+.42);
+    filter.type='bandpass';filter.frequency.value=520;filter.Q.value=.9;
+    gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.09,now+.05);gain.gain.setValueAtTime(.09,now+.36);gain.gain.exponentialRampToValueAtTime(.0001,now+.5);
+    motor.connect(filter);filter.connect(gain);gain.connect(this.compressor);motor.start(now);motor.stop(now+.52);
+    motor.onended=()=>{motor.disconnect();filter.disconnect();gain.disconnect();};
+    const take=this.attackBuffers[0];
+    if(take&&this.engineFilter){
+      const source=context.createBufferSource(),level=context.createGain();
+      source.buffer=take;source.playbackRate.value=.82;level.gain.value=.34;
+      source.connect(level);level.connect(this.engineFilter);source.start(now+.4,0,.9);
+      source.onended=()=>{source.disconnect();level.disconnect();};
+    }
+  }
+
+  /** Engine coasts down in pitch instead of cutting out. */
+  private windDown() {
+    const context=this.context;
+    if(!context)return;
+    const now=context.currentTime;
+    for(const voice of this.voices){
+      const rate=voice.source.playbackRate.value;
+      voice.source.playbackRate.cancelScheduledValues(now);
+      voice.source.playbackRate.setValueAtTime(rate,now);
+      voice.source.playbackRate.exponentialRampToValueAtTime(Math.max(.3,rate*.45),now+.6);
+    }
+  }
+
+  /** Two-tone electric scooter horn, slightly detuned and band-limited like a small horn speaker. */
   horn() {
-    if (!this.context || !this.compressor) return;
-    const oscillator = this.context.createOscillator(), gain = this.context.createGain();
-    oscillator.type = 'triangle'; oscillator.frequency.value = 390;
-    gain.gain.setValueAtTime(.001, this.context.currentTime);
-    gain.gain.exponentialRampToValueAtTime(.15, this.context.currentTime+.035);
-    gain.gain.exponentialRampToValueAtTime(.001, this.context.currentTime+.26);
-    oscillator.connect(gain); gain.connect(this.compressor); oscillator.start(); oscillator.stop(this.context.currentTime+.29);
-    oscillator.onended = () => { oscillator.disconnect(); gain.disconnect(); };
+    const context = this.context;
+    if (!context || !this.compressor) return;
+    const now = context.currentTime;
+    const filter = context.createBiquadFilter(), gain = context.createGain();
+    filter.type = 'bandpass'; filter.frequency.value = 1100; filter.Q.value = .7;
+    gain.gain.setValueAtTime(.0001, now);
+    gain.gain.exponentialRampToValueAtTime(.16, now + .02);
+    gain.gain.setValueAtTime(.16, now + .3);
+    gain.gain.exponentialRampToValueAtTime(.0001, now + .38);
+    filter.connect(gain); gain.connect(this.compressor);
+    const oscillators = [415, 523, 527].map(frequency => {
+      const oscillator = context.createOscillator();
+      oscillator.type = 'square'; oscillator.frequency.value = frequency;
+      oscillator.connect(filter); oscillator.start(now); oscillator.stop(now + .4);
+      return oscillator;
+    });
+    oscillators[0].onended = () => { oscillators.forEach(oscillator => oscillator.disconnect()); filter.disconnect(); gain.disconnect(); };
   }
 
   dispose() {
@@ -231,6 +280,7 @@ export class ScooterAudio {
     for(const voice of this.attacks){try{voice.source.stop();voice.source.disconnect();voice.gain.disconnect();}catch{}}
     this.attacks.clear();this.activeAttack=null;this.attackBuffers=[];this.throttleArmed=true;this.lastAttack=-10;this.attackIndex=0;
     this.trafficMotor = this.noise = null;
+    if (this.context) audioSettings.unregister(this.context);
     if (this.context && this.context.state !== 'closed') void this.context.close().catch(() => {});
     this.context = null; this.output = null; this.compressor = null;
     this.panner = this.trafficPanner = null; this.engineFilter = null;

@@ -33,6 +33,9 @@ import { createVerticalVehicle, stepVerticalVehicle } from "./vehicle-vertical-p
 import { EMPTY_METRO_HUD, METRO_STATIONS, MetroSystem, type MetroHud } from "./metro-system";
 import { MetroScene } from "./metro-scene";
 import { MetroAudio } from "./metro-audio";
+import { GameSfx, audioSettings } from "./game-sfx";
+import { createResolutionGovernor, stepResolution } from "./adaptive-resolution";
+import { Icon } from "./ui-icons";
 import { ScooterIgnition, ignitionInput, stepIgnitedVehicle, type IgnitionPhase } from './scooter-ignition';
 import { SCOOTER_DISPLAY_LENGTH } from './vehicle-scale';
 
@@ -83,7 +86,7 @@ function CityNavigationMap({ hud, expanded, toggle }: { hud: GameHud; expanded: 
   const metroStation = METRO_STATIONS.reduce((best, station) => Math.hypot(hud.playerX - station.x, hud.playerZ + 809) < Math.hypot(hud.playerX - best.x, hud.playerZ + 809) ? station : best, METRO_STATIONS[0] as typeof METRO_STATIONS[number]);
   return (
     <aside className={`nav-map ${expanded ? "expanded" : ""}`} aria-label="海灣市高解析導航地圖">
-      <div className="nav-map-head"><div><b>海灣市全域導航</b><span>{hud.playerX.toFixed(0)}, {hud.playerZ.toFixed(0)} · 海拔 {hud.elevation.toFixed(1)}m</span></div><button onClick={toggle}>{expanded ? "縮小" : "放大"}</button></div>
+      <div className="nav-map-head"><div><b>海灣市全域導航</b><span>前往 {TAICHUNG_LOCATIONS[hud.target].name} · {Math.round(hud.distance)} m</span></div><button onClick={toggle}>{expanded ? "縮小" : "放大"}</button></div>
       <svg viewBox="-1100 -1000 3430 2000" role="img" aria-label="包含市區、環狀快速道路、交流道、河流、橋梁、山路與目的地的導航地圖">
         <rect x="-1100" y="-1000" width="3430" height="2000" className="map-land" />
         <path d="M1180 -850 Q1420 -480 1260 -150 T1460 300 T1230 900 L2330 900 L2330 -850Z" className="map-mountain" />
@@ -242,7 +245,7 @@ function prepareCharacterModel(model: THREE.Group, renderer: WebGPURenderer) {
 }
 
 function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeRef: React.MutableRefObject<boolean>, keys: React.MutableRefObject<Set<string>>, updateRef: React.MutableRefObject<(hud: Partial<GameHud>) => void>, pausedRef: React.MutableRefObject<boolean>) {
-  const actionRef = useRef<{ interact: () => void; ignition: () => void; metro: () => void; center: () => void; horn: () => void; activate: () => void; setEnvironment: (mode: EnvironmentMode) => void; adjustSpeed: (direction: -1 | 1) => void; resetSpeed: () => void } | null>(null);
+  const actionRef = useRef<{ interact: () => void; ignition: () => void; metro: () => void; center: () => void; horn: () => void; uiClick: () => void; activate: () => void; setEnvironment: (mode: EnvironmentMode) => void; adjustSpeed: (direction: -1 | 1) => void; resetSpeed: () => void } | null>(null);
 
   useEffect(() => {
     const update = updateRef.current;
@@ -262,7 +265,9 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
     renderer.onError = error => { console.error(error); gpuFailed = true; update({ ready: false, message: 'GPU 渲染失敗，請重新載入遊戲' }); };
 
     const constrainedDevice = window.innerWidth <= 900 || (navigator.hardwareConcurrency ?? 8) <= 4;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, constrainedDevice ? 1 : 1.2));
+    const maxRenderRatio = Math.min(window.devicePixelRatio || 1, constrainedDevice ? 1 : 1.2);
+    let resolution = createResolutionGovernor(maxRenderRatio);
+    renderer.setPixelRatio(maxRenderRatio);
     renderer.setSize(window.innerWidth, window.innerHeight, false);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.AgXToneMapping;
@@ -332,6 +337,8 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
     world.setQualityLevel(0);
     continuousShadows.invalidate();
     const scooterAudio = new ScooterAudio();
+    const sfx = new GameSfx();
+    let lastSignalPulse = false;
     const scooterExhaust = new ScooterExhaust(scene);
     const rider = new THREE.Group();
     rider.userData.dynamicWorldObject = true;
@@ -511,6 +518,7 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
         passenger.rotation.set(0, 0, 0);
         passenger.scale.setScalar(0.77);
         setPassengerAvatarMode(passenger, "riding");
+        sfx.pickup();
         vehicle.add(passenger);
         targetIndex = (targetIndex + 1 + trips % 3) % TAICHUNG_LOCATIONS.length;
         remaining = 100 + distanceBetween(state, targetPosition()) / 6;
@@ -520,6 +528,7 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
         const result = completeDriverTrip(comfort, remaining, streak);
         streak = result.streak;
         wallet += fare.total + result.bonus;
+        sfx.dropoff();
         trips++;
         rating = Math.max(3.5, Math.min(5, Math.round((rating * 0.8 + (comfort > 72 ? 5 : 4.3) * 0.2) * 10) / 10));
         message = `${result.grade} 級送達 · 車資 NT$ ${fare.total} + 獎金 ${result.bonus} · ${streak} 連單 · ${driverRank(trips)}`;
@@ -583,6 +592,7 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
         if (!activeRef.current) return;
         const phase=ignition.toggle();
         scooterAudio.setIgnition(ignition.running); scooterAudio.start();
+        if (phase === 'starting') scooterAudio.starterMotor();
         if (!ignition.running) { state={...state,throttle:0,boost:0,driftCharge:0}; turboEngaged=false; }
         message=phase==='off'?'引擎已熄火，可滑行與煞車':'正在發動引擎…';
         messageUntil=performance.now()+1800;
@@ -595,7 +605,8 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
         metroGuide = !metroSystem.carrier;
         update({ message, metroGuide, metro: metroSystem.hud(state, vertical.height) });
       },
-      activate: () => { scooterAudio.start(); metroAudio.start(); },
+      activate: () => { scooterAudio.start(); metroAudio.start(); sfx.start(); },
+      uiClick: () => sfx.ui(),
       setEnvironment,
       adjustSpeed,
       resetSpeed,
@@ -612,7 +623,7 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
     const down = (event: KeyboardEvent) => {
       scooterAudio.setIgnition(activeRef.current && ignition.running);
       scooterAudio.start();
-      if (activeRef.current) metroAudio.start();
+      if (activeRef.current) { metroAudio.start(); sfx.start(); }
       if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"].includes(event.code)) event.preventDefault();
       if (!event.repeat && event.code === "KeyE") interact();
       if (!event.repeat && event.code === "KeyT") actionRef.current?.metro();
@@ -671,6 +682,7 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
     canvas.addEventListener("wheel", wheel, { passive: false });
 
     update({ ready: characterLoaded, message });
+    if (new URLSearchParams(window.location.search).has("debug")) (window as Window & { __capy?: unknown }).__capy = { renderer, scene, camera, world };
     const draw = (now: number) => {
       animation = requestAnimationFrame(draw);
       if (gpuFailed || document.hidden || pausedRef.current || !scenePrepared) {
@@ -686,6 +698,9 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
       fpsFrames++;
       if (now - fpsWindowStart >= 1000) {
         measuredFps = Math.round(fpsFrames * 1000 / Math.max(1, now - fpsWindowStart));
+        const nextResolution = stepResolution(resolution, measuredFps, maxRenderRatio);
+        if (nextResolution.ratio !== resolution.ratio) { renderer.setPixelRatio(nextResolution.ratio); renderer.setSize(window.innerWidth, window.innerHeight, false); }
+        resolution = nextResolution;
         fpsFrames = 0;
         fpsWindowStart = now;
       }
@@ -820,6 +835,8 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
         if (signalTurned && Math.abs(state.steering) < 0.08 && now / 1000 - signalStarted > 1.2) signalMode = "off";
       }
       const lamps = scooterLamps(signalMode, now / 1000 - signalStarted, keys.current.has("Space") || (keys.current.has("KeyS") && state.speed > 0.2));
+      const signalPulse = lamps.left > 0 || lamps.right > 0;
+      if (signalPulse !== lastSignalPulse) { lastSignalPulse = signalPulse; sfx.relay(signalPulse); }
       characterRig?.lamps.value.set(lamps.tail, lamps.left, lamps.right, scooterHeadlight.intensity > 0 ? 1.8 : 0.25);
       scooterHeadlight.target.position.x = -Math.sin(scooterSteeringYaw(visualMotion.steeringAngle)) * 12;
       updatePassengerAvatar(passenger, dt, now / 1000, visual.lean, characterMotion.riderBob);
@@ -909,6 +926,7 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
       engineDisposed = true;
       cancelAnimationFrame(animation);
       scooterAudio.dispose();
+      sfx.dispose();
       scooterExhaust.dispose();
       disposePassengerAvatar(passenger);
       window.removeEventListener("keydown", down);
@@ -1054,10 +1072,10 @@ function ModelShowroom({ close }: { close: () => void }) {
   return (
     <section className="character-gallery" aria-label="可完整旋轉的 3D 水豚機車模型">
       <canvas ref={canvasRef} className="showroom-model-canvas" />
-      <button className="gallery-close" onClick={close}>關閉 ×</button>
-      <div className="gallery-kicker">ACTUAL GLB MODEL / 360° VIEW</div>
-      <h2>水豚機車<br />3D 檢視。</h2>
-      <div className="gallery-note">拖曳自由旋轉 · 501,424 面原始精細模型 · 完整 PBR 材質</div>
+      <button className="gallery-close" onClick={close}>關閉 <Icon name="close" size={14} /></button>
+      <div className="gallery-kicker">角色檔案 · 360°</div>
+      <h2>卡皮隊長<br />與他的愛車。</h2>
+      <div className="gallery-note">拖曳旋轉 · 滾輪縮放 · 海灣市最受歡迎的機車計程車司機</div>
     </section>
   );
 }
@@ -1072,6 +1090,13 @@ export default function CommercialTaxiGame() {
   const [showroom, setShowroom] = useState(false);
   const [phone, setPhone] = useState(false);
   const [mapExpanded, setMapExpanded] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [debug, setDebug] = useState(false);
+  useEffect(() => {
+    setMuted(audioSettings.muted);
+    setDebug(new URLSearchParams(window.location.search).has("debug"));
+    return audioSettings.subscribe(setMuted);
+  }, []);
   const updateRef = useRef((next: Partial<GameHud>) => { state.current = { ...state.current, ...next }; setHud(state.current); });
   const paused = useRef(false);
   useEffect(() => { paused.current = showroom || phone; keyboard.current.clear(); }, [showroom, phone]);
@@ -1084,33 +1109,32 @@ export default function CommercialTaxiGame() {
   const releaseControl = useCallback((code: string) => keyboard.current.delete(code), []);
 
   return (
-    <main className={`real-game commercial-game ${hud.metro.visible ? "metro-nearby" : ""}`} data-testid="capy-game">
+    <main className={`real-game commercial-game ${hud.metro.visible ? "metro-nearby" : ""} ${started ? "is-driving" : "is-title"}`} data-testid="capy-game" onPointerDownCapture={(event) => { if ((event.target as HTMLElement).closest(".real-actions button, .real-phone button, .start-buttons button, .gallery-close, .engine-toggle, .city-map button")) actions.current?.uiClick(); }}>
       <canvas ref={canvasRef} className="commercial-canvas" aria-label="原創台灣風格實體 3D 城市水豚機車計程車駕駛遊戲" />
       <div className="commercial-atmosphere" />
-      <header className="real-topbar"><div className="real-brand"><span>CAPY</span> CAB<div>TAIWAN / TAXI STREET STORIES</div></div><div className="real-topstats">{started && <button className={`engine-toggle engine-${hud.ignition}`} data-testid="ignition-control" aria-pressed={hud.ignition === "running"} aria-label={hud.ignition === "off" ? "發動機車引擎" : hud.ignition === "starting" ? "取消發動引擎" : "熄火機車引擎"} onClick={() => actions.current?.ignition()}><kbd>I</kbd>{hud.ignition === "off" ? "發動引擎" : hud.ignition === "starting" ? "發動中…" : "熄火引擎"}</button>}{started && hud.trafficSignal && <span className={`traffic-signal-pill signal-${hud.trafficSignal}`}><i /> {hud.trafficSignal === "red" ? "紅燈" : hud.trafficSignal === "amber" ? "黃燈" : "綠燈"} {Math.max(0, Math.round(hud.signalDistance))} m</span>}{started && <span className={`fps-pill ${hud.fps < 55 ? "low" : ""}`}>{hud.fps} FPS · {hud.backend}</span>}<span className="live-map-pill"><i /> {hud.ready ? "DRIVER READY" : "STARTING"}</span><span>★ {hud.rating.toFixed(1)}</span><span className="wallet-pill">NT$ {hud.wallet}</span></div></header>
+      <header className="real-topbar"><div className="real-brand"><span>CAPY</span> CAB<div>卡皮巴拉機車計程車</div></div><div className="real-topstats">{started && <button className={`engine-toggle engine-${hud.ignition}`} data-testid="ignition-control" aria-pressed={hud.ignition === "running"} aria-label={hud.ignition === "off" ? "發動機車引擎" : hud.ignition === "starting" ? "取消發動引擎" : "熄火機車引擎"} onClick={() => actions.current?.ignition()}><kbd>I</kbd>{hud.ignition === "off" ? "發動引擎" : hud.ignition === "starting" ? "發動中…" : "熄火引擎"}</button>}{started && hud.trafficSignal && <span className={`traffic-signal-pill signal-${hud.trafficSignal}`}><i /> {hud.trafficSignal === "red" ? "紅燈" : hud.trafficSignal === "amber" ? "黃燈" : "綠燈"} {Math.max(0, Math.round(hud.signalDistance))} m</span>}{started && debug && <span className={`fps-pill ${hud.fps < 55 ? "low" : ""}`}>{hud.fps} FPS · {hud.backend}</span>}{started && <span className="live-map-pill"><i /> 營業中</span>}<span>★ {hud.rating.toFixed(1)}</span><span className="wallet-pill">NT$ {hud.wallet}</span></div></header>
 
-      {started && <aside className="real-mission"><div className="real-mission-kicker">{hud.phase === "pickup" ? "PASSENGER REQUEST" : "ON THE WAY"}</div><div className="real-rider"><span>{rider.icon}</span><div><strong>{rider.name}</strong><small>{rider.preference}</small></div></div><div className="real-mission-divider" /><div className="real-location-label">{hud.phase === "pickup" ? "PICK UP AT" : "DESTINATION"}</div><div className="real-location">{target.icon} {target.name}</div><div className="real-address">{target.address}</div><div className="real-mission-meta"><span>↗ {Math.round(hud.distance)} m</span>{hud.phase === "dropoff" && <span>{hud.metro.timerPaused ? "轉乘計時暫停" : `${hud.timer}s`}</span>}</div>{hud.phase === "dropoff" && <div className="real-comfort"><i style={{ width: `${hud.comfort}%` }} /></div>}</aside>}
+      {started && <aside className="real-mission"><div className="real-mission-kicker">{hud.phase === "pickup" ? "新的叫車" : "載客中"}</div><div className="real-rider"><span>{rider.icon}</span><div><strong>{rider.name}</strong><small>{rider.preference}</small></div></div><div className="real-mission-divider" /><div className="real-location-label">{hud.phase === "pickup" ? "上車地點" : "目的地"}</div><div className="real-location">{target.icon} {target.name}</div><div className="real-address">{target.address}</div><div className="real-mission-meta"><span>↗ {Math.round(hud.distance)} m</span>{hud.phase === "dropoff" && <span>{hud.metro.timerPaused ? "轉乘計時暫停" : `${hud.timer}s`}</span>}</div>{hud.phase === "dropoff" && <div className="real-comfort"><i style={{ width: `${hud.comfort}%` }} /></div>}</aside>}
 
       {started && <aside className="driver-career" aria-label="司機進度"><span>{driverRank(hud.trips)}</span><strong>{hud.trips} 趟完成</strong><small>{hud.phase === "dropoff" ? `舒適 ${Math.round(hud.comfort)}% · ${hud.metro.timerPaused ? "捷運轉乘計時暫停" : hud.timer > 0 ? "準時送達可賺連單獎金" : "已逾時，安全送達仍有基本車資"}` : "準時送達 + 舒適 85% · 挑戰 S 級連單"}</small><progress max={hud.trips < 3 ? 3 : hud.trips < 10 ? 10 : 20} value={Math.min(hud.trips, 20)} /></aside>}
-      {started && hud.metro.visible && <aside className={`metro-ride-panel metro-${hud.metro.mode}`} aria-label="高架捷運搭乘資訊" data-testid="metro-status"><div className="metro-panel-head"><b>M</b><span>海灣高架線<small>{hud.metro.station}</small></span>{hud.metro.mode === 'train' && <strong>{hud.metro.trainSpeed}<small>列車 km/h</small></strong>}</div><p className="metro-state" role="status">{hud.metro.status}</p><div className="metro-destination">{hud.metro.destination}{(hud.metro.mode === 'train' || hud.metro.mode === 'platform') && <span>{hud.metro.seconds > 0 ? `${hud.metro.seconds}s` : '到站'}</span>}</div><p className="metro-instruction">{hud.metro.instruction}</p>{hud.metro.action && <button onClick={() => actions.current?.metro()}>{hud.metro.action}</button>}</aside>}
+      {started && hud.metro.visible && <aside className={`metro-ride-panel metro-${hud.metro.mode}`} aria-label="高架捷運搭乘資訊" data-testid="metro-status"><div className="metro-panel-head"><b><Icon name="metro" size={18} /></b><span>海灣高架線<small>{hud.metro.station}</small></span>{hud.metro.mode === 'train' && <strong>{hud.metro.trainSpeed}<small>列車 km/h</small></strong>}</div><p className="metro-state" role="status">{hud.metro.status}</p><div className="metro-destination">{hud.metro.destination}{(hud.metro.mode === 'train' || hud.metro.mode === 'platform') && <span>{hud.metro.seconds > 0 ? `${hud.metro.seconds}s` : '到站'}</span>}</div><p className="metro-instruction">{hud.metro.instruction}</p>{hud.metro.action && <button onClick={() => actions.current?.metro()}>{hud.metro.action}</button>}</aside>}
       {started && hud.message && <div className="real-toast" role="status">{hud.message}</div>}
       {started && hud.canInteract && <div className="real-interact"><b>E</b> {hud.phase === "pickup" ? "乘客上車" : "乘客下車"}</div>}
       {started && <CityNavigationMap hud={hud} expanded={mapExpanded} toggle={() => setMapExpanded((value) => !value)} />}
-      {!started && <div className="real-district"><span>FICTIONAL TAIWAN CITY</span><strong>{target.name} · 海灣市</strong></div>}
-      <div className="real-camera-hint">W/S 油門倒車　·　A/D 轉向　·　Space 煞車　·　Q/R 方向燈　·　X 雙黃燈　·　E 接送　·　T 捷運升降梯　·　I 發動／熄火</div>
-      <div className={`real-speed ${hud.boost ? "is-boost" : ""}`}><span>{hud.speed}</span><small>{hud.boost ? "TURBO" : "KM/H"}</small></div>
-      {started && <div className={`real-turbo ${hud.boost ? "turbo-active" : ""}`}><span>F · TURBO</span><div><i style={{ width: `${hud.turbo}%` }} /></div></div>}
-      {hud.drift > 0.35 && <div className="real-drift"><span>DRIFT CHARGE</span><div><i style={{ width: `${hud.drift / 4 * 100}%` }} /></div></div>}
+            {started && <div className="real-camera-hint">W/S 油門倒車　·　A/D 轉向　·　Space 煞車　·　Q/R 方向燈　·　X 雙黃燈　·　E 接送　·　T 捷運升降梯　·　I 發動／熄火</div>}
+      <div className={`real-speed ${hud.boost ? "is-boost" : ""}`}><span>{hud.speed}</span><small>{hud.boost ? "加速中" : "km/h"}</small></div>
+      {started && <div className={`real-turbo ${hud.boost ? "turbo-active" : ""}`}><span>F 渦輪</span><div><i style={{ width: `${hud.turbo}%` }} /></div></div>}
+      {hud.drift > 0.35 && <div className="real-drift"><span>甩尾集氣</span><div><i style={{ width: `${hud.drift / 4 * 100}%` }} /></div></div>}
 
-      <div className="real-actions">{started && <button className="metro-open-button" onClick={() => { if (!hud.metro.visible) setMapExpanded(true); actions.current?.metro(); }} aria-label="捷運路線與升降梯操作">M<span>捷運</span></button>}<button onClick={() => setShowroom(true)} aria-label="查看你的水豚角色">◉<span>角色</span></button><button onClick={() => setPhone((value) => !value)} aria-label="打開手機">▦<span>手機</span></button></div>
+      <div className="real-actions">{started && <button className="metro-open-button" onClick={() => { if (!hud.metro.visible) setMapExpanded(true); actions.current?.metro(); }} aria-label="捷運路線與升降梯操作"><Icon name="metro" /><span>捷運</span></button>}<button onClick={() => setShowroom(true)} aria-label="查看水豚角色"><Icon name="rider" /><span>角色</span></button><button onClick={() => setPhone((value) => !value)} aria-label="打開手機"><Icon name="phone" /><span>手機</span></button><button className="sound-toggle" onClick={() => audioSettings.setMuted(!muted)} aria-pressed={muted} aria-label={muted ? "開啟聲音" : "關閉聲音"}><Icon name={muted ? "soundOff" : "soundOn"} /><span>{muted ? "靜音" : "聲音"}</span></button></div>
 
-      {!started && <><img className="real-character-poster commercial-poster" src="/generated/capy-front.webp" alt="你提供的水豚與橄欖綠長座機車角色設計參考" /><section className="real-start commercial-start"><div className="start-city">FICTIONAL TAIWAN CITY <span>● THIRD-PERSON TAXI DRIVE</span></div><h1>自己掌握方向，<br />開始載客。</h1><p>用原本的第三人稱跟車視角親自操控水豚機車計程車，穿梭店面、百貨、騎樓、河岸與高架橋。<br />新增海灣高架捷運：連機車搭升降梯上月台，騎進列車，從另一站下車繼續載客。</p><div className="start-status" aria-live="polite"><i className={hud.ready ? "loaded" : ""} />{hud.ready ? "機車、完整城市與高架捷運已就緒" : /失敗|中斷/.test(hud.message) ? hud.message : `正在載入高精細 3D 場景${hud.loadingProgress > 0 ? ` ${hud.loadingProgress}%` : "…"}`}</div><div className="start-buttons"><button data-testid="start-driving" disabled={!hud.ready} onClick={() => { actions.current?.activate(); active.current = true; setStarted(true); }}>發動機車開始載客 →</button><button className="inspect-button" onClick={() => setShowroom(true)}>360° 檢視模型</button></div><div className="start-keys">W/S 油門倒車　·　A/D 轉向　·　Space 煞車　·　Shift 甩尾　·　F 加速　·　E 接送　·　T 升降梯　·　I 發動／熄火</div></section></>}
+      {!started && <><img className="real-character-poster commercial-poster" src="/generated/capy-front.webp" alt="騎著橄欖綠復古機車的水豚司機" /><section className="real-start commercial-start"><div className="start-city">海灣市 <span>● 機車計程車</span></div><h1>自己掌握方向，<br />開始載客。</h1><p>騎上水豚機車計程車，穿梭店面、百貨、騎樓、河岸與高架橋，把每位乘客準時又舒適地送到目的地。<br />遇到捷運站，還能連人帶車搭升降梯上月台，騎進列車直達下一站。</p><div className="start-status" aria-live="polite"><i className={hud.ready ? "loaded" : ""} />{hud.ready ? "準備完成，出發吧！" : /失敗|中斷/.test(hud.message) ? hud.message : `城市載入中${hud.loadingProgress > 0 ? ` ${hud.loadingProgress}%` : "…"}`}</div><div className="start-buttons"><button data-testid="start-driving" disabled={!hud.ready} onClick={() => { actions.current?.activate(); active.current = true; setStarted(true); }}>發動機車開始載客 →</button><button className="inspect-button" onClick={() => setShowroom(true)}><Icon name="rotate" size={16} /> 360° 欣賞角色</button></div><div className="start-keys">W/S 油門倒車　·　A/D 轉向　·　Space 煞車　·　Shift 甩尾　·　F 加速　·　E 接送　·　T 升降梯　·　I 發動／熄火</div></section></>}
 
-      {phone && <aside className="real-phone"><div className="phone-header"><span>CAPY PHONE</span><button onClick={() => setPhone(false)}>×</button></div><div className="phone-profile"><img className="phone-character" src="/generated/capy-front.webp" alt="水豚司機" /><strong>卡皮隊長</strong><span>海灣市機車計程車</span></div><div className="phone-summary"><div><b>{hud.trips}</b><span>趟旅程</span></div><div><b>{hud.rating.toFixed(1)}</b><span>星評價</span></div><div><b>${hud.wallet}</b><span>錢包</span></div></div><div className="phone-grid"><button onClick={() => setShowroom(true)}>🦫<span>角色檔案</span></button><button onClick={() => actions.current?.center()}>⌖<span>重設視線</span></button><button onClick={() => actions.current?.horn()}>📣<span>輕按喇叭</span></button><button onClick={() => actions.current?.interact()}>🚕<span>接送乘客</span></button></div><div className="speed-cheat-control"><span>速度密技</span><button onClick={() => actions.current?.adjustSpeed(-1)}>−</button><b>×{hud.speedMultiplier}</b><button onClick={() => actions.current?.adjustSpeed(1)}>＋</button><button onClick={() => actions.current?.resetSpeed()}>重設</button></div><div className="environment-grid" aria-label="環境模式"><button className={hud.environment === "day" ? "active" : ""} onClick={() => actions.current?.setEnvironment("day")}>☀️ 白天</button><button className={hud.environment === "dusk" ? "active" : ""} onClick={() => actions.current?.setEnvironment("dusk")}>🌇 黃昏</button><button className={hud.environment === "night" ? "active" : ""} onClick={() => actions.current?.setEnvironment("night")}>🌙 夜間</button><button className={hud.environment === "rain" ? "active" : ""} onClick={() => actions.current?.setEnvironment("rain")}>🌧 雨天</button></div><div className="phone-foot">中央綠園道 · 晴川百貨 · 南町生活街<br /><a href="/credits.html" target="_blank" rel="noopener noreferrer">素材製作與授權</a></div></aside>}
+      {phone && <aside className="real-phone"><div className="phone-header"><span>卡皮手機</span><button onClick={() => setPhone(false)} aria-label="關閉手機"><Icon name="close" size={16} /></button></div><div className="phone-profile"><img className="phone-character" src="/generated/capy-front.webp" alt="水豚司機" /><strong>卡皮隊長</strong><span>海灣市機車計程車</span></div><div className="phone-summary"><div><b>{hud.trips}</b><span>趟旅程</span></div><div><b>{hud.rating.toFixed(1)}</b><span>星評價</span></div><div><b>${hud.wallet}</b><span>錢包</span></div></div><div className="phone-grid"><button onClick={() => setShowroom(true)}><Icon name="profile" /><span>角色檔案</span></button><button onClick={() => actions.current?.center()}><Icon name="recenter" /><span>重設視角</span></button><button onClick={() => actions.current?.horn()}><Icon name="horn" /><span>按喇叭</span></button><button onClick={() => actions.current?.interact()}><Icon name="passenger" /><span>接送乘客</span></button></div>{debug && <div className="speed-cheat-control"><span>速度倍率</span><button onClick={() => actions.current?.adjustSpeed(-1)}>−</button><b>×{hud.speedMultiplier}</b><button onClick={() => actions.current?.adjustSpeed(1)}>＋</button><button onClick={() => actions.current?.resetSpeed()}>重設</button></div>}<div className="environment-grid" aria-label="環境模式"><button className={hud.environment === "day" ? "active" : ""} onClick={() => actions.current?.setEnvironment("day")}><Icon name="sun" size={16} /> 白天</button><button className={hud.environment === "dusk" ? "active" : ""} onClick={() => actions.current?.setEnvironment("dusk")}><Icon name="sunset" size={16} /> 黃昏</button><button className={hud.environment === "night" ? "active" : ""} onClick={() => actions.current?.setEnvironment("night")}><Icon name="moon" size={16} /> 夜間</button><button className={hud.environment === "rain" ? "active" : ""} onClick={() => actions.current?.setEnvironment("rain")}><Icon name="rain" size={16} /> 雨天</button></div><div className="phone-foot">中央綠園道 · 晴川百貨 · 南町生活街<br /><a href="/credits.html" target="_blank" rel="noopener noreferrer">製作名單與素材授權</a></div></aside>}
 
       {showroom && <ModelShowroom close={() => setShowroom(false)} />}
 
-      <div className="map-attribution">ORIGINAL 3D WORLD · FICTIONAL TAIWANESE CITY</div>
+      <div className="map-attribution">原創 3D 城市 · 虛構台灣街景</div>
 
       {started && <div className="real-touch driver-touch"><div><button onPointerDown={(event) => pressControl(event, "KeyA")} onPointerUp={() => releaseControl("KeyA")} onPointerCancel={() => releaseControl("KeyA")} aria-label="向左轉">←</button><button onPointerDown={(event) => pressControl(event, "KeyD")} onPointerUp={() => releaseControl("KeyD")} onPointerCancel={() => releaseControl("KeyD")} aria-label="向右轉">→</button></div><div><button onPointerDown={(event) => pressControl(event, "Space")} onPointerUp={() => releaseControl("Space")} onPointerCancel={() => releaseControl("Space")} aria-label="煞車">煞</button><button onPointerDown={(event) => pressControl(event, "KeyS")} onPointerUp={() => releaseControl("KeyS")} onPointerCancel={() => releaseControl("KeyS")} aria-label="倒車">退</button><button onPointerDown={(event) => pressControl(event, "KeyW")} onPointerUp={() => releaseControl("KeyW")} onPointerCancel={() => releaseControl("KeyW")} aria-label="油門前進">騎</button><button onPointerDown={(event) => pressControl(event, "KeyF")} onPointerUp={() => releaseControl("KeyF")} onPointerCancel={() => releaseControl("KeyF")} aria-label="渦輪加速">衝</button><button onPointerDown={(event) => pressControl(event, "ShiftLeft")} onPointerUp={() => releaseControl("ShiftLeft")} onPointerCancel={() => releaseControl("ShiftLeft")} aria-label="甩尾">甩</button><button onClick={() => actions.current?.interact()} aria-label="接送乘客">E</button><button onClick={() => actions.current?.metro()} aria-label="捷運升降梯">T</button></div></div>}
     </main>

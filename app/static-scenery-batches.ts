@@ -1,8 +1,9 @@
 import * as THREE from 'three';
+import { DRAW_DISTANCE, cameraWorldPosition, withinDistance } from './draw-distance';
 import {STATIC_SHADOW_LAYER} from './continuous-shadows';
 
 type Cell={indices:number[];sphere:THREE.Sphere};
-type Batch={source:THREE.InstancedMesh;color:THREE.InstancedMesh;shadow:THREE.InstancedMesh;layers:number;cells:Cell[];matrices:Float32Array;colors?:Float32Array;colorKey:string;shadowKey:string};
+type Batch={limit:number;source:THREE.InstancedMesh;color:THREE.InstancedMesh;shadow:THREE.InstancedMesh;layers:number;cells:Cell[];matrices:Float32Array;colors?:Float32Array;colorKey:string;shadowKey:string};
 
 /** Compact visible spatial cells into ordinary hardware instancing. This works
  * without multi-draw extensions and never simplifies source meshes or textures. */
@@ -26,7 +27,10 @@ export class StaticSceneryBatches {
       if(source.instanceColor){mesh.setColorAt(0,new THREE.Color());mesh.instanceColor!.setUsage(THREE.DynamicDrawUsage);}return mesh;};
     const color=make(),shadow=make();color.name=source.name+' / visible instances';color.receiveShadow=source.receiveShadow;
     shadow.name=source.name+' / stationary shadow instances';shadow.castShadow=source.castShadow;shadow.layers.set(STATIC_SHADOW_LAYER);
-    const batch:Batch={source,color,shadow,layers:source.layers.mask,cells:[],matrices:new Float32Array(source.count*16),
+    // Small furniture (grass, posts, reflectors) stops at a short draw distance; large scenery runs to the fog limit.
+    source.geometry.computeBoundingSphere();source.getMatrixAt(0,this.instance);
+    const extent=(source.geometry.boundingSphere?.radius??0)*this.instance.getMaxScaleOnAxis();
+    const batch:Batch={limit:extent<2?DRAW_DISTANCE.smallScenery:Infinity,source,color,shadow,layers:source.layers.mask,cells:[],matrices:new Float32Array(source.count*16),
       colors:source.instanceColor?new Float32Array(source.count*3):undefined,colorKey:'',shadowKey:''};
     this.rebuild(batch);
     if(batch.cells.length<2){color.dispose();shadow.dispose();return false;}
@@ -51,8 +55,8 @@ export class StaticSceneryBatches {
   invalidate(){this.revision++;for(const batch of this.batches)this.rebuild(batch);}
   private pack(batch:Batch,shadow:boolean) {
     const mesh=shadow?batch.shadow:batch.color,frustum=shadow?this.shadowFrustum:this.colorFrustum;
-    const selected:number[]=[];
-    batch.cells.forEach((cell,i)=>{if(frustum.intersectsSphere(this.sphere.copy(cell.sphere).applyMatrix4(this.group.matrixWorld)))selected.push(i);});
+    const selected:number[]=[],limit=shadow?Infinity:Math.min(batch.limit,this.farLimit);
+    batch.cells.forEach((cell,i)=>{if(frustum.intersectsSphere(this.sphere.copy(cell.sphere).applyMatrix4(this.group.matrixWorld))&&withinDistance(this.sphere,this.eye,limit))selected.push(i);});
     const key=this.revision+':'+selected.join(',');
     if(key===(shadow?batch.shadowKey:batch.colorKey))return;
     let count=0;
@@ -66,8 +70,10 @@ export class StaticSceneryBatches {
     if(mesh.instanceColor){mesh.instanceColor.clearUpdateRanges();if(count)mesh.instanceColor.addUpdateRange(0,count*3);mesh.instanceColor.needsUpdate=true;}
     if(shadow)batch.shadowKey=key;else batch.colorKey=key;
   }
-  update(camera:THREE.Camera,shadowCamera?:THREE.Camera) {
-    camera.updateMatrixWorld();this.projection.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);this.colorFrustum.setFromProjectionMatrix(this.projection,camera.coordinateSystem);
+  private eye=new THREE.Vector3();
+  private farLimit=Infinity;
+  update(camera:THREE.Camera,shadowCamera?:THREE.Camera,farLimit=Infinity) {
+    camera.updateMatrixWorld();this.eye.copy(cameraWorldPosition(camera));this.farLimit=farLimit;this.projection.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);this.colorFrustum.setFromProjectionMatrix(this.projection,camera.coordinateSystem);
     if(shadowCamera){shadowCamera.updateMatrixWorld();this.projection.multiplyMatrices(shadowCamera.projectionMatrix,shadowCamera.matrixWorldInverse);this.shadowFrustum.setFromProjectionMatrix(this.projection,shadowCamera.coordinateSystem);}
     let calls=0,triangles=0,instances=0;
     for(const batch of this.batches){this.pack(batch,false);if(shadowCamera)this.pack(batch,true);else{batch.shadow.count=0;batch.shadow.visible=false;batch.shadowKey='';}

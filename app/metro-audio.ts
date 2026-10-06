@@ -1,5 +1,6 @@
 import type { Coordinates } from './game-core';
 import { MetroSystem } from './metro-system';
+import { audioSettings } from './game-sfx';
 
 /** Gesture-activated rail ambience and distinct door/arrival cues. */
 export class MetroAudio {
@@ -11,9 +12,9 @@ export class MetroAudio {
   private ticketPasses=0;
 
   start() {
-    if (this.context) { if (this.context.state === 'suspended') void this.context.resume().catch(() => {}); return; }
+    if (this.context) { audioSettings.resume(this.context); return; }
     try {
-      const context = new AudioContext(); this.context = context;
+      const context = new AudioContext(); this.context = context; audioSettings.register(context);
       this.master = context.createGain(); this.master.gain.value = .26; this.master.connect(context.destination);
       const noise = context.createBuffer(1, context.sampleRate * 6, context.sampleRate), samples = noise.getChannelData(0);
       let smooth = 0;
@@ -28,7 +29,7 @@ export class MetroAudio {
         rolling.connect(rollingGain); rollingGain.connect(this.master); rolling.start();
         this.motors.push({ oscillator, filter, gain, rolling, rollingGain });
       }
-      void context.resume().catch(() => {});
+      audioSettings.resume(context);
     } catch { /* Transport gameplay also works without an audio device. */ }
   }
 
@@ -58,7 +59,7 @@ export class MetroAudio {
       const speed = Math.abs(train.speed), moving = train.phase === 'running';
       motor.oscillator.frequency.setTargetAtTime(38 + speed * 3.4, context.currentTime, .2);
       motor.filter.frequency.setTargetAtTime(180 + speed * 9, context.currentTime, .2);
-      motor.gain.gain.setTargetAtTime(moving ? volume * Math.min(1, speed / 6) : volume * .035, context.currentTime, .15);
+      motor.gain.gain.setTargetAtTime((moving ? volume * Math.min(1, speed / 6) : volume * .035) * .45, context.currentTime, .15);
       motor.rollingGain.gain.setTargetAtTime(moving ? volume * Math.min(.9, speed / 12) : 0, context.currentTime, .18);
       motor.rolling.playbackRate.setTargetAtTime(.72 + speed * .025, context.currentTime, .22);
       if (train.phase !== this.phases[index]) {
@@ -80,6 +81,6 @@ export class MetroAudio {
 
   dispose() {
     this.motors.forEach(motor => { motor.oscillator.stop(); motor.rolling.stop(); motor.oscillator.disconnect(); motor.rolling.disconnect(); motor.filter.disconnect(); motor.gain.disconnect(); motor.rollingGain.disconnect(); });
-    this.master?.disconnect(); void this.context?.close().catch(() => {}); this.context = null;
+    this.master?.disconnect(); if (this.context) audioSettings.unregister(this.context); void this.context?.close().catch(() => {}); this.context = null;
   }
 }

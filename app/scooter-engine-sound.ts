@@ -32,7 +32,7 @@ export function stepEngineSound(state: EngineSoundState, speed: number, throttle
       rate: clamp(rpm / layer.rpm, .62, 1.65),
       gain: running ? weights[index] / energy * volume : 0,
     })),
-    cutoff: 1600 + load * 1900 + clamp((rpm - 2000) * .15, 0, 700),
+    cutoff: 2300 + load * 2800 + clamp((rpm - 2000) * .25, 0, 1200),
     tyreGain: Math.min(.014, velocity * .00046),
     windGain: Math.min(.017, Math.max(0, velocity - 7) ** 2 * .00003),
   };
