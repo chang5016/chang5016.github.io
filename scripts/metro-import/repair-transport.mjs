@@ -1,0 +1,34 @@
+import path from 'node:path';
+import {T,fs,root,outputDir,loadObj,bounds,transform,fit,carve,slice,select,clone,writeGLB,removeComponents,removeSourceFaces} from './model-tools.mjs';
+import {fallbackTerrainElevation} from '../../app/world-terrain.ts';
+import {METRO_STATIONS} from '../../app/metro-system.ts';
+const manifest=JSON.parse(await fs.readFile(path.join(outputDir,'sources.json'),'utf8'));
+async function save(name,model,adaptation){const row=await writeGLB(model,path.join(outputDir,name+'.glb'),adaptation);manifest.files=manifest.files.filter(f=>f.file!==row.file);manifest.files.push(row);console.log(JSON.stringify({file:row.file,bounds:row.bounds,triangles:row.triangles}));}
+const train=await loadObj('Trains/JFR1/Wagon_1_WithDriverStand');
+transform(train,new T.Matrix4().makeTranslation(.81488919258,-1.1985,0));
+transform(train,new T.Matrix4().makeRotationY(Math.PI/2));
+transform(train,new T.Matrix4().makeScale(2.15,2.15,2.15));
+removeComponents(train,(b,n)=>/Wagon_half_BAKED/.test(n)&&b.min.y>=-.12&&b.max.y>.15&&b.max.y<4.43&&b.min.z>-16.5&&b.max.z<12.9&&b.min.x<3.18&&b.max.x>-3.18);
+removeSourceFaces(train,(v,n)=>/Wagon_half_BAKED/.test(n)&&Math.min(...v.map(p=>p[1]))>=-.12&&Math.max(...v.map(p=>p[1]))>.035&&Math.max(...v.map(p=>p[1]))<3.8&&Math.min(...v.map(p=>p[2]))>=-16.4&&Math.max(...v.map(p=>p[2]))<=12.97&&Math.min(...v.map(p=>Math.abs(p[0])))>.85&&v.reduce((s,p)=>s+Math.abs(p[0]),0)/3<3.18);
+await save('jfr1-motorcycle-car',train,'Complete CC0 JFR1 driver carriage, original native floor, curved roof, windows, wheel bogies, cabin and source PBR paint. Uniform scale 2.15 only, no flattened shell. Whole original seat/grab-rail components and integrated pedestal faces removed from the motorcycle bay; continuous source floor retained.');
+const door=await loadObj('Trains/JFR1/Door');
+await save('train-door',fit(clone(door),1.525,4.08,.1777),'Complete original JFR1 framed glass sliding leaf aligned to the original source train aperture; paired opening 3.05 m, source door geometry and materials retained.');
+await save('lift-door',fit(clone(door),2.685,5.2,.085),'Complete original JFR1 framed glass door, paired clear doorway 5.4 m wide and 5.2 m high to clear actual full scooter-rider envelope.');
+const panel=await loadObj('Resources/Objects/Ceiling');
+await save('lift-floor',fit(clone(panel),7.2,.045,7.2,-.045),'Complete downloaded interior panel resized for the 7.2 m motorcycle cabin floor, original faces and UV retained.');
+const threshold=clone(panel);threshold.children.forEach(m=>m.material.name='GreyMetal');
+await save('boarding-threshold',fit(threshold,3.05,.025,.40,-.025),'Downloaded continuous panel aligned to the original JFR1 sill and platform, retractable 3.05 m level bridge plate with no floor gap.');
+const station=await loadObj('Resources/Objects/TrainStationBuilding2');
+const b=bounds(station),c=b.getCenter(new T.Vector3());transform(station,new T.Matrix4().makeTranslation(-c.x,-b.min.y,-c.z));transform(station,new T.Matrix4().makeRotationY(Math.PI/2));transform(station,new T.Matrix4().makeScale(1.4,1.4,1.4));transform(station,new T.Matrix4().makeTranslation(0,-.9,0));
+carve(station,[[[-17,0,-12.9],[17,4.6,12.9]],[[-22,-.1,-9],[-11.5,5.1,-1]],[[-13.5,-.1,-18],[-6.5,5.1,-6]],[[.5,-.1,-18],[7.5,5.1,-6]]]);
+await save('station-building',station,'Complete original TrainStationBuilding2, original roof, window bays, textures and structure retained at uniform scale 1.4. Surveyed street portal and separate A lift/B bypass portals, clear full motorcycle interior. No substitute facade or primitive shell.');
+const raw=await loadObj('Resources/Objects/Lift-Subway');
+const cabin=select(raw,m=>m.material.name!=='Beton');slice(cabin,-.1,3.8);transform(cabin,new T.Matrix4().makeScale(3.6/1.220204,1.7,3.6/1.347133));
+carve(cabin,[[[-3.15,-.17,-3.15],[3.15,5.85,3.15]],[[-2.7,-1,-5],[2.7,5.25,-1.5]],[[-2.7,-1,1.5],[2.7,5.25,5]]]);
+await save('lift-cabin',cabin,'Original Lift-Subway glass and frame adapted to 7.2 m cabin and 5.85 m unobstructed internal height. All source transverse slabs removed from the entire scooter travel volume; roof and external beams preserved; 5.4 m paired doorways.');
+for(const [index,{x}] of METRO_STATIONS.entries())for(const track of [0,1]){const lower=fallbackTerrainElevation({x,z:-794})+.06,rise=21.6-lower,shaft=clone(raw);transform(shaft,new T.Matrix4().makeScale(3.6/1.220204,(rise+6.6)/20.549255,3.6/1.347133));const face=track===0?-1:1;
+carve(shaft,[[[-3.15,-.1,-3.15],[3.15,rise+5.85,3.15]],[[-2.7,-.1,1.5],[2.7,5.25,5]],[[-2.7,rise-.1,face>0?1.5:-5],[2.7,rise+5.25,face>0?5:-1.5]]]);
+await save(`lift-shaft-${index}-${track}`,shaft,'Original complete Lift-Subway adapted to surveyed terrain, enlarged 7.2 m footprint with 5.2 m high portals. Entire carrier travel volume cleared of source internal horizontal beams and slabs while preserving exterior steel/glass and roof.');}
+const rail=await loadObj('Resources/RailTypes/Rail_Beton_1');transform(rail,new T.Matrix4().makeRotationY(Math.PI/2));transform(rail,new T.Matrix4().makeTranslation(0,.001058,.493849));transform(rail,new T.Matrix4().makeScale(2.15,1,1));
+await save('rail',rail,'Complete original rail, sleeper and ballast source module. Native X axis steel is rotated to canonical local Z before runtime route placement. Steel unit exactly 1 m with continuous rail head at zero datum, gauge widened to match uniformly scaled JFR1 bogies.');
+manifest.version=2;manifest.activeTrain='jfr1-motorcycle-car';manifest.rideEnvelope={height:2.99005183,length:3.45,width:1.2372642};await fs.writeFile(path.join(outputDir,'sources.json'),JSON.stringify(manifest,null,2)+'\n');

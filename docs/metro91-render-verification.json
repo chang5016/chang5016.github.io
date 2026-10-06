@@ -1,0 +1,17 @@
+{
+  "renderer": "Three WebGPURenderer / native Dawn Vulkan SwiftShader",
+  "scope": "Actual downloaded GLBs and decoded original texture pixels, focused scenes; internal render QA, not a browser or FPS benchmark",
+  "frames": [
+    "convenience-store.png",
+    "coffee-shop.png",
+    "fox-walk.png",
+    "train-route-lcd.png",
+    "gangway-outside.png",
+    "gangway-through.png",
+    "doors-closed.png",
+    "doors-open.png",
+    "door-threshold.png"
+  ],
+  "errors": [],
+  "decodedTextures": 15
+}

@@ -1,0 +1,34 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import * as THREE from 'three';
+import { batchCityMesh, refreshCityBatch, disposeCityBatch } from '../app/city-multidraw.ts';
+import { PackedCityBatches } from '../app/packed-city-batches.ts';
+import { STATIC_SHADOW_LAYER } from '../app/continuous-shadows.ts';
+
+test('one packed draw contains exactly the same native visible triangles and source attributes, with independent shadow culling', () => {
+ const scene=new THREE.Scene(),geometry=new THREE.PlaneGeometry(2000,2000,80,80);geometry.rotateX(-Math.PI/2);
+ geometry.setAttribute('facadeGlass',new THREE.Float32BufferAttribute(Array.from({length:geometry.attributes.position.count},(_,i)=>i%2),1));
+ const material=new THREE.MeshStandardMaterial(), source=new THREE.Mesh(geometry,material);source.castShadow=true;
+ const batch=batchCityMesh(source);scene.add(batch);batch.updateMatrixWorld(true);
+ const camera=new THREE.PerspectiveCamera(65,1,.1,340);camera.position.set(0,12,30);camera.lookAt(0,0,-180);camera.updateMatrixWorld(true);
+ const shadow=new THREE.OrthographicCamera(-130,130,130,-130,.1,250);shadow.position.set(700,100,0);shadow.lookAt(700,0,0);shadow.updateMatrixWorld(true);
+ batch.onBeforeRender(null,null,camera,batch.geometry,batch.material);
+ const count=batch._multiDrawCount,expected=[],bytes=batch.geometry.index.array.BYTES_PER_ELEMENT;for(let i=0;i<count;i++)expected.push(...batch.geometry.index.array.slice(batch._multiDrawStarts[i]/bytes,batch._multiDrawStarts[i]/bytes+batch._multiDrawCounts[i]));
+ const packed=new PackedCityBatches(scene);packed.update(camera,shadow);
+ const visible=packed.group.children.find(m=>m.name.includes('packed visible'));
+ assert.equal(visible.material,material);for(const key of Object.keys(batch.geometry.attributes))assert.equal(visible.geometry.getAttribute(key),batch.geometry.getAttribute(key));
+ const actual=Array.from(visible.geometry.index.array.slice(0,visible.geometry.drawRange.count));
+ assert.deepEqual(actual.sort((a,b)=>a-b),expected.sort((a,b)=>a-b));
+ assert.equal(packed.audit.colorDraws,1);assert.equal(packed.audit.previousColorDraws,count);assert.ok(count>5);
+ const casters=packed.group.children.find(m=>m.name.includes('packed static shadows'));assert.ok(casters.layers.isEnabled(STATIC_SHADOW_LAYER));assert.ok(casters.geometry.drawRange.count>0);
+ assert.notDeepEqual(Array.from(casters.geometry.index.array.slice(0,casters.geometry.drawRange.count)),actual);
+ assert.notEqual(packed.group.isBundleGroup,true,'Moving camera and shadow bindings cannot be replayed from a stale GPU command bundle');
+ const version=visible.geometry.index.version,uploads=packed.audit.indexUploads;for(let i=0;i<100;i++)packed.update(camera,shadow);
+ assert.equal(visible.geometry.index.version,version);assert.equal(packed.audit.indexUploads,uploads);
+ material.needsUpdate=true;packed.update(camera,shadow);assert.equal(visible.material,material,'Photographic atlases use the current material directly');
+ scene.environment=new THREE.CubeTexture();packed.update(camera,shadow);assert.equal(packed.audit.indexUploads,uploads,'Reflection updates do not re-upload the unchanged geometry');
+ const positions=geometry.attributes.position;for(let i=0;i<positions.count;i++)positions.setY(i,3+positions.getX(i)*.002);
+ geometry.computeVertexNormals();refreshCityBatch(batch);scene.userData.staticShadowRevision=(scene.userData.staticShadowRevision??0)+1;packed.update(camera,shadow);
+ assert.equal(visible.geometry.getAttribute('position'),batch.geometry.getAttribute('position'));assert.ok(packed.audit.indexUploads>uploads);
+ packed.dispose();assert.equal(batch.layers.mask,1);disposeCityBatch(batch);geometry.dispose();material.dispose();
+});

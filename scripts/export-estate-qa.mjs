@@ -1,0 +1,18 @@
+import {GLTFExporter} from 'three/addons/exporters/GLTFExporter.js';
+import * as THREE from 'three';
+import {readModelHierarchy} from '../tests/model-fixture.mjs';
+import {createLuxuryEstate} from '../app/luxury-estate.ts';
+import fs from 'node:fs/promises';
+globalThis.FileReader=class {readAsArrayBuffer(blob){blob.arrayBuffer().then(result=>{this.result=result;this.onloadend?.();});}readAsDataURL(blob){blob.arrayBuffer().then(result=>{this.result='data:'+blob.type+';base64,'+Buffer.from(result).toString('base64');this.onloadend?.();});}};
+const {group}=await readModelHierarchy('public/models/estate/zigurat-residence.glb');
+const stone=new THREE.MeshStandardMaterial({color:'#d3c6af',roughness:.85});stone.name='Estate_Stone';
+const wood=new THREE.MeshStandardMaterial({color:'#796048',roughness:.75});wood.name='Estate_Wood';
+const dark=new THREE.MeshStandardMaterial({color:'#29343b',metalness:.6,roughness:.3});dark.name='Estate_Metal';
+const glass=new THREE.MeshStandardMaterial({color:'#729eac',metalness:.3,roughness:.15,transparent:true,opacity:.48});glass.name='Estate_Glass';
+const lawn=new THREE.MeshStandardMaterial({color:'#487249',roughness:1});lawn.name='Estate_Lawn';
+const water=new THREE.MeshStandardMaterial({color:'#4aa7b2',roughness:.1,transparent:true,opacity:.55});water.name='Estate_Water';
+const glow=new THREE.MeshStandardMaterial({color:'#ffdb9b',emissive:'#ffbe60',emissiveIntensity:.7});glow.name='Estate_Glow';
+group.traverse(o=>{if(!o.isMesh)return;const material=Array.isArray(o.material)?o.material[0]:o.material;o.material=material.name.toLowerCase().includes('glass')?glass:material.name.toLowerCase().includes('wood')?wood:material.name.toLowerCase().includes('darkmetal')?dark:stone;});
+const estate=createLuxuryEstate(group,{stone,wood,dark,glass,lawn,water,glow});
+const data=await new GLTFExporter().parseAsync(estate,{binary:true});await fs.writeFile(process.argv[2],Buffer.from(data));
+console.log('Exported complete estate QA model');

@@ -1,0 +1,55 @@
+{
+  "name": "capy-cab-taxi",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "install:ci": "bash scripts/install-ci.sh",
+    "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vite",
+    "build": "bash scripts/build-verified.sh",
+    "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
+    "test": "npm run build && node --import tsx --test tests/rendered-html.test.mjs tests/gameplay.test.mjs tests/real-assets.test.mjs tests/optimization.test.mjs tests/riding-pose.test.mjs tests/scooter-systems.test.mjs tests/simulation-performance.test.mjs",
+    "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
+    "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate",
+    "build:pages": "vite build -c vite.pages.config.ts && node scripts/optimize-pages.mjs dist-pages",
+    "preview:pages": "vite preview -c vite.pages.config.ts"
+  },
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "^0.20.0",
+    "@gltf-transform/core": "^4.4.2",
+    "@types/three": "^0.185.4",
+    "drizzle-orm": "0.45.2",
+    "maplibre-gl": "^6.5.0",
+    "next": "16.2.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.37.1",
+    "@gltf-transform/extensions": "^4.4.2",
+    "@gltf-transform/functions": "^4.5.1",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.26",
+    "draco3dgltf": "^1.5.7",
+    "drizzle-kit": "0.31.10",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.6",
+    "meshoptimizer": "^1.3.0",
+    "react-server-dom-webpack": "19.2.6",
+    "sharp": "^0.35.5",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "vinext": "0.0.50",
+    "vite": "8.0.13",
+    "wrangler": "4.92.0"
+  },
+  "type": "module",
+  "displayName": "Capy Cab｜卡皮巴拉計程車"
+}
