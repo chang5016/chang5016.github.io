@@ -1,0 +1,154 @@
+{
+  "bench": {
+    "source": "https://polyhaven.com/a/painted_wooden_bench",
+    "author": "Kirill Sannikov",
+    "license": "CC0-1.0",
+    "triangles": 630,
+    "geometrySha256": "5799bcb20924105cccd6424de8cdb8e67eb57fddc19c395befeac634a7b2e013",
+    "bytes": 4227988,
+    "sha256": "a90018a2eede81913e631519c909e4713fd4d24fb5cf4708c837ae3547f215cf",
+    "textureDimensions": [
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ]
+    ],
+    "bounds": {
+      "min": [
+        -0.7250000000000001,
+        0,
+        -0.3090224719755062
+      ],
+      "max": [
+        0.7250000000000001,
+        1.106897076871747,
+        0.3090224719755062
+      ]
+    }
+  },
+  "hydrant": {
+    "source": "https://polyhaven.com/a/fire_hydrant",
+    "author": "Gonçalo Felício",
+    "license": "CC0-1.0",
+    "triangles": 43158,
+    "geometrySha256": "57bf39dd51c146698a0bb177edfa5f2558f9f1b363c8e23beb589c81562f9fb5",
+    "bytes": 4298156,
+    "sha256": "4b15d4d4b89f2138f1a898984dcfc90a648305e876ae60d438c1dd69ba51308f",
+    "textureDimensions": [
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ]
+    ],
+    "bounds": {
+      "min": [
+        -0.13397007288813426,
+        0,
+        -0.1550053892393089
+      ],
+      "max": [
+        0.13397007288813426,
+        0.78,
+        0.1550053892393089
+      ]
+    }
+  },
+  "pot": {
+    "source": "https://polyhaven.com/a/planter_pot_clay",
+    "author": "Amal Kumar",
+    "license": "CC0-1.0",
+    "triangles": 3080,
+    "geometrySha256": "effd0a038a75a054e55e2f5f71a84c57c1c6efc4e453ae3e62d4ce5167a2913c",
+    "bytes": 3132104,
+    "sha256": "e8ebcbdc28a7b2f2255a9c58efc9286adbc9bfc7218ce8ee6638b4b270491847",
+    "textureDimensions": [
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ]
+    ],
+    "bounds": {
+      "min": [
+        -0.2517655649109703,
+        0,
+        -0.24936744543081532
+      ],
+      "max": [
+        0.2517655649109703,
+        0.42,
+        0.24936744543081532
+      ]
+    }
+  },
+  "plant": {
+    "source": "https://polyhaven.com/a/pachira_aquatica_01",
+    "author": "Rico Cilliers / Rob Tuytel",
+    "license": "CC0-1.0",
+    "triangles": 23167,
+    "geometrySha256": "4c058fcf4ca2e198d756990b59a5fcd0fbae856b82874969629d0154a6f6b8ab",
+    "bytes": 6322952,
+    "sha256": "2b033e8f65e234dba759dbcd03131764d40a2895a5041975d565bb9ed4734350",
+    "textureDimensions": [
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ]
+    ],
+    "bounds": {
+      "min": [
+        -0.3331847648175265,
+        0,
+        -0.26542981433527585
+      ],
+      "max": [
+        0.4098607005976498,
+        1.3,
+        0.38033924804408736
+      ]
+    }
+  }
+}
