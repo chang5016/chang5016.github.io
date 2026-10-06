@@ -1,0 +1,164 @@
+{
+  "sources": [
+    {
+      "source": "https://freesound.org/people/Kang_Alpin/sounds/676835/",
+      "author": "Kang_Alpin",
+      "license": "CC0-1.0",
+      "sha256": "8af5f1b51c266460c1ab60f1ca1239c92e5617703169a1c58d90ed1d94c0709c"
+    },
+    {
+      "source": "https://freesound.org/people/ElementRS2/sounds/343686/",
+      "author": "ElementRS2",
+      "license": "CC-BY-4.0",
+      "sha256": "851f7fdc90126e49102f5319ccbb24590b909dbe9e06b07bba71e7549fc918e4"
+    }
+  ],
+  "processing": "Distinct idle and recorded acceleration takes. Excludes clipped rev at 15\u201317 seconds. Sustain regions resampled by phase-aligned overlapping grains, recorded RPM sweeps and volume swells removed; four-stroke pulse reference RPM / 120, 44.1 kHz mono, long unequal loop lengths, 0.18-second loop crossfade. Real-time CVT crossfades four registers continuously without resetting playback.",
+  "loops": {
+    "idle": {
+      "seconds": 17.13,
+      "sourceRegions": [
+        [
+          48,
+          60
+        ],
+        [
+          62,
+          74
+        ],
+        [
+          76,
+          83
+        ]
+      ],
+      "referencePulseHz": 15.0,
+      "sourceMedianPulseHz": [
+        27.397260273972602,
+        25.641025641025642,
+        27.77777777777778
+      ],
+      "rms": 0.15,
+      "peak": 0.5772534938279407,
+      "envelopeWindowSeconds": 0.3,
+      "envelopeVariation": 0.032914418279225935,
+      "seamDelta": 9.536491269979292e-06,
+      "sha256": "bf86a33aaba695aeeac024f0e509b15ec1b0ff3410df8748e55f60398f0cdbb1",
+      "bytes": 1510910
+    },
+    "cruise": {
+      "seconds": 19.55,
+      "sourceRegions": [
+        [
+          5.3,
+          6
+        ],
+        [
+          8.1,
+          8.7
+        ],
+        [
+          12,
+          12.6
+        ],
+        [
+          23.2,
+          24.8
+        ]
+      ],
+      "referencePulseHz": 27.5,
+      "sourceMedianPulseHz": [
+        41.671188279978296,
+        47.905909351692486,
+        46.785225718194255,
+        47.61904761904762
+      ],
+      "rms": 0.15,
+      "peak": 0.7626629792272436,
+      "envelopeWindowSeconds": 0.3,
+      "envelopeVariation": 0.015901823197701385,
+      "seamDelta": 2.8591170978029848e-05,
+      "sha256": "6e5426ac58bced5a8178f71d335a3a6682e704de339891547812697cec17781d",
+      "bytes": 1724354
+    },
+    "pull": {
+      "seconds": 23.29,
+      "sourceRegions": [
+        [
+          6.3,
+          7
+        ],
+        [
+          9,
+          9.65
+        ],
+        [
+          10.7,
+          11.55
+        ],
+        [
+          13.3,
+          14.1
+        ],
+        [
+          18.1,
+          18.9
+        ]
+      ],
+      "referencePulseHz": 39.166666666666664,
+      "sourceMedianPulseHz": [
+        53.693693693693696,
+        58.8235294117647,
+        57.55693581780538,
+        54.054054054054056,
+        54.054054054054056
+      ],
+      "rms": 0.15000000000000002,
+      "peak": 0.6578918424732438,
+      "envelopeWindowSeconds": 0.3,
+      "envelopeVariation": 0.01929124259664494,
+      "seamDelta": 1.0328275764511202e-05,
+      "sha256": "0175aad7723ee21e2d2edcdfce9ee82349df57ccdd47737f9ef5908ccf87398e",
+      "bytes": 2054222
+    },
+    "high": {
+      "seconds": 28.93,
+      "sourceRegions": [
+        [
+          7,
+          7.65
+        ],
+        [
+          9.1,
+          9.8
+        ],
+        [
+          11.05,
+          11.75
+        ],
+        [
+          14,
+          14.7
+        ],
+        [
+          19,
+          19.75
+        ]
+      ],
+      "referencePulseHz": 53.333333333333336,
+      "sourceMedianPulseHz": [
+        58.8235294117647,
+        57.580778790389395,
+        58.39727195225916,
+        59.701492537313435,
+        57.142857142857146
+      ],
+      "rms": 0.15,
+      "peak": 0.6521833486436723,
+      "envelopeWindowSeconds": 0.3,
+      "envelopeVariation": 0.01065294867975799,
+      "seamDelta": 1.492629891469493e-05,
+      "sha256": "0ac290e811fcd39982b823767e4073f542e84a27bb6faf283976c87ca5ece645",
+      "bytes": 2551670
+    }
+  }
+}

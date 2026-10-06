@@ -1,0 +1,65 @@
+LOWPOLY ANIMAL CHARACTERS - ASSET PACK LICENSE
+===============================================
+
+Copyright (c) 2025 Juggy
+https://juggypuggy.itch.io
+
+-----------------------------------------------
+PERMITTED USES
+-----------------------------------------------
+
+You ARE allowed to:
+
+- Use these assets in personal projects
+- Use these assets in commercial projects
+  (games, apps, animations, renders, cinematics)
+- Modify, edit, or adapt the characters and rigs
+- Use in jam games, prototypes, and shipped titles
+- Export and convert to other formats (GLB, FBX, OBJ, etc.)
+
+-----------------------------------------------
+RESTRICTIONS
+-----------------------------------------------
+
+You are NOT allowed to:
+
+- Resell or redistribute the original or modified asset files
+- Repackage and upload these assets as your own asset pack
+- Claim authorship of the original characters or rigs
+
+-----------------------------------------------
+CREDIT REQUIREMENT
+-----------------------------------------------
+
+Credit is REQUIRED when using these assets.
+
+Please include the following in your project credits:
+
+    "LowPoly Animal Characters" by Juggy
+    https://juggypuggy.itch.io
+
+Acceptable locations for credit:
+- In-game credits screen
+- README or documentation
+- Itch.io project description
+
+-----------------------------------------------
+TECHNICAL NOTES
+-----------------------------------------------
+
+- Characters are rigged and ready for animation
+- Animations are included as individual .blend files
+- To use in other engines: open the .blend file and
+  export as GLB (File > Export > glTF 2.0 > GLB)
+- GLB format is compatible with Unreal Engine, Unity,
+  Godot, Three.js, and most modern game engines
+
+-----------------------------------------------
+DISCLAIMER
+-----------------------------------------------
+
+These assets are provided "as is" without warranty
+of any kind. The author is not liable for any issues
+arising from the use of these assets in your projects.
+
+===============================================
