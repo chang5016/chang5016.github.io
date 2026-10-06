@@ -17,6 +17,31 @@ export function stepTurboCharge(charge: number, requested: boolean, speed: numbe
   };
 }
 
+const ATTACK_URLS = [0, 1, 2].map(index => `/audio/scooter-attack-${index}.wav?v=attack-v1`);
+const LAYER_URLS = ENGINE_LAYERS.map(({ name }) => `/audio/scooter-${name}.wav?v=sustain-v2`);
+const prefetched = new Map<string, Promise<ArrayBuffer>>();
+
+/** Download the engine recordings ahead of the first ride so the engine is audible immediately. */
+export function prefetchScooterRecordings() {
+  for (const url of [...LAYER_URLS, ...ATTACK_URLS]) {
+    if (prefetched.has(url)) continue;
+    const request = fetch(url).then(response => { if (!response.ok) throw new Error('Scooter recording unavailable'); return response.arrayBuffer(); });
+    request.catch(() => prefetched.delete(url));
+    prefetched.set(url, request);
+  }
+}
+
+async function recording(url: string, signal: AbortSignal) {
+  const early = prefetched.get(url);
+  if (early) {
+    prefetched.delete(url);
+    try { return await early; } catch { /* fall through to a fresh request */ }
+  }
+  const response = await fetch(url, { signal });
+  if (!response.ok) throw new Error('Scooter recording unavailable');
+  return response.arrayBuffer();
+}
+
 export class ScooterAudio {
   private running = true;
   private context: AudioContext | null = null;
@@ -108,17 +133,9 @@ export class ScooterAudio {
   }
 
   private async loadRecordings(context: AudioContext, signal: AbortSignal) {
-    const attacks=Promise.all([0,1,2].map(async index=>{
-      const response=await fetch(`/audio/scooter-attack-${index}.wav?v=attack-v1`,{signal});
-      if(!response.ok)throw new Error('Throttle recording unavailable');
-      return context.decodeAudioData(await response.arrayBuffer());
-    })).then(buffers=>{if(!signal.aborted&&this.context===context&&context.state!=='closed')this.attackBuffers=buffers;}).catch(()=>{});
+    const attacks=Promise.all(ATTACK_URLS.map(async url=>context.decodeAudioData(await recording(url,signal)))).then(buffers=>{if(!signal.aborted&&this.context===context&&context.state!=='closed')this.attackBuffers=buffers;}).catch(()=>{});
     try {
-      const buffers = await Promise.all(ENGINE_LAYERS.map(async ({ name }) => {
-        const response = await fetch(`/audio/scooter-${name}.wav?v=sustain-v2`, { signal });
-        if (!response.ok) throw new Error('Scooter recording unavailable');
-        return context.decodeAudioData(await response.arrayBuffer());
-      }));
+      const buffers = await Promise.all(LAYER_URLS.map(async url => context.decodeAudioData(await recording(url, signal))));
       if (signal.aborted || this.context !== context || context.state === 'closed') return;
       const loop = (buffer: AudioBuffer, gain: GainNode, rate: number) => {
         const source = context.createBufferSource(); source.buffer = buffer; source.loop = true;

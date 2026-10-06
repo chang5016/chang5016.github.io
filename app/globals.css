@@ -330,3 +330,8 @@ button { font: inherit; }
   .real-start > p { display: none; }
   .real-start h1 { font-size: 46px; }
 }
+.real-start h1 > span { white-space: nowrap; }
+.real-start h1 { font-size: clamp(40px, 5.6vw, 74px); }
+.real-phone .environment-grid { padding: 10px 0 4px; }
+.real-phone .environment-grid button { color: #5c4a36; background: #fffaf0; border-color: #e3d8c4; font-size: 11px; }
+.real-phone .environment-grid button.active { color: #1c241d; background: #d5c47f; border-color: #c9b66c; }
