@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { DRAW_DISTANCE, cameraWorldPosition, withinDistance } from './draw-distance';
 import type {TrafficRig} from './traffic-rig';
 import { standardNodeMaterial } from './gpu-materials';
 import { attribute, materialEmissive } from 'three/tsl';
@@ -58,10 +59,10 @@ export class TrafficRenderBatches {
     camera.updateMatrixWorld();this.projection.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);this.frustum.setFromProjectionMatrix(this.projection,camera.coordinateSystem);
     if(shadowCamera){shadowCamera.updateMatrixWorld();this.projection.multiplyMatrices(shadowCamera.projectionMatrix,shadowCamera.matrixWorldInverse);this.shadowFrustum.setFromProjectionMatrix(this.projection,shadowCamera.coordinateSystem);}
     this.group.updateWorldMatrix(true,false);this.inverse.copy(this.group.matrixWorld).invert();
-    let vehicles=0,shadowVehicles=0;
+    let vehicles=0,shadowVehicles=0;const eye=cameraWorldPosition(camera);
     for(const [owner,state] of this.owners){
       owner.updateWorldMatrix(true,false);this.sphere.center.setFromMatrixPosition(owner.matrixWorld);this.sphere.center.y+=1;
-      state.visible=this.frustum.intersectsSphere(this.sphere);state.shadow=!!shadowCamera&&this.shadowFrustum.intersectsSphere(this.sphere);
+      state.visible=this.frustum.intersectsSphere(this.sphere)&&withinDistance(this.sphere,eye,DRAW_DISTANCE.traffic);state.shadow=!!shadowCamera&&this.shadowFrustum.intersectsSphere(this.sphere);
       if(state.visible)vehicles++;if(state.shadow)shadowVehicles++;
       if(!state.visible&&!state.shadow)continue;
       owner.updateWorldMatrix(false,true);state.distance=this.sphere.center.distanceToSquared(camera.position);

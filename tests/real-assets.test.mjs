@@ -191,8 +191,8 @@ test("renderer builds an original physical Taiwanese city without requiring an e
   assert.match(source, /wallGeometry\(/);
   assert.match(source, /facadeWallGeometry\(/);
   assert.match(source, /scaledOutline\(/);
-  assert.match(ui, /ORIGINAL 3D WORLD/);
-  assert.match(ui, /FICTIONAL TAIWANESE CITY/);
+  assert.match(ui, /原創 3D 城市/);
+  assert.match(ui, /虛構台灣街景/);
   assert.doesNotMatch(ui, /PHOTO2/);
   assert.match(layout, /capybara-premium-original\.glb\?v=original-285179-front-fixed/);
 });

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { cameraWorldPosition, fogLimit, withinDistance } from './draw-distance';
 import { STATIC_SHADOW_LAYER } from './continuous-shadows';
 
 type Range = { id: number; geometry: THREE.BufferGeometry };
@@ -67,10 +68,10 @@ export class PackedCityBatches {
     }
     this.revision = revision;
   }
-  private pack(family: Family, pass: Pass, camera: THREE.Camera) {
+  private pack(family: Family, pass: Pass, camera: THREE.Camera, limit = Infinity) {
     this.projection.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse); this.frustum.setFromProjectionMatrix(this.projection, camera.coordinateSystem);
-    const visible: number[] = [];
-    family.cells.forEach((cell, id) => { if (this.frustum.intersectsSphere(this.sphere.copy(cell.sphere).applyMatrix4(family.source.matrixWorld))) visible.push(id); });
+    const visible: number[] = [], eye = cameraWorldPosition(camera);
+    family.cells.forEach((cell, id) => { if (this.frustum.intersectsSphere(this.sphere.copy(cell.sphere).applyMatrix4(family.source.matrixWorld)) && withinDistance(this.sphere, eye, limit)) visible.push(id); });
     // Stable front-to-back order saves fragment work without altering opaque surfaces.
     const key = family.revision + ':' + visible.join(',');
     if (key === pass.key) return visible.length;
@@ -92,7 +93,7 @@ export class PackedCityBatches {
       if (materialKey !== family.materialKey) family.materialKey = materialKey;
       const revision = family.source.userData.cityMultidraw.revision ?? 0;
       if (family.revision !== revision) { family.cells = this.cells(family.source); family.revision = revision; family.color.key = family.shadow.key = ''; }
-      const draws = this.pack(family, family.color, camera); this.pack(family, family.shadow, shadowCamera);
+      const draws = this.pack(family, family.color, camera, fogLimit(this.scene)); this.pack(family, family.shadow, shadowCamera);
       if (draws) this.audit.colorDraws++;
       this.audit.previousColorDraws += draws; this.audit.triangles += family.color.mesh.geometry.drawRange.count / 3;
     }

@@ -314,3 +314,24 @@ button { font: inherit; }
 .engine-toggle:focus-visible{outline:2px solid #ffd68d;outline-offset:3px;}
 .engine-toggle:hover{filter:brightness(1.15);}
 @media(max-width:760px){.real-topstats{flex-wrap:wrap;max-width:62vw;gap:.25rem;}.engine-toggle{padding:.5rem .65rem;}}
+
+/* Presentation polish: shared line icons, sound toggle, tidy title screen. */
+.real-actions > button > svg { justify-self: center; }
+.real-actions > button.sound-toggle[aria-pressed="true"] { color: #ffb08c; border-color: rgba(255,160,120,.6); }
+.phone-grid button { display: grid; justify-items: center; gap: 5px; }
+.phone-grid button > svg { color: #5c4a36; }
+.environment-grid button, .start-buttons .inspect-button, .gallery-close { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.phone-header button { display: grid; place-items: center; }
+.metro-panel-head > b { display: grid; place-items: center; }
+.is-title .map-attribution { display: none; }
+.live-map-pill i { background: #7ee38d; }
+.start-keys { margin-top: 16px; font-size: 11px; line-height: 1.7; color: rgba(255,255,255,.78); text-shadow: 0 1px 8px rgba(0,0,0,.35); }
+@media (max-height: 620px) {
+  .real-start > p { display: none; }
+  .real-start h1 { font-size: 46px; }
+}
+.real-start h1 > span { white-space: nowrap; }
+.real-start h1 { font-size: clamp(40px, 5.6vw, 74px); }
+.real-phone .environment-grid { padding: 10px 0 4px; }
+.real-phone .environment-grid button { color: #5c4a36; background: #fffaf0; border-color: #e3d8c4; font-size: 11px; }
+.real-phone .environment-grid button.active { color: #1c241d; background: #d5c47f; border-color: #c9b66c; }
