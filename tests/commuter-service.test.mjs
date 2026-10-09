@@ -15,7 +15,9 @@ test('six persistent commuters complete return trips at all stations, while two 
   world.enableMetroCommuters(system);const all=world.trafficVehicles.filter(v=>v.commuter),vehicles=all.filter(v=>!v.commuter.recurring),local=all.filter(v=>v.commuter.recurring),hero={...createVehicle(),x:-2000,z:-2000};assert.equal(vehicles.length,2);assert.equal(local.length,6);assert.equal(world.trafficVehicles.length,42);
   for(let station=0;station<3;station++)assert.equal(local.filter(v=>v.commuter.origin===station).length,2,'Actual initial riders at every station');
   let highway=false,tunnel=false,valley=false,maxStep=0;const handoffs=new Set();
-  for(let frame=0;frame<1600*30;frame++){
+  // Two shuttles serve the whole six-station line, so the original stations see a train in each
+  // direction about half as often as on the old three-station line.
+  for(let frame=0;frame<3600*30;frame++){
    const dt=1/30,moved=system.beginStep(hero,0,dt);system.endStep(moved.rider,0);
    const previous=all.map(v=>({x:v.group.position.x,y:v.group.position.y,z:v.group.position.z,mode:v.commuter.mode}));world.updateRoadTraffic(frame/30,dt,hero,0);
    for(const [i,v]of all.entries()){const p=previous[i];if(p.mode!=='road')maxStep=Math.max(maxStep,Math.hypot(v.group.position.x-p.x,v.group.position.y-p.y,v.group.position.z-p.z));}

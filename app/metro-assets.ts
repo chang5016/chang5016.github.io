@@ -8,7 +8,7 @@ const PARTS = ['animal-driver', 'jfr1-motorcycle-car', 'gangway-shell', 'gangway
 const assetUrl = (url: string) => `${url}?v=metro94-actors-and-lcd`;
 type DisplaySurface = { texture: THREE.CanvasTexture; canvas: HTMLCanvasElement; material: THREE.MeshBasicMaterial; signature: string };
 export type MetroDisplay = { root: THREE.Group; screens: THREE.Mesh[]; texture: THREE.CanvasTexture; canvas: HTMLCanvasElement; surface: DisplaySurface };
-export type MetroInstances = { root: THREE.Group; meshes: THREE.InstancedMesh[]; set: (index: number, x: number, y: number, z: number, angle?: number, scaleX?:number) => void; commit: () => void };
+export type MetroInstances = { root: THREE.Group; meshes: THREE.InstancedMesh[]; set: (index: number, x: number, y: number, z: number, angle?: number, scaleX?:number, scaleY?:number, scaleZ?:number) => void; commit: () => void };
 export type TrainDisplayData = { names:readonly string[]; english:readonly string[]; current:number; next:number; phase:string; seconds:number; capacity:number; total:number; progress?:number; animation?:number };
 
 /** Only loads externally authored geometry. No generated placeholder meshes. */
@@ -238,9 +238,9 @@ export class DownloadedMetroAssets {
     });
     const poses: string[] = [], matrix = new THREE.Matrix4(), position = new THREE.Vector3(), rotation = new THREE.Quaternion(), scale = new THREE.Vector3(1, 1, 1), axis = new THREE.Vector3(0, 1, 0), composed = new THREE.Matrix4();
     let dirty = false;
-    const set = (index: number, x: number, y: number, z: number, angle = 0, scaleX=1) => {
-      const key = `${x}:${y}:${z}:${angle}:${scaleX}`; if (poses[index] === key) return; poses[index] = key;
-      matrix.compose(position.set(x, y, z), rotation.setFromAxisAngle(axis, angle), scale.set(scaleX,1,1));
+    const set = (index: number, x: number, y: number, z: number, angle = 0, scaleX=1, scaleY=1, scaleZ=1) => {
+      const key = `${x}:${y}:${z}:${angle}:${scaleX}:${scaleY}:${scaleZ}`; if (poses[index] === key) return; poses[index] = key;
+      matrix.compose(position.set(x, y, z), rotation.setFromAxisAngle(axis, angle), scale.set(scaleX,scaleY,scaleZ));
       meshes.forEach((mesh, part) => mesh.setMatrixAt(index, composed.multiplyMatrices(matrix, bases[part]))); dirty = true;
     };
     const commit = () => { if (!dirty) return; meshes.forEach(mesh => { mesh.instanceMatrix.needsUpdate = true; mesh.computeBoundingSphere(); }); dirty = false; };

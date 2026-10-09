@@ -279,7 +279,7 @@ button { font: inherit; }
 .commercial-game .real-toast { background: #10253e; color: #fff; border: 1px solid #69859c; font-size: 15px; max-width: min(650px, 85vw); line-height: 1.6; }
 @media (max-width: 800px) { .driver-career { top: auto; bottom: 150px; right: 16px; width: 185px; padding: 10px; } .driver-career strong { font-size: 16px; } .driver-career small { font-size: 12px; } }
 
-.map-metro line { stroke: #167f80; stroke-width: 17; stroke-linecap: round; }
+.map-metro line, .map-metro polyline { fill: none; stroke: #167f80; stroke-width: 17; stroke-linecap: round; stroke-linejoin: round; }
 .map-metro circle { fill: #f1faf5; stroke: #167f80; stroke-width: 10; }
 .nav-map .map-metro text { fill: #115959; text-anchor: middle; font-size: 32px; }
 .map-metro .map-metro-train { fill: #163c4b; stroke: #e1fcf6; stroke-width: 5; rx: 7px; }
@@ -335,7 +335,3 @@ button { font: inherit; }
 .real-phone .environment-grid { padding: 10px 0 4px; }
 .real-phone .environment-grid button { color: #5c4a36; background: #fffaf0; border-color: #e3d8c4; font-size: 11px; }
 .real-phone .environment-grid button.active { color: #1c241d; background: #d5c47f; border-color: #c9b66c; }
-.map-city-line line { stroke: #6fb238; stroke-width: 15; stroke-linecap: round; }
-.map-city-line circle { fill: #f6fbef; stroke: #6fb238; stroke-width: 9; }
-.nav-map .map-city-line text { fill: #3f7a1c; font-size: 30px; font-weight: 700; }
-.nav-map-legend i.city-line { background: #6fb238; }

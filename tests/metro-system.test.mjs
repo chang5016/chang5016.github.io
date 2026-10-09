@@ -4,7 +4,8 @@ import * as THREE from 'three';
 import { createVehicle, EMPTY_INPUT, intersectsBuilding, stepVehicle } from '../app/game-core.ts';
 import { createVerticalVehicle, stepVerticalVehicle } from '../app/vehicle-vertical-physics.ts';
 import { SimulationClock, interpolate } from '../app/simulation-clock.ts';
-import { MetroSystem, LIFT_HALF, METRO_DOORS, METRO_CAR_OFFSETS, METRO_FLOOR, METRO_HALF_WIDTH, METRO_STATIONS, METRO_TRACKS, metroGroundAccess, metroConcourse, metroPlatform } from '../app/metro-system.ts';
+import { MetroSystem, LIFT_HALF, METRO_DOORS, METRO_CAR_OFFSETS, METRO_FLOOR, METRO_HALF_WIDTH, METRO_STATIONS, METRO_ALL_STATIONS, METRO_TRACKS, metroGroundAccess, metroConcourse, metroPlatform } from '../app/metro-system.ts';
+import { trackPoint } from '../app/metro-route.ts';
 import { MetroScene } from '../app/metro-scene.ts';
 import { createHeadlessDocument } from './headless-document.mjs';
 import { withDownloadedMetroFiles } from './downloaded-metro-loader.mjs';
@@ -28,24 +29,30 @@ function rideStep(system, rider, vertical, input = EMPTY_INPUT) {
   return [rider, vertical];
 }
 
-test('two independent metro tracks complete repeated journeys, reverse at terminals and never move with an open door', () => {
+test('two independent metro tracks run the whole six-station line, reverse at both terminals and never move with an open door', () => {
   const system = new MetroSystem();
   const player = riderAt(0, 0), visited = system.trains.map(() => new Set());
-  const lastSpeed = [0, 0];
-  for (let step = 0; step < 60 * 700; step++) {
+  const lastSpeed = [0, 0], last = METRO_ALL_STATIONS.length - 1;
+  for (let step = 0; step < 60 * 1500; step++) {
     system.beginStep(player, 0, dt);
     for (const train of system.trains) {
-      assert.ok(train.x >= METRO_STATIONS[0].x - .001 && train.x <= METRO_STATIONS[2].x + .001);
+      assert.ok(train.s >= METRO_ALL_STATIONS[0].s - .001 && train.s <= METRO_ALL_STATIONS[last].s + .001);
+      const onTrack = trackPoint(train.s, train.track);
+      assert.ok(Math.hypot(onTrack.x - train.x, onTrack.z - train.z) < 1e-6, 'The train centre stays on its own track, including the U-turn');
       assert.ok(Number.isFinite(train.speed));
       assert.ok(Math.abs(train.speed) <= 27.001);
       assert.ok(Math.abs(train.speed - lastSpeed[train.id]) / dt < 1.5, 'Bounded, continuous departure/braking acceleration');
       if (train.phase === 'running') assert.equal(train.door, 0);
-      else { assert.equal(train.x, METRO_STATIONS[train.station].x); assert.equal(train.speed, 0); visited[train.id].add(train.station); }
+      else {
+        const stop = METRO_ALL_STATIONS[train.station];
+        assert.ok(Math.abs(train.x - stop.x) < 1e-6 && Math.abs(train.z - stop.trackZ[train.track]) < 1e-6, 'Berthed at the platform');
+        assert.equal(train.speed, 0); visited[train.id].add(train.station);
+      }
       lastSpeed[train.id] = train.speed;
     }
   }
-  for (const set of visited) assert.deepEqual([...set].sort(), [0, 1, 2]);
-  assert.ok(system.trains.every(train => train.trips >= 8));
+  for (const set of visited) assert.deepEqual([...set].sort(), [0, 1, 2, 3, 4, 5]);
+  assert.ok(system.trains.every(train => train.trips >= 12));
 });
 
 test('scooter physically rides across a level platform door, stays on the moving train and exits at the next station', () => {
@@ -190,9 +197,9 @@ test('metro simulation and riding interpolation give identical motion at 30, 60 
 });
 
 test('next-station information, pause/reset, platform gates and the mission transfer state remain correct after a train reverses', () => {
-  const system = new MetroSystem(), train = system.trains[0];
-  assert.equal(system.platformDestination(train, 1), METRO_STATIONS[2].name);
-  assert.equal(system.platformDestination(train, 2), METRO_STATIONS[1].name);
+  const system = new MetroSystem(), train = system.trains[0], last = METRO_ALL_STATIONS.length - 1;
+  assert.equal(system.platformDestination(train, 1), METRO_ALL_STATIONS[last].name);
+  assert.equal(system.platformDestination(train, 2), METRO_ALL_STATIONS[last].name);
   const ground = riderAt(system.lifts[0].x, system.lifts[0].z + 6);
   assert.equal(system.hud(ground, 0).timerPaused, false);
   assert.equal(system.hud(metroPlatform(0, 0), METRO_FLOOR).timerPaused, true);
@@ -201,9 +208,10 @@ test('next-station information, pause/reset, platform gates and the mission tran
   system.resetInterpolation();
   assert.equal(system.seconds, seconds); assert.equal(train.x, x); assert.equal(train.previousX, x);
   assert.ok(intersectsBuilding(riderAt(METRO_STATIONS[0].x + METRO_CAR_OFFSETS[0], METRO_TRACKS[0].z + METRO_HALF_WIDTH + .05), system.obstaclesAt(metroPlatform(0, 0), METRO_FLOOR)), 'The platform gate closes once its train leaves');
-  while (!(train.station === 2 && train.phase === 'dwell')) system.beginStep(riderAt(0, 0), 0, dt);
+  while (!(train.station === last && train.phase === 'dwell')) system.beginStep(riderAt(0, 0), 0, dt);
   assert.equal(train.direction, -1);
-  assert.equal(system.platformDestination(train, 1), METRO_STATIONS[0].name);
+  assert.equal(system.platformDestination(train, 1), METRO_ALL_STATIONS[0].name);
+  assert.equal(system.platformDestination(train, 4), METRO_ALL_STATIONS[0].name);
 });
 
 test('a scooter can enter a lift from the real doorway, reach the platform, call a returning lift and ride back to the street', () => {
@@ -242,7 +250,9 @@ test('downloaded station and vehicle geometry remains finite, camera stays insid
     triangles += (object.geometry.index?.count ?? positions.count) / 3 * (object.isInstancedMesh ? object.count : 1);
   });
   assert.ok(meshes < 400, 'Common moving parts share native instances');
-  assert.ok(triangles < 650000, 'Complete source detail stays bounded across all stations and vehicles');
+  // Six stations and 3.6 km of double track: rails are culled in 160 m chunks, so this bounds
+  // the whole network rather than what is visible at once.
+  assert.ok(triangles < 1150000, 'Complete source detail stays bounded across all stations and vehicles');
   assert.equal(metro.root.userData.downloadedGeometryAudit.generatedVisiblePrimitives, 0);
   const train = system.trains[0], rider = riderAt(train.x + METRO_CAR_OFFSETS[0], train.z);
   system.endStep(rider, METRO_FLOOR);

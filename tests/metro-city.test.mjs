@@ -8,7 +8,7 @@ import { MetroSystem, METRO_FLOOR, METRO_STATIONS, METRO_DOORS, METRO_HALF_WIDTH
 import { createVehicle, EMPTY_INPUT, intersectsBuilding, stepVehicle, coordinatesFromLocation } from '../app/game-core.ts';
 import { createVerticalVehicle, stepVerticalVehicle } from '../app/vehicle-vertical-physics.ts';
 
-test('six downloaded lift return journeys, graded entrances and complete imported stations fit the actual city', async () => withDownloadedMetroFiles(async () => {
+test('twelve downloaded lift return journeys, graded entrances and complete imported stations fit the actual city', async () => withDownloadedMetroFiles(async () => {
   const scene = new THREE.Scene(), world = new RealWorldMap(scene, 1);
   const metro = new MetroSystem(point => world.elevationAt(point), (point, radius) => world.transportSupportClears(point, radius));
   let visuals;
@@ -66,7 +66,7 @@ test('six downloaded lift return journeys, graded entrances and complete importe
     for (const lift of metro.lifts) for (const upper of [false, true]) {
       lift.height = lift.previousHeight = upper ? METRO_FLOOR : lift.lower; lift.door = lift.previousDoor = 1;
       visuals.render(1); scene.updateMatrixWorld(true);
-      const face = upper && lift.track === 0 ? -1 : 1;
+      const face = upper ? lift.upperDoor : lift.lowerDoor;
       for (const dx of [-.63, 0, .63]) for (const dy of [.25, 1.1, 2.95]) {
         const hits = new THREE.Raycaster(new THREE.Vector3(lift.x + dx, lift.height + dy, lift.z + face * 4.1), new THREE.Vector3(0, 0, -face), 0, 4.1).intersectObject(visuals.root, true);
         assert.equal(hits.length, 0, 'Imported lift doorway must clear the whole scooter: ' + JSON.stringify({ id: lift.id, upper, dx, dy, hits: hits.map(hit => ({ name: hit.object.name, point: hit.point.toArray() })) }));
@@ -85,7 +85,8 @@ test('six downloaded lift return journeys, graded entrances and complete importe
         assert.ok(Math.abs(surface - height) < .1, description + ': continuous pavement ' + JSON.stringify({point,height,surface}));
       }
     };
-    for (const lift of metro.lifts) {
+    // The original stations' concourse routes (city-leg lifts open straight onto their street).
+    for (const lift of metro.lifts.filter(lift => lift.station < METRO_STATIONS.length)) {
       const station = METRO_STATIONS[lift.station], south = metro.lifts[lift.station * 2];
       checkPath({ x: station.x + 20, z: -794 }, { x: south.x, z: -794 }, lift.lower, station.id + ' concourse');
       checkPath({ x: south.x, z: -794 }, { x: south.x, z: -802 }, lift.lower, station.id + ' A route');
@@ -123,7 +124,9 @@ test('six downloaded lift return journeys, graded entrances and complete importe
     };
     for (const lift of metro.lifts) {
       metro.carrier = null;
-      let rider = { ...createVehicle(), x: lift.x, z: lift.z + 4.1, heading: 0 }, vertical = createVerticalVehicle(lift.lower);
+      // Ride in from the street side, through the real map's obstacles.
+      const inward = lift.lowerDoor > 0 ? 0 : Math.PI;
+      let rider = { ...createVehicle(), x: lift.x, z: lift.z + lift.lowerDoor * 4.1, heading: inward }, vertical = createVerticalVehicle(lift.lower);
       for (let i = 0; i < 80; i++) [rider, vertical] = ride(rider, vertical, { ...EMPTY_INPUT, forward: true });
       for (let i = 0; i < 45; i++) [rider, vertical] = ride(rider, vertical, { ...EMPTY_INPUT, brake: true });
       assert.equal(metro.whollyInLift(lift, rider), true, 'Lift ' + lift.id + ' physical entry');
@@ -131,7 +134,7 @@ test('six downloaded lift return journeys, graded entrances and complete importe
       let guard = 0;
       while (lift.phase !== 'idle' && guard++ < 1200) [rider, vertical] = ride(rider, vertical);
       assert.ok(guard < 1200); assert.equal(vertical.height, METRO_FLOOR);
-      const exitHeading = lift.track === 0 ? 0 : Math.PI;
+      const exitHeading = lift.upperDoor < 0 ? 0 : Math.PI;
       rider = { ...rider, speed: 0, heading: exitHeading };
       for (let i = 0; i < 400; i++) {
         const distance = Math.abs(rider.z - metroPlatform(lift.station, lift.track).z);
@@ -150,7 +153,7 @@ test('six downloaded lift return journeys, graded entrances and complete importe
       assert.match(metro.operate(rider, vertical.height), /下行/);
       guard = 0; while (lift.phase !== 'idle' && guard++ < 1200) [rider, vertical] = ride(rider, vertical);
       assert.ok(guard < 1200); assert.equal(vertical.height, lift.lower);
-      rider = { ...rider, speed: 0, heading: Math.PI };
+      rider = { ...rider, speed: 0, heading: inward + Math.PI };
       for (let i = 0; i < 140; i++) [rider, vertical] = ride(rider, vertical, { ...EMPTY_INPUT, forward: true });
       assert.equal(metro.carrier, null); assert.ok(Math.abs(vertical.height - lift.lower) < .1, 'Lift ' + lift.id + ' returns to street');
     }

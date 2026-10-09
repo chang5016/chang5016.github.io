@@ -66,8 +66,8 @@ import { facadeBands } from "./facade-layout";
 import { transitionWidth } from "./road-transition";
 import { fitScooterRider } from "./riding-pose";
 import { SHOPPING_STREET, insideShoppingStreet, createShoppingStreetInstances, shoppingStreetPoint, shoppingTerrainElevation, isShoppingStreetSpine } from "./shopping-street";
-import { CITY_LINE, cityLineClearanceConflict, cityLineObstacles, planCityLinePiers } from "./city-line";
-import { metroStationTerrain, metroConcourse, metroStreetApproach, METRO_STATIONS, METRO_TERRAIN_PATCH } from "./metro-system";
+import { METRO_ROUTE, routeDistance } from "./metro-route";
+import { metroStationTerrain, metroConcourse, metroStreetApproach, METRO_STATIONS, METRO_ALL_STATIONS, METRO_TERRAIN_PATCH, METRO_FLOOR, LIFT_HALF, metroGroundAccess, metroLiftSites, metroSupportPiers } from "./metro-system";
 
 const VECTOR_TILE_JSON = "https://tiles.openfreemap.org/planet";
 const TERRARIUM_ELEVATION_TILES = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium";
@@ -1221,6 +1221,12 @@ export function authoredExpresswayPlan() {
   return { ring, ramps, ringExits, centralSpines, cityInterchangeRamps };
 }
 
+/** Street-level footprint of each city-leg lift: its tower and the level driveway to the kerb. */
+function metroCityDriveways(): BuildingBounds[] {
+  return metroLiftSites().filter(site => METRO_ALL_STATIONS[site.station].city)
+    .flatMap(site => [...metroGroundAccess(site), { x: site.x, z: site.z, halfWidth: LIFT_HALF + .7, halfDepth: LIFT_HALF + .7 }]);
+}
+
 export class RealWorldMap {
   readonly buildings: BuildingBounds[] = [];
   spawnPoint: (Coordinates & { heading: number }) | null = null;
@@ -1232,9 +1238,6 @@ export class RealWorldMap {
   private stockBuildingTemplates=new Map<StockBuildingKind,THREE.Object3D>();
   private stockBuildingEntries: Array<{ placement: StockBuildingPlacement; fallback: THREE.Group; collider: BuildingBounds }> = [];
   private streetPropPlacements: StreetPropPlacement[] = [];
-  // Assigned by integrateCityLine(), which can run during construction before field initialisers.
-  declare cityLinePiers: Coordinates[];
-  private declare cityLineBounds: BuildingBounds[] | undefined;
   private urbanPaving: UrbanPaving[] = [];
   private urbanGardens: UrbanRect[] = [];
   private staticRenderBatches = new StaticSceneryBatches();
@@ -1350,7 +1353,7 @@ export class RealWorldMap {
     terrainBuildCache = cache;
     try {
       this.buildAuthoredDistrict();
-      this.integrateCityLine();
+      this.integrateMetroExtension();
       this.staticRenderBatches ??= new StaticSceneryBatches();
       this.group.add(this.staticRenderBatches.group);
       const vegetation: THREE.InstancedMesh[] = [];
@@ -1375,12 +1378,22 @@ export class RealWorldMap {
     }
   }
 
-  /** 海灣綠線: plan piers on clear ground, clear anything standing in the stations or
-   * under the viaduct, keep street furniture off it and make piers and columns solid. */
-  private integrateCityLine() {
-    this.cityLinePiers = planCityLinePiers((point, radius) => this.transportSupportClears(point, radius));
-    const piers = this.cityLinePiers;
-    this.streetPropPlacements = (this.streetPropPlacements ?? []).filter(prop => !cityLineClearanceConflict(prop, piers));
+  /** The 海灣高架線 continues past 東河門戶 round an eastern U-turn into the city. Its three
+   * city stations stand on open blocks; keep those blocks, every lift driveway and pier footing,
+   * and the space under the new viaduct clear of trees and street furniture. Piers and lift
+   * towers are solid through the metro simulation. */
+  private integrateMetroExtension() {
+    const from = METRO_ALL_STATIONS[2].s + 40, to = METRO_ROUTE.length;
+    const piers = metroSupportPiers((point, radius) => this.transportSupportClears(point, radius)).filter(pier => pier.x > 1050 || pier.z > -800);
+    const blocks = METRO_ALL_STATIONS.filter(station => station.city).map(station => ({ x: station.x, z: station.lineZ, halfWidth: 46, halfDepth: 30 }));
+    const driveways = metroCityDriveways();
+    const inside = (point: Coordinates, area: BuildingBounds, margin = 0) => Math.abs(point.x - area.x) <= area.halfWidth + margin && Math.abs(point.z - area.z) <= area.halfDepth + margin;
+    const standingConflict = (point: Coordinates, top: number) =>
+      blocks.some(block => inside(point, block)) ||
+      piers.some(pier => Math.hypot(pier.x - point.x, pier.z - point.z) < pier.radius + 2.2) ||
+      // Under the deck: only what would reach the girder (deck soffit 3.96 m below the floor).
+      (top > METRO_FLOOR - 5.2 && routeDistance(point, from, to) <= 11.5);
+    this.streetPropPlacements = (this.streetPropPlacements ?? []).filter(prop => !driveways.some(area => inside(prop, area, 1)) && !standingConflict(prop, Infinity));
     const matrix = new THREE.Matrix4(), position = new THREE.Vector3(), rotation = new THREE.Quaternion(), scale = new THREE.Vector3(), hidden = new THREE.Matrix4().makeScale(0, 0, 0);
     let cleared = 0;
     this.group.updateMatrixWorld(true);
@@ -1394,18 +1407,16 @@ export class RealWorldMap {
       for (let index = 0; index < mesh.count; index++) {
         mesh.getMatrixAt(index, matrix);
         matrix.premultiply(mesh.matrixWorld).decompose(position, rotation, scale);
-        if (Math.abs(position.x - CITY_LINE.x) > 16 || scale.y === 0) continue;
-        const ground = cityElevationAt(position);
-        const height = position.y + top * scale.y;
-        // Flat markings (drain grates, manholes, paint) stay; anything standing is cleared.
-        if (height - ground < 0.3 || !cityLineClearanceConflict({ x: position.x, z: position.z, top: height }, piers)) continue;
+        if (scale.y === 0 || position.x < -340 || position.x > 1300 || position.z < -950 || position.z > -500) continue;
+        const height = position.y + top * scale.y, ground = cityElevationAt(position);
+        // Flat markings stay unless they sit on a lift driveway; anything standing is cleared.
+        const conflict = driveways.some(area => inside(position, area, 1)) || (height - ground >= .3 && standingConflict(position, height));
+        if (!conflict) continue;
         mesh.setMatrixAt(index, hidden); changed = true; cleared++;
       }
       if (changed) { mesh.instanceMatrix.needsUpdate = true; mesh.computeBoundingSphere(); }
     });
-    // Kept apart from this.buildings: piers and columns are solid but are not buildings.
-    this.cityLineBounds = cityLineObstacles(piers);
-    this.group.userData.cityLine = { piers: piers.length, clearedInstances: cleared };
+    this.group.userData.metroExtension = { piers: piers.length, clearedInstances: cleared };
   }
 
   private buildAuthoredDistrict() {
@@ -2593,9 +2604,6 @@ export class RealWorldMap {
     for (const obstacle of this.buildingCollisionGrid.queryAround(position, radius)) {
       if (Math.abs(obstacle.x - position.x) < radius + obstacle.halfWidth && Math.abs(obstacle.z - position.z) < radius + obstacle.halfDepth) nearby.push(obstacle);
     }
-    for (const obstacle of this.cityLineBounds ?? []) {
-      if (Math.abs(obstacle.x - position.x) < radius + obstacle.halfWidth && Math.abs(obstacle.z - position.z) < radius + obstacle.halfDepth) nearby.push(obstacle);
-    }
     const pierCandidates = this.bridgePierGrid.occupiedCellCount
       ? this.bridgePierGrid.queryAround(position, radius)
       : this.bridgePierColliders;
@@ -3231,7 +3239,7 @@ export class RealWorldMap {
 
   private renderUrbanGrassDetail() {
     const placements: Array<Coordinates & { scale: number; angle: number }> = [];
-    const stationPaving = METRO_STATIONS.flatMap((_, index) => [metroConcourse(index), metroStreetApproach(index)]);
+    const stationPaving = [...METRO_STATIONS.flatMap((_, index) => [metroConcourse(index), metroStreetApproach(index)]), ...metroCityDriveways()];
     for (let z = -810; z <= 810; z += 11.5) {
       for (let x = -890; x <= 1190; x += 11.5) {
         const candidate = {

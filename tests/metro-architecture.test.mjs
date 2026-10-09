@@ -41,11 +41,11 @@ test('physical platform paving keeps supported joints, correct boarding height a
   try {
     scene.updateMatrixWorld(true);const tiles=[];
     visuals.root.traverse(o=>{if(o.isInstancedMesh&&o.material?.name==='Metro terrazzo / 600 mm module')tiles.push(o);});
-    assert.equal(tiles.length,6);assert.ok(tiles.every(t=>t.geometry===tiles[0].geometry&&t.material===tiles[0].material),'All six platforms share geometry and photographic material');
+    assert.equal(tiles.length,12);assert.ok(tiles.every(t=>t.geometry===tiles[0].geometry&&t.material===tiles[0].material),'All twelve platforms share geometry and photographic material');
     const material=tiles[0].material;
     assert.ok(material.map&&material.normalMap&&material.roughnessMap);assert.equal(material.normalMap.colorSpace,T.NoColorSpace);assert.equal(material.roughnessMap.colorSpace,T.NoColorSpace);
     assert.equal(material.map.anisotropy,8);const versions=tiles.map(t=>t.instanceMatrix.version);
-    for(let station=0;station<3;station++)for(let track=0;track<2;track++) {
+    for(let station=0;station<6;station++)for(let track=0;track<2;track++) {
       const p=metroPlatform(station,track);
       for(const xOffset of [.17,4.36,12.94,26.12])for(const zOffset of [-4.83,-1.17,2.64,4.33]) {
         const hit=new T.Raycaster(new T.Vector3(p.x+xOffset,METRO_FLOOR+.05,p.z+zOffset),new T.Vector3(0,-1,0),0,.051).intersectObject(visuals.root,true)[0];

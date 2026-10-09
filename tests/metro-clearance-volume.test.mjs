@@ -4,7 +4,7 @@ import * as T from 'three';
 import {withDownloadedMetroFiles} from './downloaded-metro-loader.mjs';
 import {readModelGeometry} from './model-fixture.mjs';
 import {MetroScene} from '../app/metro-scene.ts';
-import {MetroSystem,METRO_FLOOR,METRO_TRACKS,METRO_STATIONS,metroConcourse} from '../app/metro-system.ts';
+import {MetroSystem,METRO_FLOOR,METRO_TRACKS,METRO_ALL_STATIONS,metroConcourse} from '../app/metro-system.ts';
 import {DownloadedMetroAssets} from '../app/metro-assets.ts';
 import {fallbackTerrainElevation} from '../app/world-terrain.ts';
 
@@ -20,10 +20,15 @@ test('each complete tall atrium encloses both original lift shafts and terminal 
     assert.ok(shaft.max.y<floor+31.4,'Entire lift machinery fits beneath the atrium roof');
    }
   }
+  // Buffers stand only at the two true ends of the line, beyond each terminal berth.
   const buffers=[];visuals.root.traverse(o=>{if(o.name==='Downloaded metro / buffer-stop')buffers.push(o);});assert.equal(buffers.length,4);
+  const first=METRO_ALL_STATIONS[0],last=METRO_ALL_STATIONS.at(-1);
   for(const model of buffers){const b=assets.getBounds('buffer-stop').applyMatrix4(model.matrixWorld),c=b.getCenter(new T.Vector3());
-   assert.ok(b.max.x<METRO_STATIONS[0].x-36||b.min.x>METRO_STATIONS[2].x+36,'The original train nose never reaches a buffer stop during its terminal berth');
-   assert.ok(METRO_TRACKS.some(t=>Math.abs(c.z-t.z)<.001));assert.ok(Math.abs(b.min.y-(METRO_FLOOR-2.613455))<.001,'Stop feet are grounded at the actual rail datum');
+   const atWest=Math.abs(c.z-METRO_TRACKS[0].z)<.001||Math.abs(c.z-METRO_TRACKS[1].z)<.001,atCity=last.trackZ.some(z=>Math.abs(c.z-z)<.001);
+   assert.ok(atWest||atCity,'A buffer stands on one of the two tracks');
+   if(atWest)assert.ok(b.max.x<first.x-36,'The train nose never reaches the west buffer stop during its terminal berth');
+   else assert.ok(b.max.x<last.x-36,'The train nose never reaches the city buffer stop during its terminal berth');
+   assert.ok(Math.abs(b.min.y-(METRO_FLOOR-2.613455))<.001,'Stop feet are grounded at the actual rail datum');
   }
   const lights=[];visuals.root.traverse(o=>{if(o.isPointLight)lights.push(o);});assert.equal(lights.length,3);
   const ids=lights.map(l=>l.uuid);visuals.updateInteriorLighting({x:system.trains[0].x,z:system.trains[0].z},METRO_FLOOR);
@@ -55,7 +60,8 @@ test('actual rail heads align with native wheel datum and steel tiles join witho
  const track=METRO_TRACKS[0];let hitsAt=0;
  // Sample several tile seams along a non-station segment, finding the steel
  // gauge from original source geometry rather than an invented rail width.
- const sample=rails.find(x=>{x.computeBoundingBox();return x.boundingBox?.min.z>track.z-5&&x.boundingBox?.max.z<track.z+5;});assert.ok(sample);
+ // Chunks carry both tracks of one stretch of viaduct; pick the one under the sample seams.
+ const sample=rails.find(x=>{x.computeBoundingBox();return x.boundingBox?.min.x<=-501&&x.boundingBox?.max.x>=-497&&x.boundingBox?.min.z<track.z&&x.boundingBox?.max.z>track.z;});assert.ok(sample);
  const p=sample.geometry.attributes.position,top=[];for(let i=0;i<p.count;i++)if(p.getY(i)>-.005)top.push(p.getX(i));const gauges=[Math.min(...top),Math.max(...top)];
  for(const x of [-500,-499.99,-499.01,-499,-498.99])for(const offset of gauges){const ray=new T.Raycaster(new T.Vector3(x,headY+.05,track.z-offset),new T.Vector3(0,-1,0),0,.08);const hits=ray.intersectObjects(rails,false);if(hits.length){assert.ok(Math.abs(hits[0].point.y-headY)<.005);hitsAt++;}}
  assert.equal(hitsAt,10,'Continuous visible steel at each one-metre joint');

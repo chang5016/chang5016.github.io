@@ -30,10 +30,9 @@ import { EXPRESSWAY_RING_POINTS, RealWorldMap } from "./real-world-map";
 import { type QualityLevel } from "./performance-control";
 import { MOUNTAIN_ROAD_POINTS, type TrafficLightColor } from "./world-terrain";
 import { createVerticalVehicle, stepVerticalVehicle } from "./vehicle-vertical-physics";
-import { EMPTY_METRO_HUD, METRO_STATIONS, MetroSystem, type MetroHud } from "./metro-system";
+import { EMPTY_METRO_HUD, METRO_ALL_STATIONS, MetroSystem, metroStationEntrance, type MetroHud } from "./metro-system";
 import { MetroScene } from "./metro-scene";
-import { CityLineScene } from "./city-line-scene";
-import { CITY_LINE, CITY_LINE_STATIONS } from "./city-line";
+import { METRO_ROUTE, sampleRoute } from "./metro-route";
 import { MetroAudio } from "./metro-audio";
 import { GameSfx, audioSettings } from "./game-sfx";
 import { createResolutionGovernor, stepResolution } from "./adaptive-resolution";
@@ -79,13 +78,16 @@ type CharacterRig = {
 
 const IDLE_INPUT: VehicleInput = { forward: false, reverse: false, left: false, right: false, brake: false, drift: false };
 
+/** The whole viaduct centre line, including the eastern U-turn into the city. */
+const METRO_LINE_PATH = sampleRoute(0, METRO_ROUTE.length, 8).map(point => `${point.x.toFixed(1)},${point.z.toFixed(1)}`).join(" ");
+
 function CityNavigationMap({ hud, expanded, toggle }: { hud: GameHud; expanded: boolean; toggle: () => void }) {
   const destination = coordinatesFromLocation(TAICHUNG_LOCATIONS[hud.target]);
   const rows = [-760, -610, -460, -300, -110, 90, 270, 460, 620, 760];
   const columns = [-860, -650, -480, -250, 0, 120, 340, 560, 780, 960, 1160];
   const mountainPath = MOUNTAIN_ROAD_POINTS.map((point) => `${point.x},${point.z}`).join(" ");
   const expresswayPath = EXPRESSWAY_RING_POINTS.map((point) => `${point.x},${point.z}`).join(" ");
-  const metroStation = METRO_STATIONS.reduce((best, station) => Math.hypot(hud.playerX - station.x, hud.playerZ + 809) < Math.hypot(hud.playerX - best.x, hud.playerZ + 809) ? station : best, METRO_STATIONS[0] as typeof METRO_STATIONS[number]);
+  const metroEntrance = METRO_ALL_STATIONS.map((_, index) => metroStationEntrance(index)).reduce((best, entrance) => Math.hypot(hud.playerX - entrance.x, hud.playerZ - entrance.z) < Math.hypot(hud.playerX - best.x, hud.playerZ - best.z) ? entrance : best);
   return (
     <aside className={`nav-map ${expanded ? "expanded" : ""}`} aria-label="海灣市高解析導航地圖">
       <div className="nav-map-head"><div><b>海灣市全域導航</b><span>前往 {TAICHUNG_LOCATIONS[hud.target].name} · {Math.round(hud.distance)} m</span></div><button onClick={toggle}>{expanded ? "縮小" : "放大"}</button></div>
@@ -103,9 +105,8 @@ function CityNavigationMap({ hud, expanded, toggle }: { hud: GameHud; expanded: 
           <path d="M-810 -300 Q-740 -180 -650 -150 M-650 -450 Q-555 -410 -495 -300 M-495 -300 Q-560 -190 -650 -150 M-650 -450 Q-750 -410 -810 -300" />
         </g>
         <g className="map-interchanges"><circle cx="-690" cy="900" r="18"/><circle cx="382" cy="-900" r="18"/><circle cx="-1040" cy="226" r="18"/><circle cx="1300" cy="-252" r="18"/><circle cx="-650" cy="-300" r="30"/></g>
-        <g className="map-metro"><line x1={METRO_STATIONS[0].x - 84} y1="-842.5" x2={METRO_STATIONS[2].x + 84} y2="-842.5" />{METRO_STATIONS.map(station => <g key={station.id} transform={`translate(${station.x} -842.5)`}><circle r="25" /><text x="0" y="-42">{station.id} {station.name}</text></g>)}{hud.metro.positions.map((train, i) => <rect key={i} x={train.x - 20} y={train.z - 10} width="40" height="20" className="map-metro-train" />)}</g>
-        <g className="map-city-line"><line x1={CITY_LINE.x} y1={CITY_LINE.north} x2={CITY_LINE.x} y2={CITY_LINE.south} />{CITY_LINE_STATIONS.map(station => <g key={station.id} transform={`translate(${CITY_LINE.x} ${station.z})`}><circle r="17" /><text x="30" y="10">{station.name}</text></g>)}</g>
-        {hud.metroGuide && hud.metro.mode !== "train" && <line x1={hud.playerX} y1={hud.playerZ} x2={metroStation.x + 20} y2="-809" className="map-metro-guide" />}
+        <g className="map-metro"><polyline points={METRO_LINE_PATH} />{METRO_ALL_STATIONS.map(station => <g key={station.id} transform={`translate(${station.x} ${station.lineZ})`}><circle r="25" /><text x="0" y={station.city ? 62 : -42}>{station.id} {station.name}</text></g>)}{hud.metro.positions.map((train, i) => <rect key={i} x={train.x - 20} y={train.z - 10} width="40" height="20" className="map-metro-train" />)}</g>
+        {hud.metroGuide && hud.metro.mode !== "train" && <line x1={hud.playerX} y1={hud.playerZ} x2={metroEntrance.x} y2={metroEntrance.z} className="map-metro-guide" />}
         <polyline points={mountainPath} className="map-road mountain-road" />
         <path d="M1590 510 H2210" className="map-road mountain-road" strokeDasharray="18 12" />
         <text x="1740" y="475">山腹隧道 500 m</text>
@@ -117,7 +118,7 @@ function CityNavigationMap({ hud, expanded, toggle }: { hud: GameHud; expanded: 
         <g transform={`translate(${hud.playerX} ${hud.playerZ}) rotate(${hud.heading * 180 / Math.PI})`} className="map-player"><path d="M0 -30 L18 20 L0 12 L-18 20Z" /></g>
         <text x="-820" y="-700">南港生活區</text><text x="-170" y="-520">南町商業區</text><text x="260" y="220">中央辦公區</text><text x="750" y="-390">河岸住宅區</text><text x="1450" y="210">山景別墅區</text><text x="-930" y="860">都會環狀快速道路</text>
       </svg>
-      <div className="nav-map-legend"><span><i className="you"/>你的位置</span><span><i className="goal"/>接送目標</span><span><i className="metro"/>高架捷運</span><span><i className="city-line"/>綠線</span><span>↑ 北</span></div>
+      <div className="nav-map-legend"><span><i className="you"/>你的位置</span><span><i className="goal"/>接送目標</span><span><i className="metro"/>海灣高架線</span><span>↑ 北</span></div>
     </aside>
   );
 }
@@ -328,7 +329,6 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
     const world = new RealWorldMap(scene, renderer.getMaxAnisotropy());
     const metroSystem = new MetroSystem(point => world.elevationAt(point), (point, radius) => world.transportSupportClears(point, radius));
     const metroScene = new MetroScene(scene, metroSystem, point => world.elevationAt(point));
-    const cityLine = new CityLineScene(scene, world.cityLinePiers, point => world.elevationAt(point));
     world.enableMetroCommuters(metroSystem);
     const metroAudio = new MetroAudio();
     const continuousShadows = new GpuShadowCache(scene, sun);
@@ -686,7 +686,7 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
     canvas.addEventListener("wheel", wheel, { passive: false });
 
     update({ ready: characterLoaded, message });
-    if (new URLSearchParams(window.location.search).has("debug")) (window as Window & { __capy?: unknown }).__capy = { renderer, scene, camera, world };
+    if (new URLSearchParams(window.location.search).has("debug")) (window as Window & { __capy?: unknown }).__capy = { renderer, scene, camera, world, metro: metroSystem, metroScene, sun, exactStatic, packedCity };
     const draw = (now: number) => {
       animation = requestAnimationFrame(draw);
       if (gpuFailed || document.hidden || pausedRef.current || !scenePrepared) {
@@ -805,7 +805,6 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
         world.updateRoadTraffic(simulationSeconds, dt, state, vertical.height);
       });
       metroScene.render(alpha, state);
-      cityLine.update(simulationSeconds + alpha * clock.step);
       world.renderStreetPropPhysics(alpha);
       metroAudio.update(metroSystem, state, vertical.height);
       const visual = {
@@ -945,7 +944,6 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
       canvas.removeEventListener("pointercancel", pointerUp);
       canvas.removeEventListener("wheel", wheel);
       metroScene.dispose();
-      cityLine.dispose();
       metroAudio.dispose();
       packedCity.dispose();
       exactStatic.dispose();
