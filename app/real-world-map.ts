@@ -66,6 +66,7 @@ import { facadeBands } from "./facade-layout";
 import { transitionWidth } from "./road-transition";
 import { fitScooterRider } from "./riding-pose";
 import { SHOPPING_STREET, insideShoppingStreet, createShoppingStreetInstances, shoppingStreetPoint, shoppingTerrainElevation, isShoppingStreetSpine } from "./shopping-street";
+import { CITY_LINE, cityLineClearanceConflict, cityLineObstacles, planCityLinePiers } from "./city-line";
 import { metroStationTerrain, metroConcourse, metroStreetApproach, METRO_STATIONS, METRO_TERRAIN_PATCH } from "./metro-system";
 
 const VECTOR_TILE_JSON = "https://tiles.openfreemap.org/planet";
@@ -1231,6 +1232,9 @@ export class RealWorldMap {
   private stockBuildingTemplates=new Map<StockBuildingKind,THREE.Object3D>();
   private stockBuildingEntries: Array<{ placement: StockBuildingPlacement; fallback: THREE.Group; collider: BuildingBounds }> = [];
   private streetPropPlacements: StreetPropPlacement[] = [];
+  // Assigned by integrateCityLine(), which can run during construction before field initialisers.
+  declare cityLinePiers: Coordinates[];
+  private declare cityLineBounds: BuildingBounds[] | undefined;
   private urbanPaving: UrbanPaving[] = [];
   private urbanGardens: UrbanRect[] = [];
   private staticRenderBatches = new StaticSceneryBatches();
@@ -1346,6 +1350,7 @@ export class RealWorldMap {
     terrainBuildCache = cache;
     try {
       this.buildAuthoredDistrict();
+      this.integrateCityLine();
       this.staticRenderBatches ??= new StaticSceneryBatches();
       this.group.add(this.staticRenderBatches.group);
       const vegetation: THREE.InstancedMesh[] = [];
@@ -1368,6 +1373,39 @@ export class RealWorldMap {
       };
       terrainBuildCache = previous;
     }
+  }
+
+  /** 海灣綠線: plan piers on clear ground, clear anything standing in the stations or
+   * under the viaduct, keep street furniture off it and make piers and columns solid. */
+  private integrateCityLine() {
+    this.cityLinePiers = planCityLinePiers((point, radius) => this.transportSupportClears(point, radius));
+    const piers = this.cityLinePiers;
+    this.streetPropPlacements = (this.streetPropPlacements ?? []).filter(prop => !cityLineClearanceConflict(prop, piers));
+    const matrix = new THREE.Matrix4(), position = new THREE.Vector3(), rotation = new THREE.Quaternion(), scale = new THREE.Vector3(), hidden = new THREE.Matrix4().makeScale(0, 0, 0);
+    let cleared = 0;
+    this.group.updateMatrixWorld(true);
+    this.group.traverse(object => {
+      const mesh = object as THREE.InstancedMesh;
+      if (!mesh.isInstancedMesh || /elevated|bridge|pier|expressway/i.test(mesh.name)) return;
+      for (let ancestor: THREE.Object3D | null = mesh; ancestor; ancestor = ancestor.parent) if (ancestor.userData.dynamicWorldObject) return;
+      mesh.geometry.computeBoundingBox();
+      const top = mesh.geometry.boundingBox?.max.y ?? 0;
+      let changed = false;
+      for (let index = 0; index < mesh.count; index++) {
+        mesh.getMatrixAt(index, matrix);
+        matrix.premultiply(mesh.matrixWorld).decompose(position, rotation, scale);
+        if (Math.abs(position.x - CITY_LINE.x) > 16 || scale.y === 0) continue;
+        const ground = cityElevationAt(position);
+        const height = position.y + top * scale.y;
+        // Flat markings (drain grates, manholes, paint) stay; anything standing is cleared.
+        if (height - ground < 0.3 || !cityLineClearanceConflict({ x: position.x, z: position.z, top: height }, piers)) continue;
+        mesh.setMatrixAt(index, hidden); changed = true; cleared++;
+      }
+      if (changed) { mesh.instanceMatrix.needsUpdate = true; mesh.computeBoundingSphere(); }
+    });
+    // Kept apart from this.buildings: piers and columns are solid but are not buildings.
+    this.cityLineBounds = cityLineObstacles(piers);
+    this.group.userData.cityLine = { piers: piers.length, clearedInstances: cleared };
   }
 
   private buildAuthoredDistrict() {
@@ -2553,6 +2591,9 @@ export class RealWorldMap {
       this.indexedBuildingCount = this.buildings.length;
     }
     for (const obstacle of this.buildingCollisionGrid.queryAround(position, radius)) {
+      if (Math.abs(obstacle.x - position.x) < radius + obstacle.halfWidth && Math.abs(obstacle.z - position.z) < radius + obstacle.halfDepth) nearby.push(obstacle);
+    }
+    for (const obstacle of this.cityLineBounds ?? []) {
       if (Math.abs(obstacle.x - position.x) < radius + obstacle.halfWidth && Math.abs(obstacle.z - position.z) < radius + obstacle.halfDepth) nearby.push(obstacle);
     }
     const pierCandidates = this.bridgePierGrid.occupiedCellCount

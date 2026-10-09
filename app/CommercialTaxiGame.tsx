@@ -32,6 +32,8 @@ import { MOUNTAIN_ROAD_POINTS, type TrafficLightColor } from "./world-terrain";
 import { createVerticalVehicle, stepVerticalVehicle } from "./vehicle-vertical-physics";
 import { EMPTY_METRO_HUD, METRO_STATIONS, MetroSystem, type MetroHud } from "./metro-system";
 import { MetroScene } from "./metro-scene";
+import { CityLineScene } from "./city-line-scene";
+import { CITY_LINE, CITY_LINE_STATIONS } from "./city-line";
 import { MetroAudio } from "./metro-audio";
 import { GameSfx, audioSettings } from "./game-sfx";
 import { createResolutionGovernor, stepResolution } from "./adaptive-resolution";
@@ -102,6 +104,7 @@ function CityNavigationMap({ hud, expanded, toggle }: { hud: GameHud; expanded: 
         </g>
         <g className="map-interchanges"><circle cx="-690" cy="900" r="18"/><circle cx="382" cy="-900" r="18"/><circle cx="-1040" cy="226" r="18"/><circle cx="1300" cy="-252" r="18"/><circle cx="-650" cy="-300" r="30"/></g>
         <g className="map-metro"><line x1={METRO_STATIONS[0].x - 84} y1="-842.5" x2={METRO_STATIONS[2].x + 84} y2="-842.5" />{METRO_STATIONS.map(station => <g key={station.id} transform={`translate(${station.x} -842.5)`}><circle r="25" /><text x="0" y="-42">{station.id} {station.name}</text></g>)}{hud.metro.positions.map((train, i) => <rect key={i} x={train.x - 20} y={train.z - 10} width="40" height="20" className="map-metro-train" />)}</g>
+        <g className="map-city-line"><line x1={CITY_LINE.x} y1={CITY_LINE.north} x2={CITY_LINE.x} y2={CITY_LINE.south} />{CITY_LINE_STATIONS.map(station => <g key={station.id} transform={`translate(${CITY_LINE.x} ${station.z})`}><circle r="17" /><text x="30" y="10">{station.name}</text></g>)}</g>
         {hud.metroGuide && hud.metro.mode !== "train" && <line x1={hud.playerX} y1={hud.playerZ} x2={metroStation.x + 20} y2="-809" className="map-metro-guide" />}
         <polyline points={mountainPath} className="map-road mountain-road" />
         <path d="M1590 510 H2210" className="map-road mountain-road" strokeDasharray="18 12" />
@@ -114,7 +117,7 @@ function CityNavigationMap({ hud, expanded, toggle }: { hud: GameHud; expanded: 
         <g transform={`translate(${hud.playerX} ${hud.playerZ}) rotate(${hud.heading * 180 / Math.PI})`} className="map-player"><path d="M0 -30 L18 20 L0 12 L-18 20Z" /></g>
         <text x="-820" y="-700">南港生活區</text><text x="-170" y="-520">南町商業區</text><text x="260" y="220">中央辦公區</text><text x="750" y="-390">河岸住宅區</text><text x="1450" y="210">山景別墅區</text><text x="-930" y="860">都會環狀快速道路</text>
       </svg>
-      <div className="nav-map-legend"><span><i className="you"/>你的位置</span><span><i className="goal"/>接送目標</span><span><i className="metro"/>高架捷運</span><span>↑ 北</span></div>
+      <div className="nav-map-legend"><span><i className="you"/>你的位置</span><span><i className="goal"/>接送目標</span><span><i className="metro"/>高架捷運</span><span><i className="city-line"/>綠線</span><span>↑ 北</span></div>
     </aside>
   );
 }
@@ -325,6 +328,7 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
     const world = new RealWorldMap(scene, renderer.getMaxAnisotropy());
     const metroSystem = new MetroSystem(point => world.elevationAt(point), (point, radius) => world.transportSupportClears(point, radius));
     const metroScene = new MetroScene(scene, metroSystem, point => world.elevationAt(point));
+    const cityLine = new CityLineScene(scene, world.cityLinePiers, point => world.elevationAt(point));
     world.enableMetroCommuters(metroSystem);
     const metroAudio = new MetroAudio();
     const continuousShadows = new GpuShadowCache(scene, sun);
@@ -801,6 +805,7 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
         world.updateRoadTraffic(simulationSeconds, dt, state, vertical.height);
       });
       metroScene.render(alpha, state);
+      cityLine.update(simulationSeconds + alpha * clock.step);
       world.renderStreetPropPhysics(alpha);
       metroAudio.update(metroSystem, state, vertical.height);
       const visual = {
@@ -940,6 +945,7 @@ function useEngine(canvasRef: React.RefObject<HTMLCanvasElement | null>, activeR
       canvas.removeEventListener("pointercancel", pointerUp);
       canvas.removeEventListener("wheel", wheel);
       metroScene.dispose();
+      cityLine.dispose();
       metroAudio.dispose();
       packedCity.dispose();
       exactStatic.dispose();

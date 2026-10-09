@@ -335,3 +335,7 @@ button { font: inherit; }
 .real-phone .environment-grid { padding: 10px 0 4px; }
 .real-phone .environment-grid button { color: #5c4a36; background: #fffaf0; border-color: #e3d8c4; font-size: 11px; }
 .real-phone .environment-grid button.active { color: #1c241d; background: #d5c47f; border-color: #c9b66c; }
+.map-city-line line { stroke: #6fb238; stroke-width: 15; stroke-linecap: round; }
+.map-city-line circle { fill: #f6fbef; stroke: #6fb238; stroke-width: 9; }
+.nav-map .map-city-line text { fill: #3f7a1c; font-size: 30px; font-weight: 700; }
+.nav-map-legend i.city-line { background: #6fb238; }
