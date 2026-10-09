@@ -23,18 +23,18 @@ test('concourses retain normal controls, platforms reduce to 25 km/h and carriag
 
 test('both displayed arrivals match the real asymmetric shuttle timetable and terminal reversal',()=>{
   const step=.04;
-  for(const elapsed of [0,37,104,192])for(const track of [0,1])for(const station of [0,1,2]){
+  for(const elapsed of [0,37,104,192])for(const track of [0,1])for(const station of [0,1,2,3,4,5]){
     const system=new MetroSystem(),away={...createVehicle(),x:0,z:0};
     for(let i=0;i<elapsed/step;i++)system.beginStep(away,0,step);
     const train=system.trains[track],predicted=[system.arrivalSeconds(train,station),system.followingArrivalSeconds(train,station)],actual=[];
     if(train.station===station&&train.phase!=='running')actual.push(0);
     const origin=system.seconds;
     let guard=0;
-    while(actual.length<2&&guard++<24000){
+    while(actual.length<2&&guard++<80000){
       const before=train.phase;system.beginStep(away,0,step);
       if(before==='running'&&train.phase==='opening'&&train.station===station)actual.push(system.seconds-origin);
     }
-    assert.ok(guard<24000);
+    assert.ok(guard<80000);
     for(let i=0;i<2;i++)assert.ok(Math.abs(actual[i]-predicted[i])<.25,JSON.stringify({elapsed,track,station,predicted,actual}));
     assert.ok(predicted[1]>predicted[0]);
   }
